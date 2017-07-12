@@ -13,27 +13,38 @@ func generateEditPanelViewId() -> Int {
     return componentViewId
 }
 
-class ViewController: UIViewController, ComponentViewDelegate {
+let scrollView = UIScrollView()
+let imageView = UIImageView()
+var bounds = CGRect()
+var visibleRect = CGRect()
+
+class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDelegate {
     var componentViewList = [ComponentView]()
     var editPanelViewList = [EditPanel]()
     
-    @IBOutlet weak var background: UIImageView!
-    var imageView: UIImageView!
-    var scrollView: UIScrollView!
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        background = UIImageView(image: UIImage(named: "backgroundGray.jpg"))
         
+        bounds = UIScreen.main.bounds
         
-        /*scrollView = UIScrollView(frame: view.bounds)
-        scrollView.backgroundColor = UIColor.white
+        imageView.image = UIImage(named:"backgroundGray.jpg")
+        imageView.frame = CGRect(x: 0, y: 0, width: (bounds.size.width * 2), height: (bounds.size.height * 2))
+        imageView.isUserInteractionEnabled = true
+        scrollView.frame = view.bounds
         scrollView.contentSize = imageView.bounds.size
         scrollView.addSubview(imageView)
+        scrollView.bounces = false
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 0.7
+        scrollView.maximumZoomScale = 1.3
+        scrollView.bouncesZoom = false
         view.addSubview(scrollView)
         
-        let container = UIView(frame: CGRect(x: 0, y: 70, width: view.bounds.width, height: 120))
+        let container = UIView(frame: CGRect(x: 20, y: 70, width: (view.bounds.width - 40), height: 120))
         container.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 97/100, alpha: 1.0)
         view.addSubview(container)
         
@@ -44,7 +55,7 @@ class ViewController: UIViewController, ComponentViewDelegate {
                                bDraggable: true,
                                bOrigin: true)
         v1.delegate = self
-        v1.id = generateComponentViewId()
+        v1.bSelected = false
         view.addSubview(v1)
         componentViewList.append(v1)
         
@@ -57,6 +68,7 @@ class ViewController: UIViewController, ComponentViewDelegate {
         view.addSubview(v2)
         componentViewList.append(v2)
         
+        
         let v3 = ComponentView(frame: CGRect(x: 450.0, y: 80, width: 100.0, height: 100.0),
                                type: "RoundedMultiRect",
                                bDraggable: true,
@@ -68,9 +80,6 @@ class ViewController: UIViewController, ComponentViewDelegate {
         v3.addSubview(v3_1)
         v3.delegate = self
         v3_1.delegate = self
-        let tmp = generateComponentViewId()
-        v3.id = tmp
-        v3_1.id = tmp
         view.addSubview(v3)
         componentViewList.append(v3)
         
@@ -119,7 +128,8 @@ class ViewController: UIViewController, ComponentViewDelegate {
         txtField2.font = UIFont.boldSystemFont(ofSize: 10)
         v6.addSubview(txtField2)
         view.addSubview(v6)
-        componentViewList.append(v6)*/
+        componentViewList.append(v6)
+        
     }
     
     func initGestureRecognizers() {
@@ -145,18 +155,16 @@ class ViewController: UIViewController, ComponentViewDelegate {
     }
     
     func didPinch(pinchGR: UIPinchGestureRecognizer) {
-        
-        let scale = pinchGR.scale
-        /*for comp in componentViewList {
-            if comp.bOrigin == false {
+        /*let scale = pinchGR.scale
+        for comp in imageView.subviews {
+            if comp.tag != 1 {
                 comp.transform = comp.transform.scaledBy(x: scale, y: scale)
             }
-        }*/
-        view.transform = view.transform.scaledBy(x: scale, y: scale)
-        pinchGR.scale = 1.0
+        }
+        pinchGR.scale = 1.0*/
     }
     
-    func create(frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
+    func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
         if type == "RoundedMultiRect" {
             let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
             let v1_1 = ComponentView(frame: CGRect(x: 3.0, y: 3.0, width: 100.0, height: 100.0),
@@ -166,15 +174,26 @@ class ViewController: UIViewController, ComponentViewDelegate {
             v1.addSubview(v1_1)
             v1.delegate = self
             v1_1.delegate = self
-            let tmp = generateComponentViewId()
-            v1.id = tmp
-            v1_1.id = tmp
+            v1.id = generateComponentViewId()
+            v1_1.id = generateComponentViewId()
             self.view.addSubview(v1)
+            visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
+            component.frame =  CGRect(x: component.frame.minX + visibleRect.minX, y: component.frame.minY + visibleRect.minY,
+                                      width: component.frame.width, height: component.frame.height)
+            imageView.addSubview(component)
             componentViewList.append(v1)
         } else {
             let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
             v1.delegate = self
-            v1.id = generateComponentViewId()
+            v1.bSelected = false
+            self.view.addSubview(v1)
+            
+            visibleRect = imageView.convert(scrollView.bounds, from: scrollView);
+            component.frame =  CGRect(x: component.frame.minX + visibleRect.minX, y: component.frame.minY + visibleRect.minY,
+                                      width: component.frame.width, height: component.frame.height)
+            imageView.addSubview(component)
+            componentViewList.append(v1)
+            
             if type == "Timer" {
                 v1.drawSecondPath = true
                 let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
@@ -201,27 +220,59 @@ class ViewController: UIViewController, ComponentViewDelegate {
                 txtFieldBus.font = UIFont.boldSystemFont(ofSize: 10)
                 v1.addSubview(txtFieldBus)
             }
-            self.view.addSubview(v1)
-            componentViewList.append(v1)
         }
     }
     
     func select(component: ComponentView) {
         if component.bSelected {
+            visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
             if component.type == "RoundedMultiRect" {
-                component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)! + 30,
-                                                   y: (component.superview?.frame.minY)! - 50,
+                component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
+                                                   y: (component.superview?.frame.minY)!,
                                                    width: 210, height: 400)
-                view.addSubview(component.editPanel)
+                imageView.addSubview(component.editPanel)
                 editPanelViewList.append(component.editPanel)
             } else {
-                component.editPanel.frame = CGRect(x: component.frame.maxX + 30,
-                                                   y: component.frame.minY - 50,
-                                                   width: 210, height: 400)
-                view.addSubview(component.editPanel)
+                if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
+                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                           y: component.frame.minY,
+                                                           width: 210, height: 400)
+                    } else {
+                        component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                           y: component.frame.minY,
+                                                           width: 210, height: 400)
+                    }
+                    
+                } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
+                    
+                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                           y: component.frame.maxY - 400,
+                                                           width: 210, height: 400)
+                    } else {
+                        component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                           y: component.frame.maxY - 400,
+                                                           width: 210, height: 400)
+                    }
+
+                    
+                } else {
+                    
+                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                           y: component.frame.maxY - 250,
+                                                           width: 210, height: 400)
+                    } else {
+                        component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                           y: component.frame.maxY - 250,
+                                                           width: 210, height: 400)
+                    }
+                }
+                
+                imageView.addSubview(component.editPanel)
                 editPanelViewList.append(component.editPanel)
             }
-            
             
             for cv in componentViewList {
                 if cv != component {
@@ -229,20 +280,20 @@ class ViewController: UIViewController, ComponentViewDelegate {
                     cv.editPanel.removeFromSuperview()
                 }
             }
-
+            
         } else {
             component.editPanel.removeFromSuperview()
         }
     }
     
     func delete(component: ComponentView) {
-        print("todo delete ComponentView with id \(component.id) from array ")
+        //print("todo delete ComponentView with id \(component.id) from array ")
     }
     
     func merge(component: ComponentView) {
         
         let firstComponentView = component
-
+        
             switch firstComponentView.type {
             case "Bus":
                 for cv in componentViewList {
@@ -350,9 +401,8 @@ class ViewController: UIViewController, ComponentViewDelegate {
                 for secondComponentView in componentViewList {
                     if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
                         
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  &&
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX < -20  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  &&
+                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20
+                            || firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  &&
                             firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
                             firstComponentView.frame.minY - secondComponentView.frame.minY > -20  &&
                             firstComponentView.frame.minY - secondComponentView.frame.minY < 20
@@ -362,10 +412,11 @@ class ViewController: UIViewController, ComponentViewDelegate {
                                     firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
                                     firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
                                 {
-                                    
                                     secondComponentView.frame = CGRect(x: firstComponentView.frame.maxX + 35.0, y: firstComponentView.frame.minY - 2, width: 100, height: 100)
                                     firstComponentView.neighborRight = secondComponentView
                                     secondComponentView.neighborLeft = firstComponentView
+                                    firstComponentView.addSubview(secondComponentView)
+                                    
                                 }
                             } else {
                                 if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
@@ -375,6 +426,7 @@ class ViewController: UIViewController, ComponentViewDelegate {
                                     firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 35.0, y: secondComponentView.frame.minY - 2, width: 100, height: 100)
                                     firstComponentView.neighborLeft = secondComponentView
                                     secondComponentView.neighborRight = firstComponentView
+                                    firstComponentView.addSubview(secondComponentView)
                                 }
                             }
                         }
@@ -391,6 +443,7 @@ class ViewController: UIViewController, ComponentViewDelegate {
                                     secondComponentView.frame = CGRect(x: firstComponentView.frame.minX + 2, y: firstComponentView.frame.minY + 135, width: 100, height: 100)
                                     firstComponentView.neighborButtom = secondComponentView
                                     secondComponentView.neighborTop = firstComponentView
+                                    firstComponentView.addSubview(secondComponentView)
                                 }
                                 
                             } else {
@@ -401,6 +454,7 @@ class ViewController: UIViewController, ComponentViewDelegate {
                                     firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 2, y: secondComponentView.frame.minY + 135, width: 100, height: 100)
                                     secondComponentView.neighborTop = firstComponentView
                                     firstComponentView.neighborButtom = secondComponentView
+                                    firstComponentView.addSubview(secondComponentView)
                                 }
                             }
                         }

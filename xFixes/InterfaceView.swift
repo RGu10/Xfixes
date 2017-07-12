@@ -1,4 +1,3 @@
-//Git
 import UIKit
 
 class InterfaceView: UIView {

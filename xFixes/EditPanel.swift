@@ -5,7 +5,6 @@
 //  Created by Ryad on 09.04.17.
 //  Copyright © 2017 Ryad. All rights reserved.
 //
-//Git
 import UIKit
 
 class EditPanel : UIView  {

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ComponentViewDelegate: class {
-    func create(frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool)
+    func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool)
     func select(component: ComponentView)
     func delete(component: ComponentView)
     func merge(component: ComponentView)
@@ -152,8 +152,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
     
     var delegate: ComponentViewDelegate?
     
-    func create(frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
-        delegate?.create(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
+    func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
+        delegate?.create(component: component, frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
     }
     
     func merge(component: ComponentView) {
@@ -201,6 +201,24 @@ class ComponentView : UIView, InterfacePickerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let result = super.hitTest(point, with: event) {
+            return result
+        }
+        
+        for sub in self.subviews.reversed() {
+            let pt = self.convert(point, to:sub)
+            if let result = sub.hitTest(pt, with: event) {
+                return result
+            }
+        }
+        return nil
+    }
+
+    /*override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return true;
+    }*/
+
     internal func setInterface(side: String, interface1: String, interface2: String, interface3: String) {
         print("\(side): \(interface1)   \(interface2)   \(interface3)")
         setInterfaceAction(side: side, interface1: interface1, interface2: interface2, interface3: interface3)
@@ -1630,65 +1648,18 @@ class ComponentView : UIView, InterfacePickerDelegate {
         } else {
             bSelected = false
         }
-        select(component: self)
-    }
-    
-    func rec_move(component: ComponentView, panGR: UIPanGestureRecognizer){
-        
-        if component.neighborTop != nil {
-            component.neighborTop!.superview!.bringSubview(toFront: component.neighborTop!)
-            var translation = panGR.translation(in: component.neighborTop!)
-            translation = translation.applying(component.neighborTop!.transform)
-            component.neighborTop!.center.x += translation.x
-            component.neighborTop!.center.y += translation.y
-            panGR.setTranslation(CGPoint.zero, in: component.neighborTop!)
-            rec_move(component: component.neighborTop!, panGR: panGR)
-            print("nimm es mit")
+        if !bOrigin {
+            select(component: self)
         }
     }
     
     func didPan(panGR: UIPanGestureRecognizer) {
         
-        self.superview!.bringSubview(toFront: self)
         var translation = panGR.translation(in: self)
         translation = translation.applying(self.transform)
         self.center.x += translation.x
         self.center.y += translation.y
         panGR.setTranslation(CGPoint.zero, in: self)
-        
-        //rec_move(component: self, panGR: panGR)
-        
-        var componetViewNeighborList = [ComponentView]()
-        
-        var tmpTop = self.neighborTop
-        while (tmpTop != nil) {
-            componetViewNeighborList.append(tmpTop!)
-            tmpTop = tmpTop?.neighborTop
-        }
-        
-        var tmpButtom = self.neighborButtom
-        while (tmpButtom != nil) {
-            componetViewNeighborList.append(tmpButtom!)
-            tmpButtom = tmpButtom?.neighborButtom
-        }
-        
-        var tmpLeft = self.neighborLeft
-        while (tmpLeft != nil) {
-            componetViewNeighborList.append(tmpLeft!)
-            tmpLeft = tmpLeft?.neighborLeft
-        }
-        
-        var tmpRight = self.neighborRight
-        while (tmpRight != nil) {
-            componetViewNeighborList.append(tmpRight!)
-            tmpRight = tmpRight?.neighborRight
-        }
-        
-        /*for comp in componetViewNeighborList {
-            comp.center.x += translation.x
-            comp.center.y += translation.y
-            panGR.setTranslation(CGPoint.zero, in: comp)
-        }*/
         
         switch (panGR.state) {
         case .changed:
@@ -1698,7 +1669,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "Rect":
                 if bOrigin == true {
                     bOrigin = false
-                    create(frame: CGRect(x: 150.0, y: 80, width: 100.0, height: 100.0),
+                    create(component: self, frame: CGRect(x: 150.0, y: 80, width: 100.0, height: 100.0),
                            type: "Rect",
                            bDraggable: true,
                            bOrigin: true)
@@ -1706,7 +1677,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "RoundedRect":
                 if bOrigin == true {
                     bOrigin = false
-                    create(frame: CGRect(x: 300.0, y: 80, width: 100.0, height: 100.0),
+                    create(component: self, frame: CGRect(x: 300.0, y: 80, width: 100.0, height: 100.0),
                            type: "RoundedRect",
                            bDraggable: true,
                            bOrigin: true)
@@ -1715,7 +1686,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 if bOrigin == true {
                     bOrigin = false
                     (self.subviews[0] as! ComponentView).bSelected = false
-                    create(frame: CGRect(x: 450.0, y: 80, width: 100.0, height: 100.0),
+                    (self.subviews[0] as! ComponentView).bOrigin = false
+                    create(component: self, frame: CGRect(x: 450.0, y: 80, width: 100.0, height: 100.0),
                            type: "RoundedMultiRect",
                            bDraggable: true,
                            bOrigin: true)
@@ -1723,7 +1695,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "Bus":
                 if bOrigin == true {
                     bOrigin = false
-                    create(frame: CGRect(x: 600.0, y: 80, width: 70.0, height: 100.0),
+                    create(component: self, frame: CGRect(x: 600.0, y: 80, width: 70.0, height: 100.0),
                            type: "Bus",
                            bDraggable: true,
                            bOrigin: true)
@@ -1731,7 +1703,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "Timer":
                 if bOrigin == true {
                     bOrigin = false
-                    create(frame: CGRect(x: 700.0, y: 100, width: 70.0, height: 90.0),
+                    create(component: self, frame: CGRect(x: 700.0, y: 100, width: 70.0, height: 90.0),
                            type: "Timer",
                            bDraggable: true,
                            bOrigin: true)
@@ -1739,7 +1711,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "Clock":
                 if bOrigin == true {
                     bOrigin = false
-                    create(frame: CGRect(x: 800.0, y: 100, width: 70.0, height: 90.0),
+                    create(component: self, frame: CGRect(x: 800.0, y: 100, width: 70.0, height: 90.0),
                            type: "Clock",
                            bDraggable: true,
                            bOrigin: true)
