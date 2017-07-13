@@ -220,7 +220,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
     }*/
 
     internal func setInterface(side: String, interface1: String, interface2: String, interface3: String) {
-        print("\(side): \(interface1)   \(interface2)   \(interface3)")
+        //print("\(side): \(interface1)   \(interface2)   \(interface3)")
         setInterfaceAction(side: side, interface1: interface1, interface2: interface2, interface3: interface3)
     }
     

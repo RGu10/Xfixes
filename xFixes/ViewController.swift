@@ -30,10 +30,10 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
         super.viewDidLoad()
         
         bounds = UIScreen.main.bounds
-        
         imageView.image = UIImage(named:"backgroundGray.jpg")
         imageView.frame = CGRect(x: 0, y: 0, width: (bounds.size.width * 2), height: (bounds.size.height * 2))
         imageView.isUserInteractionEnabled = true
+        imageView.tag = Int(1)
         scrollView.frame = view.bounds
         scrollView.contentSize = imageView.bounds.size
         scrollView.addSubview(imageView)
@@ -44,7 +44,7 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
         scrollView.bouncesZoom = false
         view.addSubview(scrollView)
         
-        let container = UIView(frame: CGRect(x: 20, y: 70, width: (view.bounds.width - 40), height: 120))
+        let container = UIView(frame: CGRect(x: 120, y: 70, width: (view.bounds.width - 255), height: 120))
         container.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 97/100, alpha: 1.0)
         view.addSubview(container)
         
@@ -224,66 +224,227 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
     }
     
     func select(component: ComponentView) {
-        if component.bSelected {
-            visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
-            if component.type == "RoundedMultiRect" {
-                component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
-                                                   y: (component.superview?.frame.minY)!,
-                                                   width: 210, height: 400)
-                imageView.addSubview(component.editPanel)
-                editPanelViewList.append(component.editPanel)
-            } else {
-                if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
-                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                           y: component.frame.minY,
-                                                           width: 210, height: 400)
+        //print("component.frame= \(component.frame)")
+        var componentSuperview = component
+        
+        if component.superview?.tag != 1 {
+            print("richtige supperview! das heisst du bist subviewvon component")
+            
+            if (component.neighborTop == component.superview) {
+                print("component.neighborTop is superview \(component.neighborTop?.frame)")
+                componentSuperview = component.neighborTop!
+            }
+            
+            if (component.neighborButtom == component.superview) {
+                print("component.neighborButtom is superview \(component.neighborButtom?.frame)")
+                componentSuperview = component.neighborButtom!
+            }
+            
+            if (component.neighborRight == component.superview) {
+                print("component.neighborRight is superview \(component.neighborRight?.frame)")
+                componentSuperview = component.neighborRight!
+            }
+            
+            if (component.neighborLeft == component.superview) {
+                print("component.neighborLeft is superview\(component.neighborLeft?.frame)")
+                componentSuperview = component.neighborLeft!
+            }
+            
+            if component.bSelected {
+                visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
+                if component.type == "RoundedMultiRect" {
+                    if ( ((component.superview?.frame.minY)! - visibleRect.minY) < 400 && ( visibleRect.maxY - (component.superview?.frame.minY)! > 400) ){
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.minX)! - 210,
+                                                               y: (componentSuperview.superview?.frame.minY)!,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.maxX)!,
+                                                               y: (componentSuperview.superview?.frame.minY)!,
+                                                               width: 210, height: 400)
+                        }
+                        
+                    } else if ( visibleRect.maxY - (component.superview?.frame.minY)! < 400 && ((component.superview?.frame.maxY)! - visibleRect.minY > 600)) {
+                        
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.minX)! - 210,
+                                                               y: (componentSuperview.superview?.frame.maxY)! - 400,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.maxX)!,
+                                                               y: (componentSuperview.superview?.frame.maxY)! - 400,
+                                                               width: 210, height: 400)
+                        }
+                        
+                        
                     } else {
-                        component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                           y: component.frame.minY,
-                                                           width: 210, height: 400)
+                        
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.minX)! - 210,
+                                                               y: (componentSuperview.superview?.frame.maxY)! - 250,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (componentSuperview.superview?.frame.maxX)!,
+                                                               y: (componentSuperview.superview?.frame.maxY)! - 250,
+                                                               width: 210, height: 400)
+                        }
                     }
                     
-                } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
-                    
-                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                           y: component.frame.maxY - 400,
-                                                           width: 210, height: 400)
+                    imageView.addSubview(component.editPanel)
+                    editPanelViewList.append(component.editPanel)
+                }
+                else {
+                    if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
+                        if ((visibleRect.maxX - componentSuperview.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.minX - 420,
+                                                               y: componentSuperview.frame.minY - 150,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.maxX,
+                                                               y: componentSuperview.frame.minY - 150,
+                                                               width: 210, height: 400)
+                        }
+                        
+                    } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
+                        
+                        if ((visibleRect.maxX - componentSuperview.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.minX - 210,
+                                                               y: componentSuperview.frame.maxY - 400,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.maxX,
+                                                               y: componentSuperview.frame.maxY - 400,
+                                                               width: 210, height: 400)
+                        }
+                        
+                        
                     } else {
-                        component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                           y: component.frame.maxY - 400,
-                                                           width: 210, height: 400)
+                        
+                        if ((visibleRect.maxX - componentSuperview.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.minX - 210,
+                                                               y: componentSuperview.frame.maxY - 250,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: componentSuperview.frame.maxX,
+                                                               y: componentSuperview.frame.maxY - 250,
+                                                               width: 210, height: 400)
+                        }
                     }
-
                     
-                } else {
-                    
-                    if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                        component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                           y: component.frame.maxY - 250,
-                                                           width: 210, height: 400)
-                    } else {
-                        component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                           y: component.frame.maxY - 250,
-                                                           width: 210, height: 400)
+                    imageView.addSubview(component.editPanel)
+                    editPanelViewList.append(component.editPanel)
+                }
+                
+                for cv in componentViewList {
+                    if cv != component {
+                        cv.bSelected = false
+                        cv.editPanel.removeFromSuperview()
                     }
                 }
                 
-                imageView.addSubview(component.editPanel)
-                editPanelViewList.append(component.editPanel)
+            } else {
+                component.editPanel.removeFromSuperview()
             }
             
-            for cv in componentViewList {
-                if cv != component {
-                    cv.bSelected = false
-                    cv.editPanel.removeFromSuperview()
-                }
-            }
-            
-        } else {
-            component.editPanel.removeFromSuperview()
         }
+        else { // component.superview?.tag == 1
+            if component.bSelected {
+                visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
+                if component.type == "RoundedMultiRect" {
+                    if ( ((component.superview?.frame.minY)! - visibleRect.minY) < 400 && ( visibleRect.maxY - (component.superview?.frame.minY)! > 400) ){
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
+                                                               y: (component.superview?.frame.minY)!,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
+                                                               y: (component.superview?.frame.minY)!,
+                                                               width: 210, height: 400)
+                        }
+                        
+                    } else if ( visibleRect.maxY - (component.superview?.frame.minY)! < 400 && ((component.superview?.frame.maxY)! - visibleRect.minY > 600)) {
+                        
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
+                                                               y: (component.superview?.frame.maxY)! - 400,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
+                                                               y: (component.superview?.frame.maxY)! - 400,
+                                                               width: 210, height: 400)
+                        }
+                        
+                        
+                    } else {
+                        
+                        if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
+                                                               y: (component.superview?.frame.maxY)! - 250,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
+                                                               y: (component.superview?.frame.maxY)! - 250,
+                                                               width: 210, height: 400)
+                        }
+                    }
+                    
+                    imageView.addSubview(component.editPanel)
+                    editPanelViewList.append(component.editPanel)
+                } else {
+                    if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
+                        if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                               y: component.frame.minY,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                               y: component.frame.minY,
+                                                               width: 210, height: 400)
+                        }
+                        
+                    } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
+                        
+                        if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                               y: component.frame.maxY - 400,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                               y: component.frame.maxY - 400,
+                                                               width: 210, height: 400)
+                        }
+                        
+                        
+                    } else {
+                        
+                        if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                            component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                               y: component.frame.maxY - 250,
+                                                               width: 210, height: 400)
+                        } else {
+                            component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                               y: component.frame.maxY - 250,
+                                                               width: 210, height: 400)
+                        }
+                    }
+                    
+                    imageView.addSubview(component.editPanel)
+                    editPanelViewList.append(component.editPanel)
+                }
+                
+                for cv in componentViewList {
+                    if cv != component {
+                        cv.bSelected = false
+                        cv.editPanel.removeFromSuperview()
+                    }
+                }
+                
+            } else {
+                component.editPanel.removeFromSuperview()
+            }
+        }
+        
+        
     }
     
     func delete(component: ComponentView) {
@@ -296,6 +457,7 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
         
             switch firstComponentView.type {
             case "Bus":
+                print("Merge - Bus")
                 for cv in componentViewList {
                     if( cv != firstComponentView && !cv.bOrigin ) {
                         
@@ -326,12 +488,10 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                         }
                     }
                 }
-                break
             case "Timer":
+                print("Merge - Timer")
                 for cv in componentViewList {
                     if( cv != firstComponentView && !cv.bOrigin ) {
-                        print("firstComponentView.type: \(firstComponentView.type)")
-                        print("cv.type: \(cv.type)")
                         if (firstComponentView.frame.maxX - cv.frame.minX > -16 && firstComponentView.frame.maxX - cv.frame.minX < 16  ||
                             firstComponentView.frame.maxX - cv.frame.minX > 175 && firstComponentView.frame.maxX - cv.frame.minX < 188) &&
                             firstComponentView.frame.minY - cv.frame.minY > -10 && firstComponentView.frame.minY - cv.frame.minY < 40
@@ -361,8 +521,6 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                             }
                         }
                         
-                        print("firstComponentView.frame.maxX - cv.frame.minX: \(firstComponentView.frame.maxX - cv.frame.minX)")
-                        print("firstComponentView.frame.minY - cv.frame.minY: \(firstComponentView.frame.minY - cv.frame.minY)")
                         if (firstComponentView.frame.maxX - cv.frame.minX  > 60 && firstComponentView.frame.maxX  - cv.frame.minX < 110) &&
                            (firstComponentView.frame.minY - cv.frame.minY > -85 && firstComponentView.frame.minY - cv.frame.minY < -76  ||
                             firstComponentView.frame.minY - cv.frame.minY > 104 && firstComponentView.frame.minY - cv.frame.minY < 115)
@@ -394,13 +552,13 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                         }
                     }
                 }
-                break
             case "Clock":
-                break
+                print("Merge - Clock")
+            case "RoundedMultiRect":
+                print("Merge - RoundedMultiRect")
             default:
                 for secondComponentView in componentViewList {
                     if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        
                         if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20
                             || firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  &&
                             firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
@@ -412,21 +570,20 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                                     firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
                                     firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
                                 {
-                                    secondComponentView.frame = CGRect(x: firstComponentView.frame.maxX + 35.0, y: firstComponentView.frame.minY - 2, width: 100, height: 100)
+                                    firstComponentView.frame = CGRect(x: -135, y: 2, width: 100, height: 100)
+                                    secondComponentView.addSubview(firstComponentView)
                                     firstComponentView.neighborRight = secondComponentView
                                     secondComponentView.neighborLeft = firstComponentView
-                                    firstComponentView.addSubview(secondComponentView)
-                                    
                                 }
                             } else {
                                 if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
                                     firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
                                     firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
                                 {
-                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 35.0, y: secondComponentView.frame.minY - 2, width: 100, height: 100)
+                                    firstComponentView.frame = CGRect(x: 135, y: -2, width: 100, height: 100)
+                                    secondComponentView.addSubview(firstComponentView)
                                     firstComponentView.neighborLeft = secondComponentView
                                     secondComponentView.neighborRight = firstComponentView
-                                    firstComponentView.addSubview(secondComponentView)
                                 }
                             }
                         }
@@ -440,10 +597,10 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                                     firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
                                     firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
                                 {
-                                    secondComponentView.frame = CGRect(x: firstComponentView.frame.minX + 2, y: firstComponentView.frame.minY + 135, width: 100, height: 100)
+                                    firstComponentView.frame = CGRect(x: -2, y: -135, width: 100, height: 100)
+                                    secondComponentView.addSubview(firstComponentView)
                                     firstComponentView.neighborButtom = secondComponentView
                                     secondComponentView.neighborTop = firstComponentView
-                                    firstComponentView.addSubview(secondComponentView)
                                 }
                                 
                             } else {
@@ -451,16 +608,15 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                                     firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
                                     firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
                                 {
-                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 2, y: secondComponentView.frame.minY + 135, width: 100, height: 100)
-                                    secondComponentView.neighborTop = firstComponentView
-                                    firstComponentView.neighborButtom = secondComponentView
-                                    firstComponentView.addSubview(secondComponentView)
+                                    firstComponentView.frame = CGRect(x: 2, y: 135, width: 100, height: 100)
+                                    secondComponentView.addSubview(firstComponentView)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
                                 }
                             }
                         }
                     }
                 }
-                break
         }
     }
 }
