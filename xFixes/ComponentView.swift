@@ -127,10 +127,10 @@ class ComponentView : UIView, InterfacePickerDelegate {
     let setTitle = UITextField()
     var editPanel = EditPanel()
     
-    var neighborTop: ComponentView?
-    var neighborButtom: ComponentView?
-    var neighborRight: ComponentView?
-    var neighborLeft: ComponentView?
+    var neighborTop: ComponentView? = nil
+    var neighborButtom: ComponentView? = nil
+    var neighborRight: ComponentView? = nil
+    var neighborLeft: ComponentView? = nil
     
     var componetViewNeighborList = [ComponentView]()
     
@@ -201,7 +201,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    /*override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if let result = super.hitTest(point, with: event) {
             return result
         }
@@ -213,7 +213,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
         }
         return nil
-    }
+    }*/
 
     /*override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return true;
@@ -1653,6 +1653,31 @@ class ComponentView : UIView, InterfacePickerDelegate {
         }
     }
     
+    
+    var tmp = [ComponentView]()
+    
+    func trace(component: ComponentView!) {
+        if component.neighborTop != nil && !tmp.contains(component.neighborTop!) && component.neighborTop != self {
+            tmp.append(component.neighborTop!)
+            trace(component: component.neighborTop!)
+        }
+        
+        if component.neighborRight != nil && !tmp.contains(component.neighborRight!) && component.neighborRight != self {
+            tmp.append(component.neighborRight!)
+            trace(component: component.neighborRight!)
+        }
+        
+        if component.neighborButtom != nil && !tmp.contains(component.neighborButtom!) && component.neighborButtom != self {
+            tmp.append(component.neighborButtom!)
+            trace(component: component.neighborButtom!)
+        }
+        
+        if component.neighborLeft != nil && !tmp.contains(component.neighborLeft!) && component.neighborLeft != self {
+            tmp.append(component.neighborLeft!)
+            trace(component: component.neighborLeft!)
+        }
+    }
+    
     func didPan(panGR: UIPanGestureRecognizer) {
         
         var translation = panGR.translation(in: self)
@@ -1660,10 +1685,19 @@ class ComponentView : UIView, InterfacePickerDelegate {
         self.center.x += translation.x
         self.center.y += translation.y
         panGR.setTranslation(CGPoint.zero, in: self)
-        
+
         switch (panGR.state) {
+        case .began:
+            print(".began")
+            tmp.removeAll()
+            trace(component: self)
         case .changed:
             bMoved = true
+            for v in tmp {
+                v.center.x += translation.x
+                v.center.y += translation.y
+                panGR.setTranslation(CGPoint.zero, in: v)
+            }
         case .ended:
             switch type {
             case "Rect":
