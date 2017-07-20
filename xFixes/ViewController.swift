@@ -21,7 +21,7 @@ var visibleRect = CGRect()
 class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDelegate {
     var componentViewList = [ComponentView]()
     var editPanelViewList = [EditPanel]()
-
+    
     
     @IBAction func resetZoomButton(_ sender: UIBarButtonItem) {
         scrollView.zoomScale = 1.0
@@ -66,7 +66,7 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
         view.addSubview(container)
         
         initGestureRecognizers()
-
+        
         let v1 = ComponentView(frame: CGRect(x: 150.0, y: 80, width: 100.0, height: 100.0),
                                type: "Rect",
                                bDraggable: true,
@@ -172,12 +172,12 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
     
     func didPinch(pinchGR: UIPinchGestureRecognizer) {
         /*let scale = pinchGR.scale
-        for comp in imageView.subviews {
-            if comp.tag != 1 {
-                comp.transform = comp.transform.scaledBy(x: scale, y: scale)
-            }
-        }
-        pinchGR.scale = 1.0*/
+         for comp in imageView.subviews {
+         if comp.tag != 1 {
+         comp.transform = comp.transform.scaledBy(x: scale, y: scale)
+         }
+         }
+         pinchGR.scale = 1.0*/
     }
     
     func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
@@ -240,11 +240,11 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
     }
     
     func select(component: ComponentView) {
-
+        
         for v in editPanelViewList {
             v.removeFromSuperview()
         }
-    
+        
         visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
         if component.type == "RoundedMultiRect" {
             if ( ((component.superview?.frame.minY)! - visibleRect.minY) < 400 && ( visibleRect.maxY - (component.superview?.frame.minY)! > 400) ){
@@ -633,8 +633,8 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                             let sc2 = secondComponentView.subviews[0] as? ComponentView
                             if firstComponentView.frame.minX < secondComponentView.frame.minX {
                                 if sc1?.intarface1Right != nil && sc2?.intarface1Left != nil ||
-                                   sc1?.intarface2Right != nil && sc2?.intarface2Left != nil ||
-                                   sc1?.intarface3Right != nil && sc2?.intarface3Left != nil
+                                    sc1?.intarface2Right != nil && sc2?.intarface2Left != nil ||
+                                    sc1?.intarface3Right != nil && sc2?.intarface3Left != nil
                                 {
                                     if sc1?.neighborRight == nil {
                                         firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 135, y: secondComponentView.frame.minY + 3, width: 100, height: 100)
@@ -645,8 +645,8 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                                 }
                             } else {
                                 if sc1?.intarface1Left != nil && sc2?.intarface1Right != nil ||
-                                   sc1?.intarface2Left != nil && sc2?.intarface2Right != nil ||
-                                   sc1?.intarface3Left != nil && sc2?.intarface3Right != nil
+                                    sc1?.intarface2Left != nil && sc2?.intarface2Right != nil ||
+                                    sc1?.intarface3Left != nil && sc2?.intarface3Right != nil
                                 {
                                     if sc1?.neighborLeft == nil {
                                         firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 135, y: secondComponentView.frame.minY - 2, width: 100, height: 100)
@@ -776,8 +776,8 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                             let sc = secondComponentView.subviews[0] as? ComponentView
                             if firstComponentView.frame.minX < secondComponentView.frame.minX {
                                 if firstComponentView.intarface1Right != nil && sc?.intarface1Left != nil ||
-                                   firstComponentView.intarface2Right != nil && sc?.intarface2Left != nil ||
-                                   firstComponentView.intarface3Right != nil && sc?.intarface3Left != nil
+                                    firstComponentView.intarface2Right != nil && sc?.intarface2Left != nil ||
+                                    firstComponentView.intarface3Right != nil && sc?.intarface3Left != nil
                                 {
                                     if firstComponentView.neighborRight == nil {
                                         firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 133, y: secondComponentView.frame.minY + 5, width: 100, height: 100)
@@ -788,8 +788,8 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                                 }
                             } else {
                                 if firstComponentView.intarface1Left != nil && sc?.intarface1Right != nil ||
-                                   firstComponentView.intarface2Left != nil && sc?.intarface2Right != nil ||
-                                   firstComponentView.intarface3Left != nil && sc?.intarface3Right != nil
+                                    firstComponentView.intarface2Left != nil && sc?.intarface2Right != nil ||
+                                    firstComponentView.intarface3Left != nil && sc?.intarface3Right != nil
                                 {
                                     if firstComponentView.neighborLeft == nil {
                                         firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 137, y: secondComponentView.frame.minY - 0, width: 100, height: 100)
@@ -808,8 +808,8 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                             let sc = secondComponentView.subviews[0] as? ComponentView
                             if firstComponentView.frame.minY < secondComponentView.frame.minY {
                                 if firstComponentView.intarface1Buttom != nil && sc?.intarface1Top != nil ||
-                                   firstComponentView.intarface2Buttom != nil && sc?.intarface2Top != nil ||
-                                   firstComponentView.intarface3Buttom != nil && sc?.intarface3Top != nil
+                                    firstComponentView.intarface2Buttom != nil && sc?.intarface2Top != nil ||
+                                    firstComponentView.intarface3Buttom != nil && sc?.intarface3Top != nil
                                 {
                                     if firstComponentView.neighborButtom == nil {
                                         firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 1, y: secondComponentView.frame.minY - 132, width: 100, height: 100)
@@ -899,7 +899,6 @@ class ViewController: UIViewController, ComponentViewDelegate, UIScrollViewDeleg
                         }
                     }
                 }
-                
             }
         }
     }
