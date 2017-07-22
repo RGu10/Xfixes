@@ -17,6 +17,7 @@ protocol ComponentViewDelegate: class {
     func select(component: ComponentView)
     func delete(component: ComponentView)
     func merge(component: ComponentView)
+    func interface(component: ComponentView)
 }
 
 protocol InterfacePickerDelegate: class {
@@ -156,6 +157,10 @@ class ComponentView : UIView, InterfacePickerDelegate {
         delegate?.create(component: component, frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
     }
     
+    func interface(component: ComponentView) {
+        delegate?.interface(component: component)
+    }
+    
     func merge(component: ComponentView) {
         delegate?.merge(component: component)
     }
@@ -238,7 +243,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 }
                 switch interface1 {
                 case "---":
-                    break
+                    intarface1Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
                     intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "passive")
@@ -321,7 +326,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 
                 switch interface2 {
                 case "---":
-                    break
+                    intarface2Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
                     intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "passive")
@@ -444,7 +449,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 
                 switch interface3 {
                 case "---":
-                    break
+                    intarface3Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
                     intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "passive")
@@ -551,6 +556,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface1 {
+            case "---":
+                intarface1Right?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
@@ -653,6 +660,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface2 {
+            case "---":
+                intarface2Right?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
@@ -796,6 +805,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface3 {
+            case "---":
+                intarface3Right?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
                 if self.type == "Bus" {
@@ -909,6 +920,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface1 {
+            case "---":
+                intarface1Left?.type = "---"
             case "passive":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "passive")
@@ -987,6 +1000,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface2 {
+            case "---":
+                intarface2Left?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
                 intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "passive")
@@ -1092,6 +1107,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
             }
             
             switch interface3 {
+            case "---":
+                intarface3Left?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
                 intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "passive")
@@ -1182,6 +1199,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 }
                 
                 switch interface1 {
+                case "---":
+                    intarface1Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
                     intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "passive")
@@ -1260,6 +1279,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 }
                 
                 switch interface2 {
+                case "---":
+                    intarface2Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
                     intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "passive")
@@ -1365,6 +1386,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 }
                 
                 switch interface3 {
+                case "---":
+                    intarface3Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
                     intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "passive")
@@ -1443,6 +1466,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 }
             }
         }
+        interface(component: self)
     }
     
     func setupEditPanel() {
@@ -1620,15 +1644,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
     
     func remove(){
         editPanel.removeFromSuperview()
-        if self.type == "RoundedMultiRect" {
-            self.superview?.removeFromSuperview()
-            self.removeFromSuperview()
-            delete(component: self)
-        } else {
-            self.removeFromSuperview()
-            delete(component: self)
-        }
-        removeFromNeighborList()
+        delete(component: self)
     }
     
     func initGestureRecognizers() {
@@ -1688,7 +1704,6 @@ class ComponentView : UIView, InterfacePickerDelegate {
         
         switch (panGR.state) {
         case .began:
-            print(".began")
             tmp.removeAll()
             trace(component: self)
         case .changed:
