@@ -1612,10 +1612,20 @@ class ComponentView : UIView, InterfacePickerDelegate {
     }
     
     func setTitleAction(sender: UIButton!) {
-        title.adjustsFontSizeToFitWidth = true
-        title.textAlignment = .center
-        self.title.text! = self.setTitle.text!
-        self.addSubview(title)
+        
+        if type == "Bus" {
+            title.adjustsFontSizeToFitWidth = true
+            title.frame = CGRect(x: 0, y: 20, width: 70, height: 20)
+            title.textAlignment = .center
+            self.title.text! = self.setTitle.text!
+            self.addSubview(title)
+        }
+        else {
+            title.adjustsFontSizeToFitWidth = true
+            title.textAlignment = .center
+            self.title.text! = self.setTitle.text!
+            self.addSubview(title)
+        }
     }
     
     func setWhiteColorButtonAction(color: UIColor) { self.fillColor = UIColor.white }
@@ -1624,8 +1634,8 @@ class ComponentView : UIView, InterfacePickerDelegate {
     func setGreenColorButtonAction(color: UIColor) { self.fillColor = UIColor.green }
     func setBlueColorButtonAction(color: UIColor) { self.fillColor = UIColor.blue }
     func setRedColorButtonAction(color: UIColor) { self.fillColor = UIColor.red }
-    func setYellowColorButtonAction(color: UIColor) { self.fillColor = UIColor.yellow; height = height + 100.0; print(height)}
-    func setCyanColorButtonAction(color: UIColor) { self.fillColor = UIColor.cyan; height = height - 100.0; print(height) }
+    func setYellowColorButtonAction(color: UIColor) { self.fillColor = UIColor.yellow; height = height + 100.0;}
+    func setCyanColorButtonAction(color: UIColor) { self.fillColor = UIColor.cyan; height = height - 100.0;}
     
     var orient = CGFloat(0.0)
     
