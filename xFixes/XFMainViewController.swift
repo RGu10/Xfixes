@@ -13,14 +13,15 @@ func generateEditPanelViewId() -> Int {
     return componentViewId
 }
 
-let scrollView = UIScrollView()
-let imageView = UIImageView()
-var bounds = CGRect()
-var visibleRect = CGRect()
-
 class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollViewDelegate {
+    
     var componentViewList = [ComponentView]()
     var editPanelViewList = [EditPanel]()
+    
+    let scrollView = UIScrollView()
+    let imageView = UIImageView()
+    var bounds = CGRect()
+    var visibleRect = CGRect()
     
     @IBAction func resetZoomButton(_ sender: UIBarButtonItem) {
         scrollView.zoomScale = 1.0
@@ -41,16 +42,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -449,6 +441,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
     func merge(component: ComponentView) {
         
         let firstComponentView = component
+        
         tmp_move.removeAll()
         trace_move(component: firstComponentView)
         
@@ -1044,6 +1037,12 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                         firstComponentView.neighborRight = secondComponentView
                                         secondComponentView.neighborLeft = firstComponentView
                                     }
+                                    for c in tmp_move {
+                                        if c != firstComponentView  && c != secondComponentView && c != firstComponentView.neighborLeft  && c != firstComponentView.neighborRight {
+                                            c.frame = CGRect(x: c.frame.minX - 3, y: c.frame.minY + 3, width: 100, height: 100)
+                                        }
+                                    }
+                                    tmp_move.removeAll()
                                 }
                             } else {
                                 if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||

@@ -109,12 +109,8 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         print("XFProjectViewController - viewWillAppear")
-        for vc in projectsMainviewcontroller {
-            var tmp = self.navigationController?.popToViewController(vc, animated: true)
-            tmp?.removeAll()
-        }
-        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         print("XFProjectViewController - viewWillDisappear")
     }
@@ -136,11 +132,9 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
             project.delegate = self
             projects.append(project)
             
-            //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller =  XFMainViewController(nibName: nil, bundle: nil) //storyboard.instantiateViewController(withIdentifier: "XFMainViewController")
-            //controller.view.backgroundColor = getRandomColor()
-            projectsMainviewcontroller.append(controller )
-
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "XFMainViewController")
+            projectsMainviewcontroller.append(controller as! XFMainViewController)
         }
     }
     
@@ -154,7 +148,6 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
             }
             i+=1
         }
-        //self.performSegue(withIdentifier: "ShowMain", sender: self)
     }
     
     func delete(project: ProjectView) {
