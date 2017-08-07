@@ -1,18 +1,5 @@
 import UIKit
 
-var componentViewId = 0
-var editPanelViewId = 0
-
-func generateComponentViewId() -> Int {
-    componentViewId += 1
-    return componentViewId
-}
-
-func generateEditPanelViewId() -> Int {
-    editPanelViewId += 1
-    return componentViewId
-}
-
 class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollViewDelegate {
     
     var componentViewList = [ComponentView]()
@@ -50,7 +37,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         imageView.image = UIImage(named:"background.jpg")
         imageView.frame = CGRect(x: 0, y: 0, width: (bounds.size.width * 2), height: (bounds.size.height * 2))
         imageView.isUserInteractionEnabled = true
-        //imageView.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 97/100, alpha: 1.0)
         imageView.tag = Int(1)
         scrollView.frame = view.bounds
         scrollView.contentSize = imageView.bounds.size
@@ -82,7 +68,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                bDraggable: true,
                                bOrigin: true)
         v2.delegate = self
-        v2.id = generateComponentViewId()
         view.addSubview(v2)
         componentViewList.append(v2)
         
@@ -106,7 +91,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                bDraggable: true,
                                bOrigin: true)
         v4.delegate = self
-        v4.id = generateComponentViewId()
         let txtFieldBus: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
         //txtFieldBus.text = "Bus"
         txtFieldBus.adjustsFontSizeToFitWidth = true
@@ -122,7 +106,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                bOrigin: true)
         v5.drawSecondPath = true
         v5.delegate = self
-        v5.id = generateComponentViewId()
         let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
         txtField.text = "Timer"
         txtField.adjustsFontSizeToFitWidth = true
@@ -138,7 +121,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                bOrigin: true)
         v6.drawSecondPath = true
         v6.delegate = self
-        v6.id = generateComponentViewId()
         let txtField2: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
         txtField2.text = "Clock"
         txtField2.adjustsFontSizeToFitWidth = true
@@ -152,10 +134,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
     func initGestureRecognizers() {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(didTap(tapGR: )))
         view.addGestureRecognizer(tapGR)
-        
-        let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(pinchGR: )))
-        view.addGestureRecognizer(pinchGR)
-        
     }
     
     func didTap(tapGR: UITapGestureRecognizer) {
@@ -171,16 +149,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         }
     }
     
-    func didPinch(pinchGR: UIPinchGestureRecognizer) {
-        /*let scale = pinchGR.scale
-         for comp in imageView.subviews {
-         if comp.tag != 1 {
-         comp.transform = comp.transform.scaledBy(x: scale, y: scale)
-         }
-         }
-         pinchGR.scale = 1.0*/
-    }
-    
     func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
         if type == "RoundedMultiRect" {
             let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
@@ -191,8 +159,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
             v1.addSubview(v1_1)
             v1.delegate = self
             v1_1.delegate = self
-            v1.id = generateComponentViewId()
-            v1_1.id = generateComponentViewId()
             self.view.addSubview(v1)
             visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
             component.frame =  CGRect(x: component.frame.minX + visibleRect.minX, y: component.frame.minY + visibleRect.minY,
@@ -945,84 +911,152 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                 }
                 else {
                     if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
+
+                        /*
+                        let firstComponentView_intarface1Buttom_convert = firstComponentView.intarface1Buttom?.convert((firstComponentView.intarface1Buttom?.bounds)!, to: self.view)
+                        let firstComponentView_intarface2Buttom_convert = firstComponentView.intarface2Buttom?.convert((firstComponentView.intarface2Buttom?.bounds)!, to: self.view)
+                        let firstComponentView_intarface3Buttom_convert = firstComponentView.intarface3Buttom?.convert((firstComponentView.intarface3Buttom?.bounds)!, to: self.view)
                         
-                        let firstComponentView_intarface1Top_convert = firstComponentView.intarface1Top?.convert((firstComponentView.intarface1Top?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface2Top_convert = firstComponentView.intarface2Top?.convert((firstComponentView.intarface2Top?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface3Top_convert = firstComponentView.intarface3Top?.convert((firstComponentView.intarface3Top?.frame)!, to: firstComponentView.superview)
+                        let firstComponentView_intarface1Right_convert = firstComponentView.intarface1Right?.convert((firstComponentView.intarface1Right?.bounds)!, to: self.view)
+                        let firstComponentView_intarface2Right_convert = firstComponentView.intarface2Right?.convert((firstComponentView.intarface2Right?.bounds)!, to: self.view)
+                        let firstComponentView_intarface3Right_convert = firstComponentView.intarface3Right?.convert((firstComponentView.intarface3Right?.bounds)!, to: self.view)
                         
-                        let firstComponentView_intarface1Buttom_convert = firstComponentView.intarface1Buttom?.convert((firstComponentView.intarface1Buttom?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface2Buttom_convert = firstComponentView.intarface2Buttom?.convert((firstComponentView.intarface2Buttom?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface3Buttom_convert = firstComponentView.intarface3Buttom?.convert((firstComponentView.intarface3Buttom?.frame)!, to: firstComponentView.superview)
+                        let firstComponentView_intarface1Left_convert = firstComponentView.intarface1Left?.convert((firstComponentView.intarface1Left?.bounds)!, to: self.view)
+                        let firstComponentView_intarface2Left_convert = firstComponentView.intarface2Left?.convert((firstComponentView.intarface2Left?.bounds)!, to: self.view)
+                        let firstComponentView_intarface3Left_convert = firstComponentView.intarface3Left?.convert((firstComponentView.intarface3Left?.bounds)!, to: self.view)
                         
-                        let firstComponentView_intarface1Right_convert = firstComponentView.intarface1Right?.convert((firstComponentView.intarface1Right?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface2Right_convert = firstComponentView.intarface2Right?.convert((firstComponentView.intarface2Right?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface3Right_convert = firstComponentView.intarface3Right?.convert((firstComponentView.intarface3Right?.frame)!, to: firstComponentView.superview)
+                        let secondComponentView_intarface1Top_convert = secondComponentView.intarface1Top?.convert((secondComponentView.intarface1Top?.bounds)!, to: self.view)
+                        let secondComponentView_intarface2Top_convert = secondComponentView.intarface2Top?.convert((secondComponentView.intarface2Top?.bounds)!, to: self.view)
+                        let secondComponentView_intarface3Top_convert = secondComponentView.intarface3Top?.convert((secondComponentView.intarface3Top?.bounds)!, to: self.view)
                         
-                        let firstComponentView_intarface1Left_convert = firstComponentView.intarface1Left?.convert((firstComponentView.intarface1Left?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface2Left_convert = firstComponentView.intarface2Left?.convert((firstComponentView.intarface2Left?.frame)!, to: firstComponentView.superview)
-                        let firstComponentView_intarface3Left_convert = firstComponentView.intarface3Left?.convert((firstComponentView.intarface3Left?.frame)!, to: firstComponentView.superview)
+                        let secondComponentView_intarface1Right_convert = secondComponentView.intarface1Right?.convert((secondComponentView.intarface1Right?.bounds)!, to: self.view)
+                        let secondComponentView_intarface2Right_convert = secondComponentView.intarface2Right?.convert((secondComponentView.intarface2Right?.bounds)!, to: self.view)
+                        let secondComponentView_intarface3Right_convert = secondComponentView.intarface3Right?.convert((secondComponentView.intarface3Right?.bounds)!, to: self.view)
                         
-                        //let secondComponentView_intarface1Top_convert = secondComponentView.intarface1Top?.convert((secondComponentView.intarface1Top?.frame)!, to: secondComponentView.superview)
-                        //let secondComponentView_intarface2Top_convert = secondComponentView.intarface2Top?.convert((secondComponentView.intarface2Top?.frame)!, to: secondComponentView.superview)
-                        //let secondComponentView_intarface3Top_convert = secondComponentView.intarface3Top?.convert((secondComponentView.intarface3Top?.frame)!, to: secondComponentView.superview)
+                        let secondComponentView_intarface1Left_convert = secondComponentView.intarface1Left?.convert((secondComponentView.intarface1Left?.bounds)!, to: self.view)
+                        let secondComponentView_intarface2Left_convert = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.bounds)!, to: self.view)
+                        */
                         
-                        let secondComponentView_intarface1Buttom_convert = secondComponentView.intarface1Buttom?.convert((secondComponentView.intarface1Buttom?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface2Buttom_convert = secondComponentView.intarface2Buttom?.convert((secondComponentView.intarface2Buttom?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface3Buttom_convert = secondComponentView.intarface3Buttom?.convert((secondComponentView.intarface3Buttom?.frame)!, to: secondComponentView.superview)
+                        let firstComponentView_intarface1Top_convert = firstComponentView.intarface1Top?.convert((firstComponentView.intarface1Top?.bounds)!, to: self.view)
+                        let firstComponentView_intarface2Top_convert = firstComponentView.intarface2Top?.convert((firstComponentView.intarface2Top?.bounds)!, to: self.view)
+                        let firstComponentView_intarface3Top_convert = firstComponentView.intarface3Top?.convert((firstComponentView.intarface3Top?.bounds)!, to: self.view)
                         
-                        let secondComponentView_intarface1Right_convert = secondComponentView.intarface1Right?.convert((secondComponentView.intarface1Right?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface2Right_convert = secondComponentView.intarface2Right?.convert((secondComponentView.intarface2Right?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface3Right_convert = secondComponentView.intarface3Right?.convert((secondComponentView.intarface3Right?.frame)!, to: secondComponentView.superview)
+                        let secondComponentView_intarface1Buttom_convert = secondComponentView.intarface1Buttom?.convert((secondComponentView.intarface1Buttom?.bounds)!, to: self.view)
+                        let secondComponentView_intarface2Buttom_convert = secondComponentView.intarface2Buttom?.convert((secondComponentView.intarface2Buttom?.bounds)!, to: self.view)
+                        let secondComponentView_intarface3Buttom_convert = secondComponentView.intarface3Buttom?.convert((secondComponentView.intarface3Buttom?.bounds)!, to: self.view)
                         
-                        let secondComponentView_intarface1Left_convert = secondComponentView.intarface1Left?.convert((secondComponentView.intarface1Left?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface2Left_convert = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.frame)!, to: secondComponentView.superview)
-                        let secondComponentView_intarface3Left_convert = secondComponentView.intarface3Left?.convert((secondComponentView.intarface3Left?.frame)!, to: secondComponentView.superview)
-                        
+                        // firstComponentView_intarface1Top_convert
                         if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
                             if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
                                 print("intersects top1 buttom1")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
                             }
                         }
                         
                         if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
                             if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
-                                print("intersects top1 buttom 2")
+                                print("intersects top1 buttom2")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
                             }
                         }
                         
                         if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
                             if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
                                 print("intersects top1 buttom3")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
                             }
                         }
                         
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {}
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {}
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {}
-                            
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {}
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {}
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {}
-                        
-                        if  firstComponentView_intarface1Buttom_convert != nil && secondComponentView_intarface1Buttom_convert != nil ||
-                            firstComponentView_intarface2Buttom_convert != nil && secondComponentView_intarface2Buttom_convert != nil ||
-                            firstComponentView_intarface3Buttom_convert != nil && secondComponentView_intarface3Buttom_convert != nil
-                        {
+                        // firstComponentView_intarface2Top_convert
+                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
+                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
+                                print("intersects top2 buttom1")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
                         }
                         
-                        if  firstComponentView_intarface1Right_convert != nil && secondComponentView_intarface1Right_convert != nil ||
-                            firstComponentView_intarface2Right_convert != nil && secondComponentView_intarface2Right_convert != nil ||
-                            firstComponentView_intarface3Right_convert != nil && secondComponentView_intarface3Right_convert != nil
-                        {
+                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
+                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
+                                print("intersects top2 buttom 2")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
                         }
                         
-                        if  firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface1Left_convert != nil ||
-                            firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface2Left_convert != nil ||
-                            firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface3Left_convert != nil
-                        {
+                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
+                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
+                                print("intersects top2 buttom3")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
+                        }
+                        
+                        // firstComponentView_intarface3Top_convert
+                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
+                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
+                                print("intersects top3 buttom1")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
+                        }
+                        
+                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
+                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
+                                print("intersects top3 buttom 2")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
+                        }
+                        
+                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
+                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
+                                print("intersects top3 buttom3")
+                                if firstComponentView.neighborTop == nil {
+                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 0) ,
+                                                                      width: 100, height: 100)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
+                                }
+                            }
                         }
 
-                        
+                        /*
                         if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20 ||
                             firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  && firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
                             firstComponentView.frame.minY - secondComponentView.frame.minY > -20  && firstComponentView.frame.minY - secondComponentView.frame.minY < 20
@@ -1086,7 +1120,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                     }
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }

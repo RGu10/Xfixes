@@ -108,11 +108,9 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("XFProjectViewController - viewWillAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("XFProjectViewController - viewWillDisappear")
     }
     
     func getRandomColor() -> UIColor{
