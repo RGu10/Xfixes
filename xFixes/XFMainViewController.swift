@@ -29,7 +29,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +49,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         view.addSubview(scrollView)
         
         let container = UIView(frame: CGRect(x: 0, y: 70, width: view.bounds.width, height: 120))
-        container.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 97/100, alpha: 1.0)
+        container.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 95/100, alpha: 1.0)
         view.addSubview(container)
         
         initGestureRecognizers()
@@ -76,13 +76,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                type: "RoundedMultiRect",
                                bDraggable: true,
                                bOrigin: true)
-        let v3_1 = ComponentView(frame: CGRect(x: 3.0, y: 3.0, width: 100.0, height: 100.0),
-                                 type: "RoundedMultiRect",
-                                 bDraggable: false,
-                                 bOrigin: true)
-        v3.addSubview(v3_1)
         v3.delegate = self
-        v3_1.delegate = self
         view.addSubview(v3)
         componentViewList.append(v3)
         
@@ -92,7 +86,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
                                bOrigin: true)
         v4.delegate = self
         let txtFieldBus: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
-        //txtFieldBus.text = "Bus"
         txtFieldBus.adjustsFontSizeToFitWidth = true
         txtFieldBus.textAlignment = .center
         txtFieldBus.font = UIFont.boldSystemFont(ofSize: 10)
@@ -136,84 +129,65 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         view.addGestureRecognizer(tapGR)
     }
     
-    func didTap(tapGR: UITapGestureRecognizer) {
+    @objc func didTap(tapGR: UITapGestureRecognizer) {
         for editPanel in editPanelViewList {
             editPanel.removeFromSuperview()
         }
         
         for cv in componentViewList {
-            if cv.type == "RoundedMultiRect" {
-                (cv.subviews[0] as! ComponentView).bSelected = false
-            }
             cv.bSelected = false
         }
     }
     
     func create(component: ComponentView, frame: CGRect, type: String, bDraggable: Bool, bOrigin: Bool) {
-        if type == "RoundedMultiRect" {
-            let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
-            let v1_1 = ComponentView(frame: CGRect(x: 3.0, y: 3.0, width: 100.0, height: 100.0),
-                                     type: "RoundedMultiRect",
-                                     bDraggable: false,
-                                     bOrigin: true)
-            v1.addSubview(v1_1)
-            v1.delegate = self
-            v1_1.delegate = self
-            self.view.addSubview(v1)
-            visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
-            component.frame =  CGRect(x: component.frame.minX + visibleRect.minX, y: component.frame.minY + visibleRect.minY,
-                                      width: component.frame.width, height: component.frame.height)
-            imageView.addSubview(component)
-            componentViewList.append(v1)
-        } else {
-            let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
-            v1.delegate = self
-            v1.bSelected = false
-            self.view.addSubview(v1)
-            
-            visibleRect = imageView.convert(scrollView.bounds, from: scrollView);
-            component.frame =  CGRect(x: component.frame.minX + visibleRect.minX, y: component.frame.minY + visibleRect.minY,
-                                      width: component.frame.width, height: component.frame.height)
-            imageView.addSubview(component)
-            componentViewList.append(v1)
-            
-            if type == "Timer" {
-                v1.drawSecondPath = true
-                let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
-                txtField.text = "Timer"
-                txtField.adjustsFontSizeToFitWidth = true
-                txtField.textAlignment = .center
-                txtField.font = UIFont.boldSystemFont(ofSize: 10)
-                v1.addSubview(txtField)
-            }
-            if type == "Clock" {
-                v1.drawSecondPath = true
-                let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
-                txtField.text = "Clock"
-                txtField.adjustsFontSizeToFitWidth = true
-                txtField.textAlignment = .center
-                txtField.font = UIFont.boldSystemFont(ofSize: 10)
-                v1.addSubview(txtField)
-            }
-            if type == "Bus" {
-                component.frame = CGRect(x: component.frame.minX,
-                                         y: component.frame.minY,
-                                         width: component.frame.width,
-                                         height: (component.frame.height * 2) + 30)
-                let txtFieldBus: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
-                //txtFieldBus.text = "Bus"
-                txtFieldBus.adjustsFontSizeToFitWidth = true
-                txtFieldBus.textAlignment = .center
-                txtFieldBus.font = UIFont.boldSystemFont(ofSize: 10)
-                v1.addSubview(txtFieldBus)
-            }
+        let v1 = ComponentView(frame: frame, type: type, bDraggable: bDraggable, bOrigin: bOrigin)
+        v1.delegate = self
+        v1.bSelected = false
+        self.view.addSubview(v1)
+        
+        visibleRect = imageView.convert(scrollView.bounds, from: scrollView);
+        component.frame =  CGRect(x: component.frame.minX + visibleRect.minX,
+                                  y: component.frame.minY + visibleRect.minY,
+                                  width: component.frame.width,
+                                  height: component.frame.height)
+        imageView.addSubview(component)
+        componentViewList.append(v1)
+        
+        if type == "Timer" {
+            v1.drawSecondPath = true
+            let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
+            txtField.text = "Timer"
+            txtField.adjustsFontSizeToFitWidth = true
+            txtField.textAlignment = .center
+            txtField.font = UIFont.boldSystemFont(ofSize: 10)
+            v1.addSubview(txtField)
+        }
+        if type == "Clock" {
+            v1.drawSecondPath = true
+            let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
+            txtField.text = "Clock"
+            txtField.adjustsFontSizeToFitWidth = true
+            txtField.textAlignment = .center
+            txtField.font = UIFont.boldSystemFont(ofSize: 10)
+            v1.addSubview(txtField)
+        }
+        if type == "Bus" {
+            component.frame = CGRect(x: component.frame.minX,
+                                     y: component.frame.minY,
+                                     width: component.frame.width,
+                                     height: component.frame.height)
+            let txtFieldBus: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
+            txtFieldBus.adjustsFontSizeToFitWidth = true
+            txtFieldBus.textAlignment = .center
+            txtFieldBus.font = UIFont.boldSystemFont(ofSize: 10)
+            v1.addSubview(txtFieldBus)
         }
     }
     
     func interface(component: ComponentView) {
         if ((component.intarface1Top?.type  == "---" || (component.intarface1Top == nil)) &&
-           ( component.intarface2Top?.type  == "---" || (component.intarface2Top == nil)) &&
-           ( component.intarface3Top?.type  == "---" || (component.intarface3Top == nil))) {
+            ( component.intarface2Top?.type  == "---" || (component.intarface2Top == nil)) &&
+            ( component.intarface3Top?.type  == "---" || (component.intarface3Top == nil))) {
             if component.neighborTop != nil {
                 component.neighborTop?.neighborButtom = nil
                 component.neighborTop = nil
@@ -221,8 +195,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         }
         
         if (component.intarface1Buttom?.type == "---" || (component.intarface1Buttom == nil) ) &&
-           (component.intarface2Buttom?.type == "---" || (component.intarface2Buttom == nil)) &&
-           (component.intarface3Buttom?.type == "---" || (component.intarface3Buttom == nil)) {
+            (component.intarface2Buttom?.type == "---" || (component.intarface2Buttom == nil)) &&
+            (component.intarface3Buttom?.type == "---" || (component.intarface3Buttom == nil)) {
             if component.neighborButtom != nil {
                 component.neighborButtom?.neighborTop = nil
                 component.neighborButtom = nil
@@ -230,8 +204,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         }
         
         if (component.intarface1Right?.type == "---" || (component.intarface1Right == nil) ) &&
-           (component.intarface2Right?.type == "---" || (component.intarface2Right == nil)) &&
-           (component.intarface3Right?.type == "---" || (component.intarface3Right == nil)) {
+            (component.intarface2Right?.type == "---" || (component.intarface2Right == nil)) &&
+            (component.intarface3Right?.type == "---" || (component.intarface3Right == nil)) {
             if component.neighborRight != nil {
                 component.neighborRight?.neighborLeft = nil
                 component.neighborRight = nil
@@ -239,8 +213,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         }
         
         if (component.intarface1Left?.type == "---" || (component.intarface1Left == nil) ) &&
-           (component.intarface2Left?.type == "---" || (component.intarface2Left == nil)) &&
-           (component.intarface3Left?.type == "---" || (component.intarface3Left == nil)) {
+            (component.intarface2Left?.type == "---" || (component.intarface2Left == nil)) &&
+            (component.intarface3Left?.type == "---" || (component.intarface3Left == nil)) {
             if component.neighborLeft != nil {
                 component.neighborLeft?.neighborRight = nil
                 component.neighborLeft = nil
@@ -255,129 +229,64 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
         }
         
         visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
-        if component.type == "RoundedMultiRect" {
-            if ( ((component.superview?.frame.minY)! - visibleRect.minY) < 400 && ( visibleRect.maxY - (component.superview?.frame.minY)! > 400) ){
-                if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
-                                                       y: (component.superview?.frame.minY)!,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
-                                                       y: (component.superview?.frame.minY)!,
-                                                       width: 210, height: 400)
-                }
-                
-            } else if ( visibleRect.maxY - (component.superview?.frame.minY)! < 400 && ((component.superview?.frame.maxY)! - visibleRect.minY > 600)) {
-                
-                if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
-                                                       y: (component.superview?.frame.maxY)! - 400,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
-                                                       y: (component.superview?.frame.maxY)! - 400,
-                                                       width: 210, height: 400)
-                }
-                
-                
+        if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
+            if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                   y: component.frame.minY,
+                                                   width: 210, height: 400)
             } else {
-                
-                if ((visibleRect.maxX - (component.superview?.frame.maxX)!) < 210 ){
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.minX)! - 210,
-                                                       y: (component.superview?.frame.maxY)! - 250,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: (component.superview?.frame.maxX)!,
-                                                       y: (component.superview?.frame.maxY)! - 250,
-                                                       width: 210, height: 400)
-                }
+                component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                   y: component.frame.minY,
+                                                   width: 210, height: 400)
             }
             
-            imageView.addSubview(component.editPanel)
-            editPanelViewList.append(component.editPanel)
+        } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
+            
+            if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                   y: component.frame.maxY - 400,
+                                                   width: 210, height: 400)
+            } else {
+                component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                   y: component.frame.maxY - 400,
+                                                   width: 210, height: 400)
+            }
+            
+            
         } else {
-            if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
-                if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                    component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                       y: component.frame.minY,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                       y: component.frame.minY,
-                                                       width: 210, height: 400)
-                }
-                
-            } else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
-                
-                if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                    component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                       y: component.frame.maxY - 400,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                       y: component.frame.maxY - 400,
-                                                       width: 210, height: 400)
-                }
-                
-                
-            } else {
-                
-                if ((visibleRect.maxX - component.frame.maxX) < 210 ){
-                    component.editPanel.frame = CGRect(x: component.frame.minX - 210,
-                                                       y: component.frame.maxY - 250,
-                                                       width: 210, height: 400)
-                } else {
-                    component.editPanel.frame = CGRect(x: component.frame.maxX,
-                                                       y: component.frame.maxY - 250,
-                                                       width: 210, height: 400)
-                }
-            }
             
-            imageView.addSubview(component.editPanel)
-            editPanelViewList.append(component.editPanel)
+            if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+                component.editPanel.frame = CGRect(x: component.frame.minX - 210,
+                                                   y: component.frame.maxY - 250,
+                                                   width: 210, height: 400)
+            } else {
+                component.editPanel.frame = CGRect(x: component.frame.maxX,
+                                                   y: component.frame.maxY - 250,
+                                                   width: 210, height: 400)
+            }
         }
+        
+        imageView.addSubview(component.editPanel)
+        editPanelViewList.append(component.editPanel)
     }
     
     func delete(component: ComponentView) {
-        if component.type == "RoundedMultiRect" {
-            component.superview?.removeFromSuperview()
-            let c = component.superview as? ComponentView
-            component.removeFromSuperview()
-            c?.removeFromSuperview()
-            if c?.neighborTop != nil {
-                c?.neighborTop?.neighborButtom = nil
-                c?.neighborTop = nil
-            }
-            if c?.neighborButtom != nil {
-                c?.neighborButtom?.neighborTop = nil
-                c?.neighborButtom = nil
-            }
-            if c?.neighborRight != nil {
-                c?.neighborRight?.neighborLeft = nil
-                c?.neighborRight = nil
-            }
-            if c?.neighborLeft != nil {
-                c?.neighborLeft?.neighborRight = nil
-                c?.neighborLeft = nil
-            }
-        } else {
-            component.removeFromSuperview()
-            if component.neighborTop != nil {
-                component.neighborTop?.neighborButtom = nil
-                component.neighborTop = nil
-            }
-            if component.neighborButtom != nil {
-                component.neighborButtom?.neighborTop = nil
-                component.neighborButtom = nil
-            }
-            if component.neighborRight != nil {
-                component.neighborRight?.neighborLeft = nil
-                component.neighborRight = nil
-            }
-            if component.neighborLeft != nil {
-                component.neighborLeft?.neighborRight = nil
-                component.neighborLeft = nil
-            }
+        component.removeFromSuperview()
+        if component.neighborTop != nil {
+            component.neighborTop?.neighborButtom = nil
+            component.neighborTop = nil
+        }
+        if component.neighborButtom != nil {
+            component.neighborButtom?.neighborTop = nil
+            component.neighborButtom = nil
+        }
+        if component.neighborRight != nil {
+            component.neighborRight?.neighborLeft = nil
+            component.neighborRight = nil
+        }
+        if component.neighborLeft != nil {
+            component.neighborLeft?.neighborRight = nil
+            component.neighborLeft = nil
         }
     }
     
@@ -407,6 +316,18 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
     func merge(component: ComponentView) {
         
         let firstComponentView = component
+        let firstComponentView_intarface1Top_convert    = firstComponentView.intarface1Top?.convert((firstComponentView.intarface1Top?.bounds)!, to: self.view)
+        let firstComponentView_intarface2Top_convert    = firstComponentView.intarface2Top?.convert((firstComponentView.intarface2Top?.bounds)!, to: self.view)
+        let firstComponentView_intarface3Top_convert    = firstComponentView.intarface3Top?.convert((firstComponentView.intarface3Top?.bounds)!, to: self.view)
+        let firstComponentView_intarface1Buttom_convert = firstComponentView.intarface1Buttom?.convert((firstComponentView.intarface1Buttom?.bounds)!, to: self.view)
+        let firstComponentView_intarface2Buttom_convert = firstComponentView.intarface2Buttom?.convert((firstComponentView.intarface2Buttom?.bounds)!, to: self.view)
+        let firstComponentView_intarface3Buttom_convert = firstComponentView.intarface3Buttom?.convert((firstComponentView.intarface3Buttom?.bounds)!, to: self.view)
+        let firstComponentView_intarface1Right_convert  = firstComponentView.intarface1Right?.convert((firstComponentView.intarface1Right?.bounds)!, to: self.view)
+        let firstComponentView_intarface2Right_convert  = firstComponentView.intarface2Right?.convert((firstComponentView.intarface2Right?.bounds)!, to: self.view)
+        let firstComponentView_intarface3Right_convert  = firstComponentView.intarface3Right?.convert((firstComponentView.intarface3Right?.bounds)!, to: self.view)
+        let firstComponentView_intarface1Left_convert   = firstComponentView.intarface1Left?.convert((firstComponentView.intarface1Left?.bounds)!, to: self.view)
+        let firstComponentView_intarface2Left_convert   = firstComponentView.intarface2Left?.convert((firstComponentView.intarface2Left?.bounds)!, to: self.view)
+        let firstComponentView_intarface3Left_convert   = firstComponentView.intarface3Left?.convert((firstComponentView.intarface3Left?.bounds)!, to: self.view)
         
         tmp_move.removeAll()
         trace_move(component: firstComponentView)
@@ -445,395 +366,133 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
             }
         case "Timer":
             for secondComponentView in componentViewList {
-                if secondComponentView.type == "RoundedMultiRect" {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
-                        {
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && sc2?.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && sc2?.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && sc2?.intarface3Left != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 84, y: secondComponentView.frame.minY + 20 , width: 70, height: 90)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && sc2?.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && sc2?.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && sc2?.intarface3Right != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 20, y: secondComponentView.frame.minY + 16, width: 70, height: 90)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
+                if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
+                    if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
+                        firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
+                        firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
+                    {
+                        if firstComponentView.frame.minX < secondComponentView.frame.minX {
+                            if firstComponentView.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
+                                firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
+                                firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 88, y: secondComponentView.frame.minY + 17 , width: 70, height: 90)
+                                    firstComponentView.neighborRight = secondComponentView
+                                    secondComponentView.neighborLeft = firstComponentView
                                 }
                             }
-                        }
-                        
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
-                            (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
-                                firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
-                        {
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && sc2?.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && sc2?.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && sc2?.intarface3Top != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 17, y: secondComponentView.frame.minY - 82 , width: 70, height: 90)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Top != nil && sc2?.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && sc2?.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && sc2?.intarface3Buttom != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 19, y: secondComponentView.frame.minY + 120, width: 70, height: 90)
-                                        secondComponentView.neighborTop = firstComponentView
-                                        firstComponentView.neighborButtom = secondComponentView
-                                    }
+                        } else {
+                            if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
+                                firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
+                                firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 18, y: secondComponentView.frame.minY + 13, width: 70, height: 90)
+                                    firstComponentView.neighborLeft = secondComponentView
+                                    secondComponentView.neighborRight = firstComponentView
                                 }
                             }
                         }
                     }
-                }
-                else {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
-                        {
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 88, y: secondComponentView.frame.minY + 17 , width: 70, height: 90)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 18, y: secondComponentView.frame.minY + 13, width: 70, height: 90)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
+                    
+                    if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
+                        (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
+                            firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
+                    {
+                        if firstComponentView.frame.minY < secondComponentView.frame.minY {
+                            if firstComponentView.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
+                                firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
+                                firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 14, y: secondComponentView.frame.minY - 87 , width: 70, height: 90)
+                                    firstComponentView.neighborButtom = secondComponentView
+                                    secondComponentView.neighborTop = firstComponentView
                                 }
                             }
-                        }
-                        
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
-                            (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
-                                firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
-                        {
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 14, y: secondComponentView.frame.minY - 87 , width: 70, height: 90)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 16, y: secondComponentView.frame.minY + 118, width: 70, height: 90)
-                                        secondComponentView.neighborTop = firstComponentView
-                                        firstComponentView.neighborButtom = secondComponentView
-                                    }
+                        } else {
+                            if firstComponentView.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
+                                firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
+                                firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 16, y: secondComponentView.frame.minY + 118, width: 70, height: 90)
+                                    secondComponentView.neighborTop = firstComponentView
+                                    firstComponentView.neighborButtom = secondComponentView
                                 }
                             }
                         }
                     }
+                    
                 }
             }
         case "Clock":
             for secondComponentView in componentViewList {
-                if secondComponentView.type == "RoundedMultiRect" {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
-                        {
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && sc2?.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && sc2?.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && sc2?.intarface3Left != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 84, y: secondComponentView.frame.minY + 20 , width: 70, height: 90)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && sc2?.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && sc2?.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && sc2?.intarface3Right != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 20, y: secondComponentView.frame.minY + 16, width: 70, height: 90)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
+                let secondComponentView_intarface2Top_convert    = secondComponentView.intarface2Top?.convert((secondComponentView.intarface2Top?.bounds)!, to: self.view)
+                let secondComponentView_intarface2Buttom_convert = secondComponentView.intarface2Buttom?.convert((secondComponentView.intarface2Buttom?.bounds)!, to: self.view)
+                let secondComponentView_intarface2Right_convert  = secondComponentView.intarface2Right?.convert((secondComponentView.intarface2Right?.bounds)!, to: self.view)
+                let secondComponentView_intarface2Left_convert   = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.bounds)!, to: self.view)
+                
+                if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Top_convert != nil {}
+                if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {}
+                if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Right_convert != nil {}
+                if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Left_convert != nil {}
+                
+                if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
+                    if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
+                        firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
+                        firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
+                    {
+                        if firstComponentView.frame.minX < secondComponentView.frame.minX {
+                            if firstComponentView.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
+                                firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
+                                firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 88, y: secondComponentView.frame.minY + 17 , width: 70, height: 90)
+                                    firstComponentView.neighborRight = secondComponentView
+                                    secondComponentView.neighborLeft = firstComponentView
                                 }
                             }
-                        }
-                        
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
-                            (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
-                                firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
-                        {
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && sc2?.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && sc2?.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && sc2?.intarface3Top != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 17, y: secondComponentView.frame.minY - 82 , width: 70, height: 90)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Top != nil && sc2?.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && sc2?.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && sc2?.intarface3Buttom != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 19, y: secondComponentView.frame.minY + 120, width: 70, height: 90)
-                                        secondComponentView.neighborTop = firstComponentView
-                                        firstComponentView.neighborButtom = secondComponentView
-                                    }
+                        } else {
+                            if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
+                                firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
+                                firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 18, y: secondComponentView.frame.minY + 13, width: 70, height: 90)
+                                    firstComponentView.neighborLeft = secondComponentView
+                                    secondComponentView.neighborRight = firstComponentView
                                 }
                             }
                         }
                     }
-                }
-                else {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -16 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 16  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 175 && firstComponentView.frame.maxX - secondComponentView.frame.minX < 188) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -10 && firstComponentView.frame.minY - secondComponentView.frame.minY < 40
-                        {
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 88, y: secondComponentView.frame.minY + 17 , width: 70, height: 90)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX + 18, y: secondComponentView.frame.minY + 13, width: 70, height: 90)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
+                    
+                    if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
+                        (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
+                            firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
+                    {
+                        if firstComponentView.frame.minY < secondComponentView.frame.minY {
+                            if firstComponentView.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
+                                firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
+                                firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 14, y: secondComponentView.frame.minY - 87 , width: 70, height: 90)
+                                    firstComponentView.neighborButtom = secondComponentView
+                                    secondComponentView.neighborTop = firstComponentView
                                 }
                             }
-                        }
-                        
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX  > 60 && firstComponentView.frame.maxX  - secondComponentView.frame.minX < 110) &&
-                            (firstComponentView.frame.minY - secondComponentView.frame.minY > -85 && firstComponentView.frame.minY - secondComponentView.frame.minY < -76  ||
-                                firstComponentView.frame.minY - secondComponentView.frame.minY > 104 && firstComponentView.frame.minY - secondComponentView.frame.minY < 115)
-                        {
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 14, y: secondComponentView.frame.minY - 87 , width: 70, height: 90)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
-                                {
-                                    if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 16, y: secondComponentView.frame.minY + 118, width: 70, height: 90)
-                                        secondComponentView.neighborTop = firstComponentView
-                                        firstComponentView.neighborButtom = secondComponentView
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        case "RoundedMultiRect":
-            for secondComponentView in componentViewList {
-                if secondComponentView.type == "RoundedMultiRect" {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20
-                            || firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  &&
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -20  &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY < 20
-                        {
-                            let sc1 = firstComponentView.subviews[0] as? ComponentView
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if sc1?.intarface1Right != nil && sc2?.intarface1Left != nil ||
-                                    sc1?.intarface2Right != nil && sc2?.intarface2Left != nil ||
-                                    sc1?.intarface3Right != nil && sc2?.intarface3Left != nil
-                                {
-                                    if sc1?.neighborRight == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 135, y: secondComponentView.frame.minY + 3, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if sc1?.intarface1Left != nil && sc2?.intarface1Right != nil ||
-                                    sc1?.intarface2Left != nil && sc2?.intarface2Right != nil ||
-                                    sc1?.intarface3Left != nil && sc2?.intarface3Right != nil
-                                {
-                                    if sc1?.neighborLeft == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 135, y: secondComponentView.frame.minY - 2, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView.frame.maxX - secondComponentView.frame.maxX > -20 && firstComponentView.frame.maxX - secondComponentView.frame.maxX < 10 &&
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > -230 && firstComponentView.frame.minY - secondComponentView.frame.maxY < -210 ||
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > 20 && firstComponentView.frame.minY - secondComponentView.frame.maxY < 40
-                        {
-                            let sc1 = firstComponentView.subviews[0] as? ComponentView
-                            let sc2 = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if sc1?.intarface1Buttom != nil && sc2?.intarface1Top != nil ||
-                                    sc1?.intarface2Buttom != nil && sc2?.intarface2Top != nil ||
-                                    sc1?.intarface3Buttom != nil && sc2?.intarface3Top != nil
-                                {
-                                    if sc1?.neighborButtom == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 2, y: secondComponentView.frame.minY - 134, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if sc1?.intarface1Top != nil && sc2?.intarface1Buttom != nil ||
-                                    sc1?.intarface2Top != nil && sc2?.intarface2Buttom != nil ||
-                                    sc1?.intarface3Top != nil && sc2?.intarface3Buttom != nil
-                                {
-                                    if sc1?.neighborTop == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 2, y: secondComponentView.frame.minY + 136, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborTop = secondComponentView
-                                        secondComponentView.neighborButtom = firstComponentView
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                else {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20  ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  && firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -20  && firstComponentView.frame.minY - secondComponentView.frame.minY < 20
-                        {
-                            let fc = firstComponentView.subviews[0] as? ComponentView
-                            if (fc?.superview?.frame.minX)! < secondComponentView.frame.minX {
-                                if fc?.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
-                                    fc?.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
-                                    fc?.intarface3Right != nil && secondComponentView.intarface3Left != nil
-                                {
-                                    if fc?.neighborRight == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 137, y: secondComponentView.frame.minY + 0, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = fc
-                                    }
-                                }
-                            } else {
-                                if fc?.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
-                                    fc?.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
-                                    fc?.intarface3Left != nil && secondComponentView.intarface3Right != nil
-                                {
-                                    if fc?.neighborLeft == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 133, y: secondComponentView.frame.minY - 6, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView.frame.maxX - secondComponentView.frame.maxX > -20 && firstComponentView.frame.maxX - secondComponentView.frame.maxX < 10 &&
-                           firstComponentView.frame.minY - secondComponentView.frame.maxY > -230 && firstComponentView.frame.minY - secondComponentView.frame.maxY < -210 ||
-                           firstComponentView.frame.minY - secondComponentView.frame.maxY > 20 && firstComponentView.frame.minY - secondComponentView.frame.maxY < 40
-                        {
-                            let fc = firstComponentView.subviews[0] as? ComponentView
-                            if (fc?.superview?.frame.minY)! < secondComponentView.frame.minY {
-                                if fc?.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
-                                    fc?.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
-                                    fc?.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
-                                {
-                                    if fc?.neighborButtom == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 5, y: secondComponentView.frame.minY - 138, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                                
-                            } else {
-                                if fc?.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
-                                    fc?.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
-                                    fc?.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
-                                {
-                                    if fc?.neighborTop == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 1, y: secondComponentView.frame.minY + 133, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborTop = secondComponentView
-                                        secondComponentView.neighborButtom = firstComponentView
-                                    }
+                        } else {
+                            if firstComponentView.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
+                                firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
+                                firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
+                            {
+                                if secondComponentView.type != "Timer" && secondComponentView.type != "Clock" {
+                                    firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 16, y: secondComponentView.frame.minY + 118, width: 70, height: 90)
+                                    firstComponentView.neighborTop = secondComponentView
+                                    secondComponentView.neighborButtom = firstComponentView
                                 }
                             }
                         }
@@ -842,288 +501,433 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
             }
         default:
             for secondComponentView in componentViewList {
-                if secondComponentView.type == "RoundedMultiRect" {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20  || firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  && firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -20  && firstComponentView.frame.minY - secondComponentView.frame.minY < 20
-                        {
-                            let sc = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && sc?.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && sc?.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && sc?.intarface3Left != nil
-                                {
-                                    if firstComponentView.neighborRight == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 133, y: secondComponentView.frame.minY + 5, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && sc?.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && sc?.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && sc?.intarface3Right != nil
-                                {
-                                    if firstComponentView.neighborLeft == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 137, y: secondComponentView.frame.minY - 0, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView.frame.maxX - secondComponentView.frame.maxX > -20 && firstComponentView.frame.maxX - secondComponentView.frame.maxX < 10 &&
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > -230 && firstComponentView.frame.minY - secondComponentView.frame.maxY < -210 ||
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > 20 && firstComponentView.frame.minY - secondComponentView.frame.maxY < 40
-                        {
-                            let sc = secondComponentView.subviews[0] as? ComponentView
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && sc?.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && sc?.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && sc?.intarface3Top != nil
-                                {
-                                    if firstComponentView.neighborButtom == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 1, y: secondComponentView.frame.minY - 132, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                            } else {
-                                let sc = secondComponentView.subviews[0] as? ComponentView
-                                if firstComponentView.intarface1Top != nil && sc?.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && sc?.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && sc?.intarface3Buttom != nil
-                                {
-                                    if firstComponentView.neighborTop == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 6, y: secondComponentView.frame.minY + 138, width: 100, height: 100)
-                                        //secondComponentView.addSubview(firstComponentView)
-                                        firstComponentView.neighborTop = secondComponentView
-                                        secondComponentView.neighborButtom = firstComponentView
-                                    }
-                                }
+                if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
+                    let secondComponentView_intarface1Top_convert    = secondComponentView.intarface1Top?.convert((secondComponentView.intarface1Top?.bounds)!, to: self.view)
+                    let secondComponentView_intarface2Top_convert    = secondComponentView.intarface2Top?.convert((secondComponentView.intarface2Top?.bounds)!, to: self.view)
+                    let secondComponentView_intarface3Top_convert    = secondComponentView.intarface3Top?.convert((secondComponentView.intarface3Top?.bounds)!, to: self.view)
+                    let secondComponentView_intarface1Buttom_convert = secondComponentView.intarface1Buttom?.convert((secondComponentView.intarface1Buttom?.bounds)!, to: self.view)
+                    let secondComponentView_intarface2Buttom_convert = secondComponentView.intarface2Buttom?.convert((secondComponentView.intarface2Buttom?.bounds)!, to: self.view)
+                    let secondComponentView_intarface3Buttom_convert = secondComponentView.intarface3Buttom?.convert((secondComponentView.intarface3Buttom?.bounds)!, to: self.view)
+                    let secondComponentView_intarface1Right_convert  = secondComponentView.intarface1Right?.convert((secondComponentView.intarface1Right?.bounds)!, to: self.view)
+                    let secondComponentView_intarface2Right_convert  = secondComponentView.intarface2Right?.convert((secondComponentView.intarface2Right?.bounds)!, to: self.view)
+                    let secondComponentView_intarface3Right_convert  = secondComponentView.intarface3Right?.convert((secondComponentView.intarface3Right?.bounds)!, to: self.view)
+                    let secondComponentView_intarface1Left_convert   = secondComponentView.intarface1Left?.convert((secondComponentView.intarface1Left?.bounds)!, to: self.view)
+                    let secondComponentView_intarface2Left_convert   = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.bounds)!, to: self.view)
+                    let secondComponentView_intarface3Left_convert   = secondComponentView.intarface3Left?.convert((secondComponentView.intarface3Left?.bounds)!, to: self.view)
+                    
+                    if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
+                        if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
                             }
                         }
                     }
-                }
-                else {
-                    if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-
-                        /*
-                        let firstComponentView_intarface1Buttom_convert = firstComponentView.intarface1Buttom?.convert((firstComponentView.intarface1Buttom?.bounds)!, to: self.view)
-                        let firstComponentView_intarface2Buttom_convert = firstComponentView.intarface2Buttom?.convert((firstComponentView.intarface2Buttom?.bounds)!, to: self.view)
-                        let firstComponentView_intarface3Buttom_convert = firstComponentView.intarface3Buttom?.convert((firstComponentView.intarface3Buttom?.bounds)!, to: self.view)
-                        
-                        let firstComponentView_intarface1Right_convert = firstComponentView.intarface1Right?.convert((firstComponentView.intarface1Right?.bounds)!, to: self.view)
-                        let firstComponentView_intarface2Right_convert = firstComponentView.intarface2Right?.convert((firstComponentView.intarface2Right?.bounds)!, to: self.view)
-                        let firstComponentView_intarface3Right_convert = firstComponentView.intarface3Right?.convert((firstComponentView.intarface3Right?.bounds)!, to: self.view)
-                        
-                        let firstComponentView_intarface1Left_convert = firstComponentView.intarface1Left?.convert((firstComponentView.intarface1Left?.bounds)!, to: self.view)
-                        let firstComponentView_intarface2Left_convert = firstComponentView.intarface2Left?.convert((firstComponentView.intarface2Left?.bounds)!, to: self.view)
-                        let firstComponentView_intarface3Left_convert = firstComponentView.intarface3Left?.convert((firstComponentView.intarface3Left?.bounds)!, to: self.view)
-                        
-                        let secondComponentView_intarface1Top_convert = secondComponentView.intarface1Top?.convert((secondComponentView.intarface1Top?.bounds)!, to: self.view)
-                        let secondComponentView_intarface2Top_convert = secondComponentView.intarface2Top?.convert((secondComponentView.intarface2Top?.bounds)!, to: self.view)
-                        let secondComponentView_intarface3Top_convert = secondComponentView.intarface3Top?.convert((secondComponentView.intarface3Top?.bounds)!, to: self.view)
-                        
-                        let secondComponentView_intarface1Right_convert = secondComponentView.intarface1Right?.convert((secondComponentView.intarface1Right?.bounds)!, to: self.view)
-                        let secondComponentView_intarface2Right_convert = secondComponentView.intarface2Right?.convert((secondComponentView.intarface2Right?.bounds)!, to: self.view)
-                        let secondComponentView_intarface3Right_convert = secondComponentView.intarface3Right?.convert((secondComponentView.intarface3Right?.bounds)!, to: self.view)
-                        
-                        let secondComponentView_intarface1Left_convert = secondComponentView.intarface1Left?.convert((secondComponentView.intarface1Left?.bounds)!, to: self.view)
-                        let secondComponentView_intarface2Left_convert = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.bounds)!, to: self.view)
-                        */
-                        
-                        let firstComponentView_intarface1Top_convert = firstComponentView.intarface1Top?.convert((firstComponentView.intarface1Top?.bounds)!, to: self.view)
-                        let firstComponentView_intarface2Top_convert = firstComponentView.intarface2Top?.convert((firstComponentView.intarface2Top?.bounds)!, to: self.view)
-                        let firstComponentView_intarface3Top_convert = firstComponentView.intarface3Top?.convert((firstComponentView.intarface3Top?.bounds)!, to: self.view)
-                        
-                        let secondComponentView_intarface1Buttom_convert = secondComponentView.intarface1Buttom?.convert((secondComponentView.intarface1Buttom?.bounds)!, to: self.view)
-                        let secondComponentView_intarface2Buttom_convert = secondComponentView.intarface2Buttom?.convert((secondComponentView.intarface2Buttom?.bounds)!, to: self.view)
-                        let secondComponentView_intarface3Buttom_convert = secondComponentView.intarface3Buttom?.convert((secondComponentView.intarface3Buttom?.bounds)!, to: self.view)
-                        
-                        // firstComponentView_intarface1Top_convert
-                        if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
-                            if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
-                                print("intersects top1 buttom1")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
+                    if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
+                        if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.midX - 15,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
                             }
                         }
-                        
-                        if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
-                            if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
-                                print("intersects top1 buttom2")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
-                            if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
-                                print("intersects top1 buttom3")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        // firstComponentView_intarface2Top_convert
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
-                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
-                                print("intersects top2 buttom1")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
-                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
-                                print("intersects top2 buttom 2")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
-                            if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
-                                print("intersects top2 buttom3")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        // firstComponentView_intarface3Top_convert
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
-                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
-                                print("intersects top3 buttom1")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface1Buttom_convert?.minX)!, y: ((secondComponentView_intarface1Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
-                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
-                                print("intersects top3 buttom 2")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface2Buttom_convert?.minX)!, y: ((secondComponentView_intarface2Buttom_convert?.minY)! - 30) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
-                            if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
-                                print("intersects top3 buttom3")
-                                if firstComponentView.neighborTop == nil {
-                                    firstComponentView.frame = CGRect(x: (secondComponentView_intarface3Buttom_convert?.minX)!, y: ((secondComponentView_intarface3Buttom_convert?.minY)! - 0) ,
-                                                                      width: 100, height: 100)
-                                    firstComponentView.neighborTop = secondComponentView
-                                    secondComponentView.neighborButtom = firstComponentView
-                                }
-                            }
-                        }
-
-                        /*
-                        if (firstComponentView.frame.maxX - secondComponentView.frame.minX > -40  && firstComponentView.frame.maxX - secondComponentView.frame.minX < -20 ||
-                            firstComponentView.frame.maxX - secondComponentView.frame.minX > 200  && firstComponentView.frame.maxX - secondComponentView.frame.minX < 240) &&
-                            firstComponentView.frame.minY - secondComponentView.frame.minY > -20  && firstComponentView.frame.minY - secondComponentView.frame.minY < 20
-                        {
-                            if firstComponentView.frame.minX < secondComponentView.frame.minX {
-                                if firstComponentView.intarface1Right != nil && secondComponentView.intarface1Left != nil ||
-                                    firstComponentView.intarface2Right != nil && secondComponentView.intarface2Left != nil ||
-                                    firstComponentView.intarface3Right != nil && secondComponentView.intarface3Left != nil
-                                {
-                                    if firstComponentView.neighborRight == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 135, y: secondComponentView.frame.minY + 3, width: 100, height: 100)
-                                        firstComponentView.neighborRight = secondComponentView
-                                        secondComponentView.neighborLeft = firstComponentView
-                                    }
-                                    for c in tmp_move {
-                                        if c != firstComponentView  && c != secondComponentView && c != firstComponentView.neighborLeft  && c != firstComponentView.neighborRight {
-                                            c.frame = CGRect(x: c.frame.minX - 3, y: c.frame.minY + 3, width: 100, height: 100)
-                                        }
-                                    }
-                                    tmp_move.removeAll()
-                                }
-                            } else {
-                                if firstComponentView.intarface1Left != nil && secondComponentView.intarface1Right != nil ||
-                                    firstComponentView.intarface2Left != nil && secondComponentView.intarface2Right != nil ||
-                                    firstComponentView.intarface3Left != nil && secondComponentView.intarface3Right != nil
-                                {
-                                    if firstComponentView.neighborLeft == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 135, y: secondComponentView.frame.minY - 2, width: 100, height: 100)
-                                        firstComponentView.neighborLeft = secondComponentView
-                                        secondComponentView.neighborRight = firstComponentView
-                                    }
-                                }
-                            }
-                        }
-                        
-                        if firstComponentView.frame.maxX - secondComponentView.frame.maxX > -20 && firstComponentView.frame.maxX - secondComponentView.frame.maxX < 10 &&
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > -230 && firstComponentView.frame.minY - secondComponentView.frame.maxY < -210 ||
-                            firstComponentView.frame.minY - secondComponentView.frame.maxY > 20 && firstComponentView.frame.minY - secondComponentView.frame.maxY < 40
-                        {
-                            if firstComponentView.frame.minY < secondComponentView.frame.minY {
-                                if firstComponentView.intarface1Buttom != nil && secondComponentView.intarface1Top != nil ||
-                                    firstComponentView.intarface2Buttom != nil && secondComponentView.intarface2Top != nil ||
-                                    firstComponentView.intarface3Buttom != nil && secondComponentView.intarface3Top != nil
-                                {
-                                    if firstComponentView.neighborButtom == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 2, y: secondComponentView.frame.minY - 135, width: 100, height: 100)
-                                        firstComponentView.neighborButtom = secondComponentView
-                                        secondComponentView.neighborTop = firstComponentView
-                                    }
-                                }
-                                
-                            } else {
-                                if firstComponentView.intarface1Top != nil && secondComponentView.intarface1Buttom != nil ||
-                                    firstComponentView.intarface2Top != nil && secondComponentView.intarface2Buttom != nil ||
-                                    firstComponentView.intarface3Top != nil && secondComponentView.intarface3Buttom != nil
-                                {
-                                    if firstComponentView.neighborTop == nil {
-                                        firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 2, y: secondComponentView.frame.minY + 135, width: 100, height: 100)
-                                        firstComponentView.neighborTop = secondComponentView
-                                        secondComponentView.neighborButtom = firstComponentView
-                                    }
-                                }
-                            }
-                        }*/
                     }
+                    if firstComponentView_intarface1Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
+                        if (firstComponentView_intarface1Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX - 28,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
+                        if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 35,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
+                        if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
+                        if (firstComponentView_intarface2Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.midX - 13,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface1Buttom_convert != nil {
+                        if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface1Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 72,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface2Buttom_convert != nil {
+                        if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface2Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 37,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Top_convert != nil && secondComponentView_intarface3Buttom_convert != nil {
+                        if (firstComponentView_intarface3Top_convert?.intersects(secondComponentView_intarface3Buttom_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY + 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborTop = secondComponentView
+                                secondComponentView.neighborButtom = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    //
+                    if firstComponentView_intarface1Buttom_convert != nil && secondComponentView_intarface1Top_convert != nil {
+                        if (firstComponentView_intarface1Buttom_convert?.intersects(secondComponentView_intarface1Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Buttom_convert != nil && secondComponentView_intarface2Top_convert != nil {
+                        if (firstComponentView_intarface1Buttom_convert?.intersects(secondComponentView_intarface2Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.midX - 15,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Buttom_convert != nil && secondComponentView_intarface3Top_convert != nil {
+                        if (firstComponentView_intarface1Buttom_convert?.intersects(secondComponentView_intarface3Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.maxX - 28,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface2Buttom_convert != nil && secondComponentView_intarface1Top_convert != nil {
+                        if (firstComponentView_intarface2Buttom_convert?.intersects(secondComponentView_intarface1Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 35,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Buttom_convert != nil && secondComponentView_intarface2Top_convert != nil {
+                        if (firstComponentView_intarface2Buttom_convert?.intersects(secondComponentView_intarface2Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Buttom_convert != nil && secondComponentView_intarface3Top_convert != nil {
+                        if (firstComponentView_intarface2Buttom_convert?.intersects(secondComponentView_intarface3Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.midX - 13,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface3Buttom_convert != nil && secondComponentView_intarface1Top_convert != nil {
+                        if (firstComponentView_intarface3Buttom_convert?.intersects(secondComponentView_intarface1Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 72,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Buttom_convert != nil && secondComponentView_intarface2Top_convert != nil {
+                        if (firstComponentView_intarface3Buttom_convert?.intersects(secondComponentView_intarface2Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 37,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Buttom_convert != nil && secondComponentView_intarface3Top_convert != nil {
+                        if (firstComponentView_intarface3Buttom_convert?.intersects(secondComponentView_intarface3Top_convert!))! {
+                            if firstComponentView.neighborTop == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX,
+                                                                  y: secondComponentView.frame.minY - 132,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborButtom = secondComponentView
+                                secondComponentView.neighborTop = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface1Right_convert != nil && secondComponentView_intarface1Left_convert != nil {
+                        if (firstComponentView_intarface1Right_convert?.intersects(secondComponentView_intarface1Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Right_convert != nil && secondComponentView_intarface2Left_convert != nil {
+                        if (firstComponentView_intarface1Right_convert?.intersects(secondComponentView_intarface2Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY + 38,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Right_convert != nil && secondComponentView_intarface3Left_convert != nil {
+                        if (firstComponentView_intarface1Right_convert?.intersects(secondComponentView_intarface3Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY + 72,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface2Right_convert != nil && secondComponentView_intarface1Left_convert != nil {
+                        if (firstComponentView_intarface2Right_convert?.intersects(secondComponentView_intarface1Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY - 37,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Right_convert != nil && secondComponentView_intarface2Left_convert != nil {
+                        if (firstComponentView_intarface2Right_convert?.intersects(secondComponentView_intarface2Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Right_convert != nil && secondComponentView_intarface3Left_convert != nil {
+                        if (firstComponentView_intarface2Right_convert?.intersects(secondComponentView_intarface3Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY + 35,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface3Right_convert != nil && secondComponentView_intarface1Left_convert != nil {
+                        if (firstComponentView_intarface3Right_convert?.intersects(secondComponentView_intarface1Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY - 72,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Right_convert != nil && secondComponentView_intarface2Left_convert != nil {
+                        if (firstComponentView_intarface3Right_convert?.intersects(secondComponentView_intarface2Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY - 35,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Right_convert != nil && secondComponentView_intarface3Left_convert != nil {
+                        if (firstComponentView_intarface3Right_convert?.intersects(secondComponentView_intarface3Left_convert!))! {
+                            if firstComponentView.neighborRight == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX - 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborRight = secondComponentView
+                                secondComponentView.neighborLeft = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    
+                    if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
+                        if (firstComponentView_intarface1Left_convert?.intersects(secondComponentView_intarface1Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
+                        if (firstComponentView_intarface1Left_convert?.intersects(secondComponentView_intarface2Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY + 37,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
+                        if (firstComponentView_intarface1Left_convert?.intersects(secondComponentView_intarface3Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY + 72,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
+                        if (firstComponentView_intarface2Left_convert?.intersects(secondComponentView_intarface1Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY - 37,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
+                        if (firstComponentView_intarface2Left_convert?.intersects(secondComponentView_intarface2Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
+                        if (firstComponentView_intarface2Left_convert?.intersects(secondComponentView_intarface3Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY + 35,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    
+                    if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
+                        if (firstComponentView_intarface3Left_convert?.intersects(secondComponentView_intarface1Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY - 72,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
+                        if (firstComponentView_intarface3Left_convert?.intersects(secondComponentView_intarface2Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY - 35,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
+                        if (firstComponentView_intarface3Left_convert?.intersects(secondComponentView_intarface3Right_convert!))! {
+                            if firstComponentView.neighborLeft == nil {
+                                firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
+                                                                  y: secondComponentView.frame.minY,
+                                                                  width: 100, height: 100)
+                                firstComponentView.neighborLeft = secondComponentView
+                                secondComponentView.neighborRight = firstComponentView
+                            }
+                        }
+                    }
+                    
                 }
             }
+            
         }
     }
 }

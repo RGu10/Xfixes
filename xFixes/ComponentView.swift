@@ -5,11 +5,7 @@
 //  Created by Ryad on 09.04.17.
 //  Copyright © 2017 Ryad. All rights reserved.
 //
-/*
- Module ComponentView
- */
 
-//Git
 import UIKit
 
 protocol ComponentViewDelegate: class {
@@ -246,7 +242,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface1Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "passive")
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "passive")
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
@@ -255,12 +251,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer" || self.type == "Clock" { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "activeOut") // to extend
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "activeOut") // to extend
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
                     intarface1Top?.type = "activeOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: "activeOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 2)
                     intarface1Top?.addSubview(tech)
@@ -268,12 +264,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer" || self.type == "Clock" { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "activeIn") // to extend
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "activeIn") // to extend
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
                     intarface1Top?.type = "activeIn"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeIn")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: "activeIn")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface1Top?.addSubview(tech)
@@ -281,7 +277,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "activeInOut") // to extend
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "activeInOut") // to extend
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
@@ -294,7 +290,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "analogIn") // to extend
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "analogIn") // to extend
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
@@ -307,12 +303,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -28, width: 30, height: 30), interfaceType: "analogOut") // to extend
+                    intarface1Top = InterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: "analogOut") // to extend
                     intarface1Top?.backgroundColor = UIColor.clear
                     intarface1Top?.id = "top1"
                     intarface1Top?.rotate(deg: 3)
                     intarface1Top?.type = "analogOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: "analogOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface1Top?.addSubview(tech)
@@ -329,7 +325,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface2Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "passive")
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "passive")
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
@@ -338,12 +334,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "activeOut") // to extend
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "activeOut") // to extend
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
                     intarface2Top?.type = "activeOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: "activeOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 2)
                     intarface2Top?.addSubview(tech)
@@ -351,12 +347,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "activeIn") // to extend
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "activeIn") // to extend
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
                     intarface2Top?.type = "activeIn"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeIn")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: "activeIn")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface2Top?.addSubview(tech)
@@ -364,7 +360,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "activeInOut") // to extend
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "activeInOut") // to extend
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
@@ -377,7 +373,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "analogIn") // to extend
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "analogIn") // to extend
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
@@ -390,12 +386,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer" || self.type == "Clock" { break }
-                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -28, width: 30, height: 30), interfaceType: "analogOut") // to extend
+                    intarface2Top = InterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: "analogOut") // to extend
                     intarface2Top?.backgroundColor = UIColor.clear
                     intarface2Top?.id = "top1"
                     intarface2Top?.rotate(deg: 3)
                     intarface2Top?.type = "analogOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: "analogOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface2Top?.addSubview(tech)
@@ -452,7 +448,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface3Top?.type = "---"
                 case "passive":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "passive")
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "passive")
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
@@ -461,12 +457,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "activeOut") // to extend
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "activeOut") // to extend
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
                     intarface3Top?.type = "activeOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: "activeOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 2)
                     intarface3Top?.addSubview(tech)
@@ -474,12 +470,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer" || self.type == "Clock"  { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "activeIn") // to extend
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "activeIn") // to extend
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
                     intarface3Top?.type = "activeIn"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeIn")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: "activeIn")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface3Top?.addSubview(tech)
@@ -487,7 +483,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer"  || self.type == "Clock" { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "activeInOut") // to extend
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "activeInOut") // to extend
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
@@ -500,7 +496,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer"  || self.type == "Clock" { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "analogIn") // to extend
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "analogIn") // to extend
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
@@ -513,12 +509,12 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer"  || self.type == "Clock" { break }
-                    intarface3Top = InterfaceView(frame: CGRect(x: 70, y: -28, width: 30, height: 30), interfaceType: "analogOut") // to extend
+                    intarface3Top = InterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: "analogOut") // to extend
                     intarface3Top?.backgroundColor = UIColor.clear
                     intarface3Top?.id = "top1"
                     intarface3Top?.rotate(deg: 3)
                     intarface3Top?.type = "analogOut"
-                    let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                    let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: "analogOut")
                     tech.backgroundColor = UIColor.clear
                     tech.rotate(deg: 4)
                     intarface3Top?.addSubview(tech)
@@ -561,12 +557,11 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "passive")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "passive")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "passive")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "passive")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "passive"
                 self.addSubview(intarface1Right!)
@@ -574,15 +569,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeIn":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "activeIn")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "activeIn")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "activeIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "activeIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface1Right?.addSubview(tech)
@@ -591,15 +585,15 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeOut":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "activeOut")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "activeOut")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
                 //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "activeOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "activeOut")
                 tech.backgroundColor = UIColor.clear
                 intarface1Right?.addSubview(tech)
                 self.addSubview(intarface1Right!)
@@ -607,15 +601,15 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeInOut":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "activeInOut")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "activeInOut")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
                 //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "activeInOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 1, width: 26, height: 26),interfaceType: "activeInOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: "activeInOut")
                 tech.backgroundColor = UIColor.clear
                 intarface1Right?.addSubview(tech)
                 self.addSubview(intarface1Right!)
@@ -623,15 +617,15 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "analogIn")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "analogIn")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
                 //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "analogIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "analogIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "analogIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface1Right?.addSubview(tech)
@@ -640,15 +634,15 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 68, y: 0, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: "analogOut")
                 } else {
-                    intarface1Right = InterfaceView(frame: CGRect(x: 98, y: 0, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface1Right = InterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: "analogOut")
                 }
                 intarface1Right?.backgroundColor = UIColor.clear
                 //intarface1Right?.rotate(deg: 1)
                 intarface1Right?.id = "right1"
                 intarface1Right?.type = "analogOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "analogOut")
                 tech.backgroundColor = UIColor.clear
                 intarface1Right?.addSubview(tech)
                 self.addSubview(intarface1Right!)
@@ -665,12 +659,11 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "passive")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "passive")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "passive")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 37, width: 30, height: 30), interfaceType: "passive")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "passive"
                 self.addSubview(intarface2Right!)
@@ -678,15 +671,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeIn":
                 if self.type == "Timer" || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "activeIn")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 35, width: 30, height: 30), interfaceType: "activeIn")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "activeIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "activeIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface2Right?.addSubview(tech)
@@ -695,15 +687,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "activeOut")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 35, width: 30, height: 30), interfaceType: "activeOut")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "activeOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "activeOut")
                 tech.backgroundColor = UIColor.clear
                 intarface2Right?.addSubview(tech)
                 self.addSubview(intarface2Right!)
@@ -711,15 +702,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeInOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "activeInOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 1, width: 26, height: 26),interfaceType: "activeInOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: "activeInOut")
                 tech.backgroundColor = UIColor.clear
                 intarface2Right?.addSubview(tech)
                 self.addSubview(intarface2Right!)
@@ -727,15 +717,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "analogIn")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 35, width: 30, height: 30), interfaceType: "analogIn")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "analogIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "analogIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "analogIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface2Right?.addSubview(tech)
@@ -744,15 +733,15 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 68, y: 35, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 66, y: 35, width: 30, height: 30), interfaceType: "analogOut")
                 } else {
-                    intarface2Right = InterfaceView(frame: CGRect(x: 98, y: 35, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface2Right = InterfaceView(frame: CGRect(x: 96, y: 35, width: 30, height: 30), interfaceType: "analogOut")
                 }
                 intarface2Right?.backgroundColor = UIColor.clear
                 //intarface1Right?.rotate(deg: 1)
                 intarface2Right?.id = "right2"
                 intarface2Right?.type = "analogOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "analogOut")
                 tech.backgroundColor = UIColor.clear
                 intarface2Right?.addSubview(tech)
                 self.addSubview(intarface2Right!)
@@ -810,12 +799,11 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "passive")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 72, width: 30, height: 30), interfaceType: "passive")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "passive")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "passive")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "passive"
                 self.addSubview(intarface3Right!)
@@ -823,15 +811,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeIn":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 70, width: 30, height: 30), interfaceType: "activeIn")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "activeIn")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "activeIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "activeIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "activeIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface3Right?.addSubview(tech)
@@ -840,15 +827,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeOut":
                 if self.type == "Timer"   || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 70, width: 30, height: 30), interfaceType: "activeOut")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "activeOut")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "activeOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "activeOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "activeOut")
                 tech.backgroundColor = UIColor.clear
                 intarface3Right?.addSubview(tech)
                 self.addSubview(intarface3Right!)
@@ -856,15 +842,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "activeInOut":
                 if self.type == "Timer" || self.type == "Clock" { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 70, width: 30, height: 30), interfaceType: "activeInOut")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "activeInOut")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "activeInOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 1, width: 26, height: 26),interfaceType: "activeInOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: "activeInOut")
                 tech.backgroundColor = UIColor.clear
                 intarface3Right?.addSubview(tech)
                 self.addSubview(intarface3Right!)
@@ -872,15 +857,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 70, width: 30, height: 30), interfaceType: "analogIn")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "analogIn")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "analogIn"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: "analogIn")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: "analogIn")
                 tech.backgroundColor = UIColor.clear
                 tech.rotate(deg: 2)
                 intarface3Right?.addSubview(tech)
@@ -889,15 +873,14 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "analogOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
                 if self.type == "Bus" {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 68, y: 70, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 66, y: 70, width: 30, height: 30), interfaceType: "analogOut")
                 } else {
-                    intarface3Right = InterfaceView(frame: CGRect(x: 98, y: 70, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface3Right = InterfaceView(frame: CGRect(x: 96, y: 72, width: 30, height: 30), interfaceType: "analogOut")
                 }
                 intarface3Right?.backgroundColor = UIColor.clear
-                //intarface1Right?.rotate(deg: 1)
                 intarface3Right?.id = "right3"
                 intarface3Right?.type = "analogOut"
-                let tech = InterfaceTechnologieView(frame: CGRect(x: -1, y: 1, width: 30, height: 28),interfaceType: "analogOut")
+                let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: "analogOut")
                 tech.backgroundColor = UIColor.clear
                 intarface3Right?.addSubview(tech)
                 self.addSubview(intarface3Right!)
@@ -924,7 +907,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 intarface1Left?.type = "---"
             case "passive":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "passive")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "passive")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -933,7 +916,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "activeIn")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "activeIn")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -946,7 +929,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "activeOut")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "activeOut")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -958,7 +941,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeInOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "activeInOut")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "activeInOut")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -970,7 +953,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "analogIn")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "analogIn")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -983,7 +966,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface1Left = InterfaceView(frame: CGRect(x: -27, y: 0, width: 30, height: 30), interfaceType: "analogOut")
+                intarface1Left = InterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: "analogOut")
                 intarface1Left?.backgroundColor = UIColor.clear
                 intarface1Left?.rotate(deg: 2)
                 intarface1Left?.id = "left1"
@@ -1004,7 +987,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 intarface2Left?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "passive")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "passive")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1013,7 +996,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeIn":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "activeIn")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "activeIn")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1026,7 +1009,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "activeOut")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "activeOut")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1038,7 +1021,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeInOut":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "activeInOut")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1050,7 +1033,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogIn":
                 if self.type == "Timer" || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "analogIn")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "analogIn")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1063,7 +1046,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogOut":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface2Left = InterfaceView(frame: CGRect(x: -27, y: 35, width: 30, height: 30), interfaceType: "analogOut")
+                intarface2Left = InterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: "analogOut")
                 intarface2Left?.backgroundColor = UIColor.clear
                 intarface2Left?.rotate(deg: 2)
                 intarface2Left?.id = "left2"
@@ -1111,7 +1094,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 intarface3Left?.type = "---"
             case "passive":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "passive")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "passive")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1120,7 +1103,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeIn":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "activeIn")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "activeIn")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1133,7 +1116,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeOut":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "activeOut")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "activeOut")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1145,7 +1128,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "activeInOut":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "activeInOut")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "activeInOut")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1157,7 +1140,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogIn":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "analogIn")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "analogIn")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1170,7 +1153,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                 break
             case "analogOut":
                 if self.type == "Timer"  || self.type == "Clock"  { break }
-                intarface3Left = InterfaceView(frame: CGRect(x: -27, y: 70, width: 30, height: 30), interfaceType: "analogOut")
+                intarface3Left = InterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: "analogOut")
                 intarface3Left?.backgroundColor = UIColor.clear
                 intarface3Left?.rotate(deg: 2)
                 intarface3Left?.id = "left3"
@@ -1203,7 +1186,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface1Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "passive")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "passive")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1212,7 +1195,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "activeIn")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1225,7 +1208,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "activeOut")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1237,7 +1220,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "activeInOut")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1249,7 +1232,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "analogIn")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1262,7 +1245,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface1Buttom = InterfaceView(frame: CGRect(x: 0, y: 98, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface1Buttom = InterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: "analogOut")
                     intarface1Buttom?.backgroundColor = UIColor.clear
                     intarface1Buttom?.rotate(deg: 1)
                     intarface1Buttom?.id = "buttom1"
@@ -1283,7 +1266,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface2Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "passive")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 33, y: 96, width: 30, height: 30), interfaceType: "passive")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1292,7 +1275,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: "activeIn")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1305,7 +1288,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: "activeOut")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1317,7 +1300,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: "activeInOut")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1329,7 +1312,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: "analogIn")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1342,7 +1325,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 98, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface2Buttom = InterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: "analogOut")
                     intarface2Buttom?.backgroundColor = UIColor.clear
                     intarface2Buttom?.rotate(deg: 1)
                     intarface2Buttom?.id = "buttom2"
@@ -1390,7 +1373,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     intarface3Buttom?.type = "---"
                 case "passive":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "passive")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "passive")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1399,7 +1382,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "activeIn")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "activeIn")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1412,7 +1395,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "activeOut")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "activeOut")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1424,7 +1407,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "activeInOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "activeInOut")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "activeInOut")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1436,7 +1419,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogIn":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "analogIn")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "analogIn")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1449,7 +1432,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
                     break
                 case "analogOut":
                     if self.type == "Timer"  || self.type == "Clock"  { break }
-                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 98, width: 30, height: 30), interfaceType: "analogOut")
+                    intarface3Buttom = InterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: "analogOut")
                     intarface3Buttom?.backgroundColor = UIColor.clear
                     intarface3Buttom?.rotate(deg: 1)
                     intarface3Buttom?.id = "buttom3"
@@ -1486,7 +1469,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
         titleLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
         editPanel.addSubview(titleLabel)
         
-        setTitle.frame = (frame: CGRect(x: 0, y: 30, width: 210, height: 30))
+        setTitle.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
         setTitle.backgroundColor = UIColor.white
         setTitle.adjustsFontSizeToFitWidth = true
         setTitle.textAlignment = .center
@@ -1555,49 +1538,49 @@ class ComponentView : UIView, InterfacePickerDelegate {
         editPanel.addSubview(colorLabel)
         
         let setWhiteColorButton = UIButton()
-        setWhiteColorButton.frame = (frame: CGRect(x: 5, y: 340, width: 20, height: 20))
+        setWhiteColorButton.frame = CGRect(x: 5, y: 340, width: 20, height: 20)
         setWhiteColorButton.backgroundColor = UIColor.white
         setWhiteColorButton.addTarget(self, action: #selector(setWhiteColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setWhiteColorButton)
         
         let setGrayColorButton = UIButton()
-        setGrayColorButton.frame = (frame: CGRect(x: 30, y: 340, width: 20, height: 20))
+        setGrayColorButton.frame = CGRect(x: 30, y: 340, width: 20, height: 20)
         setGrayColorButton.backgroundColor = UIColor.gray
         setGrayColorButton.addTarget(self, action: #selector(setGrayColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setGrayColorButton)
         
         let setOrangeColorButton = UIButton()
-        setOrangeColorButton.frame = (frame: CGRect(x: 55, y: 340, width: 20, height: 20))
+        setOrangeColorButton.frame = CGRect(x: 55, y: 340, width: 20, height: 20)
         setOrangeColorButton.backgroundColor = UIColor.orange
         setOrangeColorButton.addTarget(self, action: #selector(setOrangeColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setOrangeColorButton)
         
         let setGreenColorButton = UIButton()
-        setGreenColorButton.frame = (frame: CGRect(x: 80, y: 340, width: 20, height: 20))
+        setGreenColorButton.frame = CGRect(x: 80, y: 340, width: 20, height: 20)
         setGreenColorButton.backgroundColor = UIColor.green
         setGreenColorButton.addTarget(self, action: #selector(setGreenColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setGreenColorButton)
         
         let setBlueColorButton = UIButton()
-        setBlueColorButton.frame = (frame: CGRect(x: 105, y: 340, width: 20, height: 20))
+        setBlueColorButton.frame =  CGRect(x: 105, y: 340, width: 20, height: 20)
         setBlueColorButton.backgroundColor = UIColor.blue
         setBlueColorButton.addTarget(self, action: #selector(setBlueColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setBlueColorButton)
         
         let setRedColorButton = UIButton()
-        setRedColorButton.frame = (frame: CGRect(x: 130, y: 340, width: 20, height: 20))
+        setRedColorButton.frame = CGRect(x: 130, y: 340, width: 20, height: 20)
         setRedColorButton.backgroundColor = UIColor.red
         setRedColorButton.addTarget(self, action: #selector(setRedColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setRedColorButton)
         
         let setYellowColorButton = UIButton()
-        setYellowColorButton.frame = (frame: CGRect(x: 155, y: 340, width: 20, height: 20))
+        setYellowColorButton.frame = CGRect(x: 155, y: 340, width: 20, height: 20)
         setYellowColorButton.backgroundColor = UIColor.yellow
         setYellowColorButton.addTarget(self, action: #selector(setYellowColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setYellowColorButton)
         
         let setCyanColorButton = UIButton()
-        setCyanColorButton.frame = (frame: CGRect(x: 180, y: 340, width: 20, height: 20))
+        setCyanColorButton.frame = CGRect(x: 180, y: 340, width: 20, height: 20)
         setCyanColorButton.backgroundColor = UIColor.cyan
         setCyanColorButton.addTarget(self, action: #selector(setCyanColorButtonAction), for: .touchUpInside)
         editPanel.addSubview(setCyanColorButton)
@@ -1611,7 +1594,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
         editPanel.addSubview(deleteButton)
     }
     
-    func setTitleAction(sender: UIButton!) {
+    @objc func setTitleAction(sender: UIButton!) {
         
         if type == "Bus" {
             title.adjustsFontSizeToFitWidth = true
@@ -1628,19 +1611,19 @@ class ComponentView : UIView, InterfacePickerDelegate {
         }
     }
     
-    func setWhiteColorButtonAction(color: UIColor) { self.fillColor = UIColor.white }
-    func setGrayColorButtonAction(color: UIColor) { self.fillColor =  UIColor.gray /*UIColor(hue: 0.2, saturation: 0.8, brightness: 1.0, alpha: 0.8)*/}
-    func setOrangeColorButtonAction(color: UIColor) { self.fillColor = UIColor.orange }
-    func setGreenColorButtonAction(color: UIColor) { self.fillColor = UIColor.green }
-    func setBlueColorButtonAction(color: UIColor) { self.fillColor = UIColor.blue }
-    func setRedColorButtonAction(color: UIColor) { self.fillColor = UIColor.red }
-    func setYellowColorButtonAction(color: UIColor) { self.fillColor = UIColor.yellow; height = height + 100.0;}
-    func setCyanColorButtonAction(color: UIColor) { self.fillColor = UIColor.cyan; height = height - 100.0;}
+    @objc func setWhiteColorButtonAction(color: UIColor) { self.fillColor = UIColor.white }
+    @objc func setGrayColorButtonAction(color: UIColor) { self.fillColor =  UIColor.gray}
+    @objc func setOrangeColorButtonAction(color: UIColor) { self.fillColor = UIColor.orange }
+    @objc func setGreenColorButtonAction(color: UIColor) { self.fillColor = UIColor.green }
+    @objc func setBlueColorButtonAction(color: UIColor) { self.fillColor = UIColor.blue }
+    @objc func setRedColorButtonAction(color: UIColor) { self.fillColor = UIColor.red }
+    @objc func setYellowColorButtonAction(color: UIColor) { self.fillColor = UIColor.yellow; height = height + 100.0;}
+    @objc func setCyanColorButtonAction(color: UIColor) { self.fillColor = UIColor.cyan; height = height - 100.0;}
     
     var orient = CGFloat(0.0)
     
     func rotate() {
-        orient = orient + CGFloat(M_PI_2)
+        orient = orient + CGFloat((Double.pi / 2))
         self.transform = CGAffineTransform(rotationAngle: orient)
     }
     
@@ -1652,7 +1635,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
         }
     }
     
-    func remove(){
+    @objc func remove(){
         editPanel.removeFromSuperview()
         delete(component: self)
     }
@@ -1668,7 +1651,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
     }
     
     
-    func didTap(tapGR: UITapGestureRecognizer) {
+    @objc func didTap(tapGR: UITapGestureRecognizer) {
         if !bSelected {
             bSelected = true
         } else {
@@ -1704,7 +1687,7 @@ class ComponentView : UIView, InterfacePickerDelegate {
         }
     }
     
-    func didPan(panGR: UIPanGestureRecognizer) {
+    @objc func didPan(panGR: UIPanGestureRecognizer) {
         
         var translation = panGR.translation(in: self)
         translation = translation.applying(self.transform)
@@ -1744,8 +1727,6 @@ class ComponentView : UIView, InterfacePickerDelegate {
             case "RoundedMultiRect":
                 if bOrigin == true {
                     bOrigin = false
-                    (self.subviews[0] as! ComponentView).bSelected = false
-                    (self.subviews[0] as! ComponentView).bOrigin = false
                     create(component: self, frame: CGRect(x: 450.0, y: 80, width: 100.0, height: 100.0),
                            type: "RoundedMultiRect",
                            bDraggable: true,
@@ -1804,8 +1785,6 @@ class ComponentView : UIView, InterfacePickerDelegate {
     }
     
     func cyclePath() -> UIBezierPath {
-        //let insetRect = self.bounds.insetBy(dx: lineWidth,dy: lineWidth)
-        //return UIBezierPath(ovalIn: insetRect)
         let center = CGPoint(x:bounds.width/2, y: (bounds.height/2) - 10)
         let radius: CGFloat = (bounds.width / 2) - 5
         let startAngle: CGFloat = 0
@@ -1835,12 +1814,10 @@ class ComponentView : UIView, InterfacePickerDelegate {
     }
     
     override func draw(_ rect: CGRect) {
-        
         path.lineWidth = self.lineWidth
         self.fillColor.setFill()
         self.path.fill()
         UIColor.black.setStroke()
         path.stroke()
-        
     }
 }

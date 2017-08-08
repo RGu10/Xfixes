@@ -33,16 +33,16 @@ class InterfaceView: UIView {
     func rotate(deg: Int) {
         switch deg {
         case 1:
-            orient = orient + CGFloat(M_PI_2)
+            orient = orient + CGFloat(Double.pi / 2)
             self.transform = CGAffineTransform(rotationAngle: orient);
         case 2:
-            orient = orient + CGFloat(M_PI_2*2)
+            orient = orient + CGFloat((Double.pi / 2)*2)
             self.transform = CGAffineTransform(rotationAngle: orient);
         case 3:
-            orient = orient + CGFloat(M_PI_2*3)
+            orient = orient + CGFloat((Double.pi / 2)*3)
             self.transform = CGAffineTransform(rotationAngle: orient);
         case 4:
-            orient = orient + CGFloat(M_PI_2*4)
+            orient = orient + CGFloat((Double.pi / 2)*4)
             self.transform = CGAffineTransform(rotationAngle: orient);
         default:
             break
@@ -128,13 +128,13 @@ class InterfaceTechnologieView: UIView {
     func rotate(deg: Int) {
         switch deg {
         case 1:
-            orient = orient + CGFloat(M_PI_2)
+            orient = orient + CGFloat((Double.pi / 2))
             self.transform = CGAffineTransform(rotationAngle: orient);
         case 2:
-            orient = orient + CGFloat(M_PI_2*2)
+            orient = orient + CGFloat((Double.pi / 2)*2)
             self.transform = CGAffineTransform(rotationAngle: orient);
         case 3:
-            orient = orient + CGFloat(M_PI_2*3)
+            orient = orient + CGFloat((Double.pi / 2)*3)
             self.transform = CGAffineTransform(rotationAngle: orient);
         default:
             break

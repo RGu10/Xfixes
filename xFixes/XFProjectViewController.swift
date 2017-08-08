@@ -34,13 +34,13 @@ class ProjectView : UIView  {
         path = rectPath()
         initGestureRecognizers()
         
-        txtField = UITextField(frame: CGRect(x: 0, y: 10, width: 170, height: 50))
+        txtField = UITextField(frame: CGRect(x: 2, y: 10, width: 170, height: 50))
         txtField.text = "Project Name"
         txtField.adjustsFontSizeToFitWidth = true
         txtField.textAlignment = .center
         txtField.font = UIFont.boldSystemFont(ofSize: 18)
         txtField.textColor = UIColor.darkText
-        txtField.backgroundColor = UIColor.brown
+        txtField.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
         txtField.tintColor = UIColor.clear
         addSubview(txtField)
     }
@@ -62,11 +62,11 @@ class ProjectView : UIView  {
         delegate?.delete(project: project)
     }
     
-    func didTap(tapGR: UITapGestureRecognizer) {
+    @objc func didTap(tapGR: UITapGestureRecognizer) {
         show(project: self)
     }
     
-    func didLongPress(LongPressGR: UILongPressGestureRecognizer) {
+    @objc func didLongPress(LongPressGR: UILongPressGestureRecognizer) {
         delete(project: self)
     }
     

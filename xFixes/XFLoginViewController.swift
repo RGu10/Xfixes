@@ -21,5 +21,9 @@ class XFLoginViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
+    
+    override func viewDidLoad() {
+        view.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
+    }
 
 }

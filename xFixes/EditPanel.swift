@@ -31,11 +31,11 @@ class EditPanel : UIView  {
         addGestureRecognizer(tapGR)
     }
     
-    func didTap(panGR: UITapGestureRecognizer) {
+    @objc func didTap(panGR: UITapGestureRecognizer) {
         // added to disable tap on component view
     }
     
-    func didPan(panGR: UIPanGestureRecognizer) {
+    @objc func didPan(panGR: UIPanGestureRecognizer) {
         self.superview!.bringSubview(toFront: self)
         var translation = panGR.translation(in: self)
         translation = translation.applying(self.transform)
