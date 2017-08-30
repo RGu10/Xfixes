@@ -10,90 +10,13 @@ import UIKit
 
 let reuseIdentifier = "Cell"
 
-protocol ProjectViewDelegate: class {
-    func show(project: ProjectView)
-    func delete(project: ProjectView)
-}
-
-class ProjectView : UIView  {
-    var delegate: ProjectViewDelegate?
-    var projectName: String? { didSet { setNeedsDisplay() } }
-    var txtField: UITextField!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    func setup() {
-        path = rectPath()
-        initGestureRecognizers()
-        
-        txtField = UITextField(frame: CGRect(x: 2, y: 10, width: 170, height: 50))
-        txtField.text = "Project Name"
-        txtField.adjustsFontSizeToFitWidth = true
-        txtField.textAlignment = .center
-        txtField.font = UIFont.boldSystemFont(ofSize: 18)
-        txtField.textColor = UIColor.darkText
-        txtField.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
-        txtField.tintColor = UIColor.clear
-        addSubview(txtField)
-    }
-    
-    func initGestureRecognizers() {
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(didTap(tapGR: )))
-        addGestureRecognizer(tapGR)
-        
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(LongPressGR: )))
-        addGestureRecognizer(longPressGR)
-        
-    }
-    
-    func show(project: ProjectView) {
-        delegate?.show(project: project)
-    }
-    
-    func delete(project: ProjectView) {
-        delegate?.delete(project: project)
-    }
-    
-    @objc func didTap(tapGR: UITapGestureRecognizer) {
-        show(project: self)
-    }
-    
-    @objc func didLongPress(LongPressGR: UILongPressGestureRecognizer) {
-        delete(project: self)
-    }
-    
-    let lineWidth = CGFloat(1.5)
-    var path: UIBezierPath!
-    var fillColor = UIColor.white
-    
-    func rectPath() -> UIBezierPath {
-        let insetRect = self.bounds.insetBy(dx: lineWidth,dy: lineWidth)
-        return UIBezierPath(roundedRect: insetRect, cornerRadius: 0.0)
-    }
-    
-    override func draw(_ rect: CGRect) {
-        path.lineWidth = lineWidth
-        self.fillColor.setFill()
-        self.path.fill()
-        UIColor.black.setStroke()
-        path.stroke()
-    }
-}
-
 class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
     
-    var projects = [ProjectView]()
+    var projects = [XFProjectView]()
     var projectsMainviewcontroller = [XFMainViewController]()
     var x_coordinate = 0
     var y_coordinate = 0
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -106,13 +29,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
         collectionView?.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 97/100, alpha: 1.0)
         self.view.addSubview(collectionView!)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-    }
-    
+        
     func getRandomColor() -> UIColor{
         let red:CGFloat = CGFloat(drand48())
         let green:CGFloat = CGFloat(drand48())
@@ -125,7 +42,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
             x_coordinate = 5 + (185 * (projects.count % 5))
             y_coordinate = 5 + (185 * (projects.count / 5))
             
-            let project = ProjectView(frame: CGRect(x: x_coordinate, y: y_coordinate, width: 180, height: 180))
+            let project = XFProjectView(frame: CGRect(x: x_coordinate, y: y_coordinate, width: 180, height: 180))
             collectionView?.addSubview(project)
             project.delegate = self
             projects.append(project)
@@ -136,7 +53,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
         }
     }
     
-    func show(project: ProjectView) {
+    func show(project: XFProjectView) {
         var i = 0
         for p in projects {
             if p == project {
@@ -148,7 +65,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
         }
     }
     
-    func delete(project: ProjectView) {
+    func delete(project: XFProjectView) {
         var found = false
         let alertController = UIAlertController(title: project.txtField.text,
                                                 message: "Möchten Sie das Projekt löschen?",
