@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933DDCCE1F53423600454E30 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DDCCA1F53423600454E30 /* Interface.swift */; };
+		933DDCD01F53423600454E30 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DDCCC1F53423600454E30 /* Component.swift */; };
+		9377CB701F4F1ED000213DB8 /* XFProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */; };
 		93849C2E1F0432C300DD2B00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C2D1F0432C300DD2B00 /* AppDelegate.swift */; };
 		93849C331F0432C300DD2B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93849C311F0432C300DD2B00 /* Main.storyboard */; };
 		93849C361F0432C300DD2B00 /* xFixes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93849C341F0432C300DD2B00 /* xFixes.xcdatamodeld */; };
@@ -14,9 +17,12 @@
 		93849C3B1F0432C300DD2B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93849C391F0432C300DD2B00 /* LaunchScreen.storyboard */; };
 		93849C461F0432C400DD2B00 /* xFixesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C451F0432C400DD2B00 /* xFixesTests.swift */; };
 		93849C511F0432C400DD2B00 /* xFixesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C501F0432C400DD2B00 /* xFixesUITests.swift */; };
-		93849C631F04336000DD2B00 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5E1F04336000DD2B00 /* ComponentView.swift */; };
-		93849C641F04336100DD2B00 /* EditPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5F1F04336000DD2B00 /* EditPanel.swift */; };
-		93849C651F04336100DD2B00 /* InterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C601F04336000DD2B00 /* InterfaceView.swift */; };
+		93849C631F04336000DD2B00 /* XFComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5E1F04336000DD2B00 /* XFComponentView.swift */; };
+		93849C641F04336100DD2B00 /* XFEditPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5F1F04336000DD2B00 /* XFEditPanel.swift */; };
+		93849C651F04336100DD2B00 /* XFInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C601F04336000DD2B00 /* XFInterfaceView.swift */; };
+		939DB2791F4F263C008E7523 /* XFDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DB2781F4F263C008E7523 /* XFDataBase.swift */; };
+		93C12EE51F2546EB00305E61 /* XFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C12EE41F2546EB00305E61 /* XFLoginViewController.swift */; };
+		93C12EE71F26859A00305E61 /* XFProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C12EE61F26859A00305E61 /* XFProjectViewController.swift */; };
 		93F1D59A1F23ED4D00AD4528 /* XFMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F1D5991F23ED4D00AD4528 /* XFMainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		933DDCCA1F53423600454E30 /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
+		933DDCCC1F53423600454E30 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XFProjectView.swift; sourceTree = "<group>"; };
 		93849C2A1F0432C300DD2B00 /* xFixes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xFixes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93849C2D1F0432C300DD2B00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93849C321F0432C300DD2B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,9 +60,12 @@
 		93849C4C1F0432C400DD2B00 /* xFixesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xFixesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93849C501F0432C400DD2B00 /* xFixesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xFixesUITests.swift; sourceTree = "<group>"; };
 		93849C521F0432C400DD2B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		93849C5E1F04336000DD2B00 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
-		93849C5F1F04336000DD2B00 /* EditPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPanel.swift; sourceTree = "<group>"; };
-		93849C601F04336000DD2B00 /* InterfaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceView.swift; sourceTree = "<group>"; };
+		93849C5E1F04336000DD2B00 /* XFComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFComponentView.swift; sourceTree = "<group>"; };
+		93849C5F1F04336000DD2B00 /* XFEditPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFEditPanel.swift; sourceTree = "<group>"; };
+		93849C601F04336000DD2B00 /* XFInterfaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFInterfaceView.swift; sourceTree = "<group>"; };
+		939DB2781F4F263C008E7523 /* XFDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XFDataBase.swift; sourceTree = "<group>"; };
+		93C12EE41F2546EB00305E61 /* XFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFLoginViewController.swift; sourceTree = "<group>"; };
+		93C12EE61F26859A00305E61 /* XFProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFProjectViewController.swift; sourceTree = "<group>"; };
 		93F1D5991F23ED4D00AD4528 /* XFMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +94,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9377CB6D1F4F1A8A00213DB8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				93C12EE41F2546EB00305E61 /* XFLoginViewController.swift */,
+				93C12EE61F26859A00305E61 /* XFProjectViewController.swift */,
+				93F1D5991F23ED4D00AD4528 /* XFMainViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		9377CB6E1F4F1AAF00213DB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */,
+				93849C5F1F04336000DD2B00 /* XFEditPanel.swift */,
+				93849C601F04336000DD2B00 /* XFInterfaceView.swift */,
+				93849C5E1F04336000DD2B00 /* XFComponentView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		93849C211F0432C300DD2B00 = {
 			isa = PBXGroup;
 			children = (
@@ -105,12 +138,9 @@
 		93849C2C1F0432C300DD2B00 /* xFixes */ = {
 			isa = PBXGroup;
 			children = (
-				93F1D5991F23ED4D00AD4528 /* XFMainViewController.swift */,
-				93849C5E1F04336000DD2B00 /* ComponentView.swift */,
-				93849C5F1F04336000DD2B00 /* EditPanel.swift */,
-				93849C601F04336000DD2B00 /* InterfaceView.swift */,
-				93849C311F0432C300DD2B00 /* Main.storyboard */,
-				93849C341F0432C300DD2B00 /* xFixes.xcdatamodeld */,
+				9377CB6E1F4F1AAF00213DB8 /* View */,
+				9377CB6D1F4F1A8A00213DB8 /* ViewController */,
+				93B4B2061F488AD000E1C00F /* CoreData */,
 				93849C671F04338E00DD2B00 /* Supporting Files */,
 			);
 			path = xFixes;
@@ -137,12 +167,24 @@
 		93849C671F04338E00DD2B00 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93849C311F0432C300DD2B00 /* Main.storyboard */,
 				93849C2D1F0432C300DD2B00 /* AppDelegate.swift */,
 				93849C371F0432C300DD2B00 /* Assets.xcassets */,
 				93849C391F0432C300DD2B00 /* LaunchScreen.storyboard */,
 				93849C3C1F0432C300DD2B00 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93B4B2061F488AD000E1C00F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				933DDCCA1F53423600454E30 /* Interface.swift */,
+				933DDCCC1F53423600454E30 /* Component.swift */,
+				939DB2781F4F263C008E7523 /* XFDataBase.swift */,
+				93849C341F0432C300DD2B00 /* xFixes.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,23 +250,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Ryad;
 				TargetAttributes = {
 					93849C291F0432C300DD2B00 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9CNN68349Z;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					93849C401F0432C400DD2B00 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9CNN68349Z;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 93849C291F0432C300DD2B00;
 					};
 					93849C4B1F0432C400DD2B00 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9CNN68349Z;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 93849C291F0432C300DD2B00;
 					};
@@ -283,10 +328,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				93F1D59A1F23ED4D00AD4528 /* XFMainViewController.swift in Sources */,
-				93849C651F04336100DD2B00 /* InterfaceView.swift in Sources */,
-				93849C631F04336000DD2B00 /* ComponentView.swift in Sources */,
+				93849C651F04336100DD2B00 /* XFInterfaceView.swift in Sources */,
+				93849C631F04336000DD2B00 /* XFComponentView.swift in Sources */,
+				933DDCCE1F53423600454E30 /* Interface.swift in Sources */,
 				93849C361F0432C300DD2B00 /* xFixes.xcdatamodeld in Sources */,
-				93849C641F04336100DD2B00 /* EditPanel.swift in Sources */,
+				939DB2791F4F263C008E7523 /* XFDataBase.swift in Sources */,
+				9377CB701F4F1ED000213DB8 /* XFProjectView.swift in Sources */,
+				93C12EE71F26859A00305E61 /* XFProjectViewController.swift in Sources */,
+				93C12EE51F2546EB00305E61 /* XFLoginViewController.swift in Sources */,
+				93849C641F04336100DD2B00 /* XFEditPanel.swift in Sources */,
+				933DDCD01F53423600454E30 /* Component.swift in Sources */,
 				93849C2E1F0432C300DD2B00 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +402,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -359,7 +412,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -382,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -401,7 +458,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -409,7 +468,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -426,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -438,6 +501,7 @@
 		93849C561F0432C400DD2B00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9CNN68349Z;
 				INFOPLIST_FILE = xFixes/Info.plist;
@@ -445,13 +509,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		93849C571F0432C400DD2B00 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9CNN68349Z;
 				INFOPLIST_FILE = xFixes/Info.plist;
@@ -459,7 +525,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -473,7 +540,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xFixes.app/xFixes";
 			};
 			name = Debug;
@@ -488,7 +556,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xFixes.app/xFixes";
 			};
 			name = Release;
@@ -502,7 +571,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = xFixes;
 			};
 			name = Debug;
@@ -516,7 +586,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ryad.xFixesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = xFixes;
 			};
 			name = Release;

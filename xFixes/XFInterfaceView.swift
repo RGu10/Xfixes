@@ -132,7 +132,7 @@ class XFInterfaceView: UIView {
 	
 	var path: UIBezierPath!
 	var unique:Int64 = 0
-	var id = ""
+	var position = ""
 	var type = "" { didSet{ setNeedsDisplay() } }
     let lineWidth: CGFloat = 2
     var lineColor = UIColor.black  { didSet { setNeedsDisplay() } }

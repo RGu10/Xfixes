@@ -5,30 +5,55 @@
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="neighborInterfaceNameButtom1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameButtom2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameButtom3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameLeft1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameLeft2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameLeft3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameRight1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameRight2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameRight3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameTop1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameTop2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborInterfaceNameTop3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="neighborsTags" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tag" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="components" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Component" inverseName="components" inverseEntity="Component" syncable="YES"/>
         <relationship name="interfaces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interface" inverseName="component" inverseEntity="Interface" syncable="YES"/>
+        <relationship name="neighborButtom1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborButtom2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborButtom3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborLeft1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborLeft2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborLeft3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborRight1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborRight2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborRight3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborTop1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborTop2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
+        <relationship name="neighborTop3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" syncable="YES"/>
     </entity>
     <entity name="IdList" representedClassName="" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Interface" representedClassName=".Interface" syncable="YES">
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="minX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="orient" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="component" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" inverseName="interfaces" inverseEntity="Component" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Component" positionX="-5256" positionY="-477" width="234" height="193"/>
+        <element name="Component" positionX="-4977" positionY="-531" width="234" height="568"/>
         <element name="IdList" positionX="-5555" positionY="5" width="128" height="58"/>
-        <element name="Interface" positionX="-5634" positionY="-333" width="128" height="178"/>
+        <element name="Interface" positionX="-5636" positionY="-736" width="128" height="178"/>
     </elements>
 </model>

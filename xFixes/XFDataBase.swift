@@ -29,7 +29,6 @@ class XFDataBaseManager {
 		do {
 			componentList = (try managedContext?.fetch(fetchRequest!))!
 			idListCoreData = (try managedContext?.fetch(fetchRequestIdList!))!
-			printDataBaseSatatistics()
 		} catch let error as NSError {
 			print("Could not fetch. \(error), \(error.userInfo)")
 		}
@@ -72,31 +71,24 @@ class XFDataBaseManager {
 			saveContext()
 		}
 	}
-	
-	func Select(component: XFComponentView) -> Component {
-		let compoentFounded: Component! = nil
-		if componentList.count > 0 {
-			for v in componentList {
-				let tmp = v.value(forKey: "tag") as? Int
-				if tmp != nil {
-					if tmp! == component.tag {
-						return compoentFounded
-					}
-				}
+		
+	func Select(component: XFComponentView) -> Component? {
+		for tmpComponent in componentList {
+			if tmpComponent.tag == component.tag {
+				return tmpComponent
 			}
 		}
-		return compoentFounded
+		return nil
 	}
 	
 	func Update(component: XFComponentView, key: String) {
-		if componentList.count > 0 {
 			for v in componentList {
 				let tmp = v.value(forKey: "tag") as? Int
 				if tmp != nil {
 					if tmp! == component.tag {
 						switch key {
 						case "title":
-							v.title = component.title.text
+							v.title = component.titleField.text
 							saveContext()
 						case "color":
 							v.color = component.fillColor
@@ -106,21 +98,14 @@ class XFDataBaseManager {
 							v.minY = Float(component.frame.minY)
 							saveContext()
 						case "interface":
-							//let entityInterface1 = NSEntityDescription.entity(forEntityName: "Interface", in: managedContext!)!
-							//let interface1 = NSManagedObject(entity: entityInterface1, insertInto: managedContext)
-							//interface1.setValue(component.intarface1Top?.id, forKey: "id")
-							//interface1.setValue(component.intarface1Top?.type, forKey: "type")
-							//v.setValue(NSSet(object: interface1), forKey: "interfaces")
+							//v.interfaces
 							saveContext()
-							break
 						default:
 							break
 						}
 					}
 				}
 			}
-
-		}
 	}
 	
 	func Delete(component: XFComponentView){

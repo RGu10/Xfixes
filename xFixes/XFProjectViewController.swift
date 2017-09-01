@@ -57,7 +57,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
         var i = 0
         for p in projects {
             if p == project {
-                projectsMainviewcontroller[i].title = projects[i].txtField.text
+                projectsMainviewcontroller[i].title = projects[i].titleField.text
                 self.navigationController?.pushViewController(projectsMainviewcontroller[i], animated: true)
                 break
             }
@@ -67,7 +67,7 @@ class XFProjectViewController: UICollectionViewController, ProjectViewDelegate {
     
     func delete(project: XFProjectView) {
         var found = false
-        let alertController = UIAlertController(title: project.txtField.text,
+        let alertController = UIAlertController(title: project.titleField.text,
                                                 message: "Möchten Sie das Projekt löschen?",
                                                 preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) {

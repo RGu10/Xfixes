@@ -16,7 +16,7 @@ protocol ProjectViewDelegate: class {
 class XFProjectView : UIView  {
 	var delegate: ProjectViewDelegate?
 	var projectName: String? { didSet { setNeedsDisplay() } }
-	var txtField: UITextField!
+	var titleField: UITextField!
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -32,15 +32,15 @@ class XFProjectView : UIView  {
 		path = rectPath()
 		initGestureRecognizers()
 		
-		txtField = UITextField(frame: CGRect(x: 2, y: 10, width: 170, height: 50))
-		txtField.text = "Project Name"
-		txtField.adjustsFontSizeToFitWidth = true
-		txtField.textAlignment = .center
-		txtField.font = UIFont.boldSystemFont(ofSize: 18)
-		txtField.textColor = UIColor.darkText
-		txtField.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
-		txtField.tintColor = UIColor.clear
-		addSubview(txtField)
+		titleField = UITextField(frame: CGRect(x: 2, y: 10, width: 170, height: 50))
+		titleField.text = "Project Name"
+		titleField.adjustsFontSizeToFitWidth = true
+		titleField.textAlignment = .center
+		titleField.font = UIFont.boldSystemFont(ofSize: 18)
+		titleField.textColor = UIColor.darkText
+		titleField.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
+		titleField.tintColor = UIColor.clear
+		addSubview(titleField)
 	}
 	
 	func initGestureRecognizers() {

@@ -99,10 +99,11 @@ class InterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 class XFEditPanel : UIView  {
 	
 	var component: XFComponentView? = nil
-	let setTitle = UITextField()
+	let titleField = UITextField()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
+		titleField.text = component?.titleField.text
 		setup()
 	}
 	
@@ -190,13 +191,14 @@ class XFEditPanel : UIView  {
 			titleLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 			addSubview(titleLabel)
 			
-			setTitle.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
-			setTitle.backgroundColor = UIColor.white
-			setTitle.adjustsFontSizeToFitWidth = true
-			setTitle.textAlignment = .center
-			setTitle.isUserInteractionEnabled = true;
-			setTitle.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
-			addSubview(setTitle)
+			titleField.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
+			titleField.backgroundColor = UIColor.white
+			titleField.adjustsFontSizeToFitWidth = true
+			titleField.textAlignment = .center
+			titleField.isUserInteractionEnabled = true;
+			component?.newTitleField = titleField
+			titleField.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
+			addSubview(titleField)
 			
 			let intarfaceTopLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 210, height: 30))
 			intarfaceTopLabel.text = "Interface Top"
@@ -270,13 +272,14 @@ class XFEditPanel : UIView  {
 			titleLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 			addSubview(titleLabel)
 			
-			setTitle.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
-			setTitle.backgroundColor = UIColor.white
-			setTitle.adjustsFontSizeToFitWidth = true
-			setTitle.textAlignment = .center
-			setTitle.isUserInteractionEnabled = true;
-			setTitle.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
-			addSubview(setTitle)
+			titleField.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
+			titleField.backgroundColor = UIColor.white
+			titleField.adjustsFontSizeToFitWidth = true
+			titleField.textAlignment = .center
+			titleField.isUserInteractionEnabled = true;
+			component?.newTitleField = titleField
+			titleField.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
+			addSubview(titleField)
 			
 			let intarfaceRightLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 210, height: 30))
 			intarfaceRightLabel.text = "Interface Right"

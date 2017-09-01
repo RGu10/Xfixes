@@ -21,7 +21,7 @@ extension Interface {
 		return NSFetchRequest<Interface>(entityName: "Interface")
 	}
 	
-	@NSManaged public var id: String?
+	@NSManaged public var position: String?
 	@NSManaged public var type: String?
 	@NSManaged public var unique: String?
 	@NSManaged public var minX: Float
