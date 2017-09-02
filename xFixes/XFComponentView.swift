@@ -20,30 +20,29 @@ protocol ComponentViewDelegate: class {
 
 class XFComponentView : UIView, InterfacePickerDelegate {
 	
-	var path2: UIBezierPath!
-	var drawSecondPath = false
-	
-	let lineWidth: CGFloat = 2
-	var lineColor = UIColor.black  { didSet { setNeedsDisplay() } }
-	var fillColor = UIColor.white  { didSet { setNeedsDisplay() } }
-	var width = 70.0 { didSet { setNeedsDisplay() } }
-	var height = 100.0 { didSet { setNeedsDisplay() } }
-	var path: UIBezierPath!
-	var type = ""
 	var id = 0
+	var type = ""
+	var fillColor = UIColor.white  { didSet { setNeedsDisplay() } }
+	var titleField = UITextField(frame: CGRect(x: 0, y: 5, width: 100, height: 20)) { didSet { setNeedsDisplay() } }
+	var newTitleField = UITextField()  { didSet { setNeedsDisplay() } }
 	var bDraggable = false
 	var bOrigin = true
 	var bMoved = false
 	var bSelected = false
-	var titleField = UITextField(frame: CGRect(x: 0, y: 5, width: 100, height: 20)) { didSet { setNeedsDisplay() } }
-	var newTitleField = UITextField()  { didSet { setNeedsDisplay() } }
 	var delegate: ComponentViewDelegate?
-	
 	var neighbors  = [XFComponentView]()
 	var neighborsTags  = [Int64]()
 	var interfaces = [XFInterfaceView]()
 	var neighborInterfacesName = [String]()
 	var editPanel  = XFEditPanel()
+	
+	var path: UIBezierPath!
+	var path2: UIBezierPath!
+	var drawSecondPath = false
+	let lineWidth: CGFloat = 2
+	var lineColor = UIColor.black  { didSet { setNeedsDisplay() } }
+	var width = 70.0 { didSet { setNeedsDisplay() } }
+	var height = 100.0 { didSet { setNeedsDisplay() } }
 	
 	var neighborTop1: XFComponentView? = nil
 	var neighborTop2: XFComponentView? = nil
@@ -1455,11 +1454,10 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			intarface2Left?.addSubview(txtField)
 			self.addSubview(intarface2Left!)
 			setTimerLeft = true
-			interface(component: self)
 		} else {
 			intarface2Left?.removeFromSuperview()
 			intarface2Left?.type = "---"
-			//interface(component: self)
+			interface(component: self)
 			setTimerLeft = false
 		}
 	}

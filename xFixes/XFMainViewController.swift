@@ -57,15 +57,11 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 	func loadCompoenentViewsFromDatabaseAndUpdateUI(){
 		
 		for tmpComponent in dataBaseManager.componentList {
-			newComponentView = XFComponentView(frame: CGRect(x: CGFloat(tmpComponent.minX),
-			                                                 y: CGFloat(tmpComponent.minY),
-			                                                 width: CGFloat(tmpComponent.width),
-			                                                 height: CGFloat(tmpComponent.height)),
-			                                   type: tmpComponent.type!,
-			                                   bDraggable: true,
-			                                   bOrigin: false)
+			newComponentView = XFComponentView(frame: CGRect(x: CGFloat(tmpComponent.minX),y: CGFloat(tmpComponent.minY), width: CGFloat(tmpComponent.width),height: CGFloat(tmpComponent.height)),
+			                                   type: tmpComponent.type!, bDraggable: true,bOrigin: false)
 			newComponentView?.tag = Int(tmpComponent.tag)
 			newComponentView?.newTitleField.text = tmpComponent.title
+			newComponentView?.type = tmpComponent.type!
 			newComponentView?.setTitleAction()
 			newComponentView?.fillColor = tmpComponent.color as! UIColor
 			newComponentView?.delegate = self
@@ -83,6 +79,19 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			newComponentView?.neighborInterfaceNameLeft2 = tmpComponent.neighborInterfaceNameLeft2
 			newComponentView?.neighborInterfaceNameLeft3 = tmpComponent.neighborInterfaceNameLeft3
 			newComponentView?.neighborsTags = tmpComponent.neighborsTags
+			
+			let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
+			txtField.adjustsFontSizeToFitWidth = true
+			txtField.textAlignment = .center
+			txtField.font = UIFont.boldSystemFont(ofSize: 10)
+			if newComponentView?.type == "Timer" {
+				txtField.text = "Timer"
+				newComponentView?.addSubview(txtField)
+			}
+			if newComponentView?.type == "Clock" {
+				txtField.text = "Clock"
+				newComponentView?.addSubview(txtField)
+			}
 			
 			for interface in tmpComponent.interfaces! {
 				
@@ -163,7 +172,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					tmpInterfaceView.rotate(deg: 2)
 				}
 				
-				print(((interface as? Interface)?.type!)!)
 				switch ((interface as? Interface)?.type!)! {
 				case "activeIn":
 					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
@@ -604,22 +612,18 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		                          height: component.frame.height)
 		imageView.addSubview(component)
 		modell.add(componentView: v1)
+		
+		v1.drawSecondPath = true
+		let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
+		txtField.adjustsFontSizeToFitWidth = true
+		txtField.textAlignment = .center
+		txtField.font = UIFont.boldSystemFont(ofSize: 10)
 		if type == "Timer" {
-			v1.drawSecondPath = true
-			let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
 			txtField.text = "Timer"
-			txtField.adjustsFontSizeToFitWidth = true
-			txtField.textAlignment = .center
-			txtField.font = UIFont.boldSystemFont(ofSize: 10)
 			v1.addSubview(txtField)
 		}
 		if type == "Clock" {
-			v1.drawSecondPath = true
-			let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
 			txtField.text = "Clock"
-			txtField.adjustsFontSizeToFitWidth = true
-			txtField.textAlignment = .center
-			txtField.font = UIFont.boldSystemFont(ofSize: 10)
 			v1.addSubview(txtField)
 		}
 		
@@ -1014,7 +1018,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			}
 		}
 		
-		//component.editPanel
 		imageView.addSubview(component.editPanel)
 		editPanelViewList.append(component.editPanel)
 	}
