@@ -98,59 +98,72 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					newComponentView?.intarface1Top = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 3)
 				}
-				else if (interface as? Interface)?.position == "top2" {
+				
+				if (interface as? Interface)?.position == "top2" {
 					newComponentView?.intarface2Top = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 3)
 					if newComponentView?.type == "Timer" {
 						newComponentView?.setTimerTopAction()
 					}
 				}
-				else if (interface as? Interface)?.position == "top3" {
+				
+				if (interface as? Interface)?.position == "top3" {
 					newComponentView?.intarface3Top = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 3)
 				}
-				else if (interface as? Interface)?.position == "buttom1" {
+				
+				if (interface as? Interface)?.position == "buttom1" {
 					newComponentView?.intarface1Buttom = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 1)
 				}
-				else if (interface as? Interface)?.position == "buttom2" {
+				
+				if (interface as? Interface)?.position == "buttom2" {
 					newComponentView?.intarface2Buttom = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 1)
 					if newComponentView?.type == "Timer"  {
 						newComponentView?.setTimerButtomAction()
 					}
 				}
-				else if (interface as? Interface)?.position == "buttom3" {
+				
+				if (interface as? Interface)?.position == "buttom3" {
 					newComponentView?.intarface3Buttom = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 1)
-				} else if (interface as? Interface)?.position == "right1" {
+				}
+				
+				if (interface as? Interface)?.position == "right1" {
 					newComponentView?.intarface1Right = tmpInterfaceView
 				}
-				else if (interface as? Interface)?.position == "right2" {
+				
+				if (interface as? Interface)?.position == "right2" {
 					newComponentView?.intarface2Right = tmpInterfaceView
 					if newComponentView?.type == "Timer"  {
 						newComponentView?.setTimerRightAction()
 					}
 				}
-				else if (interface as? Interface)?.position == "right3" {
+				
+				if (interface as? Interface)?.position == "right3" {
 					newComponentView?.intarface3Right = tmpInterfaceView
 				}
-				else if (interface as? Interface)?.position == "left1" {
+				
+				if (interface as? Interface)?.position == "left1" {
 					newComponentView?.intarface1Left = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 2)
 				}
-				else if (interface as? Interface)?.position == "left2" {
+				
+				if (interface as? Interface)?.position == "left2" {
 					newComponentView?.intarface2Left = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 2)
 					if newComponentView?.type == "Timer"  {
 						newComponentView?.setTimerLeftAction()
 					}
 				}
-				else if (interface as? Interface)?.position == "left3" {
+				
+				if (interface as? Interface)?.position == "left3" {
 					newComponentView?.intarface3Left = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 2)
 				}
 				
+				print(((interface as? Interface)?.type!)!)
 				switch ((interface as? Interface)?.type!)! {
 				case "activeIn":
 					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
@@ -838,56 +851,101 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		
 		let component_coredata = dataBaseManager.Select(component: component)
 		
-		if component.intarface1Top != nil {
+		if component.intarface1Top == nil || component.intarface1Top?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top1")
+		}
+		else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top1")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Top!))
 			dataBaseManager.saveContext()
 		}
-		if component.intarface2Top != nil {
+		
+		if component.intarface2Top == nil || component.intarface2Top?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top2")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top2")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Top!))
 			dataBaseManager.saveContext()
 		}
-		if component.intarface3Top != nil {
+		
+		if component.intarface3Top == nil || component.intarface3Top?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top3")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top3")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Top!))
 			dataBaseManager.saveContext()
 		}
 		
-		if component.intarface1Buttom != nil {
+		if component.intarface1Buttom == nil || component.intarface1Buttom?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom1")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom1")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Buttom!))
 			dataBaseManager.saveContext()
 		}
-		if component.intarface2Buttom != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Buttom!))
-			dataBaseManager.saveContext()
-		}
-		if component.intarface3Buttom != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Buttom!))
-			dataBaseManager.saveContext()
+		
+		if component.intarface2Buttom == nil || component.intarface2Buttom?.type == "---"  {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
+		} else {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
+		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Buttom!))
+		   dataBaseManager.saveContext()
 		}
 		
-		if component.intarface1Right != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Right!))
-			dataBaseManager.saveContext()
-		}
-		if component.intarface2Right != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Right!))
-			dataBaseManager.saveContext()
-		}
-		if component.intarface3Right != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Right!))
-			dataBaseManager.saveContext()
+		if component.intarface3Buttom == nil || component.intarface3Buttom?.type == "---" {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
+		} else {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
+		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Buttom!))
+		   dataBaseManager.saveContext()
 		}
 		
-		if component.intarface1Left != nil {
+		if component.intarface1Right == nil || component.intarface1Right?.type == "---" {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
+		} else {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
+		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Right!))
+		   dataBaseManager.saveContext()
+		}
+		
+		if component.intarface2Right == nil || component.intarface2Right?.type == "---" {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
+		} else {
+		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
+		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Right!))
+		   dataBaseManager.saveContext()
+		}
+		
+		if component.intarface3Right == nil || component.intarface3Right?.type == "---"  {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right3")
+		} else {
+		  dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right3")
+		  component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Right!))
+		  dataBaseManager.saveContext()
+		}
+		
+		if component.intarface1Left == nil || component.intarface1Left?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left1")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left1")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Left!))
 			dataBaseManager.saveContext()
 		}
-		if component.intarface2Left != nil {
+		
+		if component.intarface2Left == nil || component.intarface2Left?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left2")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left2")
 			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Left!))
 			dataBaseManager.saveContext()
 		}
-		if component.intarface3Left != nil {
-			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Left!))
-			dataBaseManager.saveContext()
+		
+		if component.intarface3Left == nil || component.intarface3Left?.type == "---" {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left3")
+		} else {
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left3")
+		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Left!))
+		   dataBaseManager.saveContext()
 		}
 		
 	}
@@ -956,6 +1014,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			}
 		}
 		
+		//component.editPanel
 		imageView.addSubview(component.editPanel)
 		editPanelViewList.append(component.editPanel)
 	}

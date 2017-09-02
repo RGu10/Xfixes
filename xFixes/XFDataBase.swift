@@ -120,6 +120,21 @@ class XFDataBaseManager {
 		}
 	}
 	
+	func DeleteInterfaceFromComponent(component: XFComponentView, _position: String){
+		for comp in componentList {
+			if (comp.tag == component.tag) {
+				for interface in comp.interfaces! {
+					let p1 = String(describing: ((interface as? Interface)?.position!)!)
+					let p2 = String(describing: _position)
+					if p1 == p2 {
+						managedContext?.delete(interface as! NSManagedObject)
+					}
+				}
+			}
+			saveContext()
+		}
+	}
+	
 	func resetDatabase(){
 		for v in componentList {
 			managedContext!.delete(v)
