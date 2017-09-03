@@ -254,13 +254,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					}
 					newComponentView?.addSubview(tmpInterfaceView)
 				}
-				
-				/*if tmpComponent.type == "Timer" {
-					newComponentView?.addSubview(tmpInterfaceView)
-				}*/
-				
 			}
-			
 			modell.add(componentView: newComponentView!)
 			imageView.addSubview(newComponentView!)
 		}

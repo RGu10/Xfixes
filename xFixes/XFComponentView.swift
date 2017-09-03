@@ -304,6 +304,12 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 		}
 	}
 	
+	func setupInterface(interface: XFInterfaceView, position: String, deg: Int){
+		intarface1Top?.backgroundColor = UIColor.clear
+		intarface1Top?.rotate(deg: deg)
+		intarface1Top?.position = position
+	}
+	
 	internal func setInterface(side: String, interface1: String, interface2: String, interface3: String) {
 		
 		switch side {
@@ -317,22 +323,19 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			if intarface3Top != nil {
 				intarface3Top!.removeFromSuperview()
 			}
+
 			switch interface1 {
 			case "---":
 				intarface1Top?.type = "---"
 				intarface1Top?.position = "top1"
 			case "passive":
-				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1)
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1 )
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				self.addSubview(intarface1Top!)
 				break
 			case "activeIn":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
@@ -341,9 +344,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				break
 			case "activeOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
@@ -352,9 +353,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				break
 			case "activeInOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
@@ -363,9 +362,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				break
 			case "analogIn":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
@@ -374,9 +371,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				break
 			case "analogOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
-				intarface1Top?.backgroundColor = UIColor.clear
-				intarface1Top?.rotate(deg: 3)
-				intarface1Top?.position = "top1"
+				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
