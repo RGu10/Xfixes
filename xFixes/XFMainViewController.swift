@@ -54,14 +54,15 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 	var newComponentView : XFComponentView? = nil
 	
 	
-	func loadCompoenentViewsFromDatabaseAndUpdateUI(){
+	func reload(){
 		
 		for tmpComponent in dataBaseManager.componentList {
+			
 			newComponentView = XFComponentView(frame: CGRect(x: CGFloat(tmpComponent.minX),
-			                                                 y: CGFloat(tmpComponent.minY),
-			                                                 width: CGFloat(tmpComponent.width),
+			                                                 y: CGFloat(tmpComponent.minY),width:
+															 CGFloat(tmpComponent.width),
 			                                                 height: CGFloat(tmpComponent.height)),
-			                                   type: tmpComponent.type!, bDraggable: true,bOrigin: false)
+			                                                 type: tmpComponent.type!, bDraggable: true,bOrigin: false)
 			newComponentView?.tag = Int(tmpComponent.tag)
 			newComponentView?.newTitleField.text = tmpComponent.title
 			newComponentView?.type = tmpComponent.type!
@@ -82,10 +83,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			newComponentView?.neighborInterfaceNameLeft2 = tmpComponent.neighborInterfaceNameLeft2
 			newComponentView?.neighborInterfaceNameLeft3 = tmpComponent.neighborInterfaceNameLeft3
 			newComponentView?.neighborsTags = tmpComponent.neighborsTags
-			newComponentView?.setTimerTop = tmpComponent.setTimerTop
-			newComponentView?.setTimerButtom = tmpComponent.setTimerButtom
-			newComponentView?.setTimerRight = tmpComponent.setTimerRight
-			newComponentView?.setTimerLeft = tmpComponent.setTimerLeft
 			
 			let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
 			txtField.adjustsFontSizeToFitWidth = true
@@ -115,6 +112,16 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				}
 				
 				if (interface as? Interface)?.position == "top2" {
+					if tmpComponent.type == "Timer" {
+						newComponentView?.setTimerTop = true
+						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+						txtField.text = "T"
+						txtField.adjustsFontSizeToFitWidth = true
+						txtField.textAlignment = .center
+						txtField.font = UIFont.boldSystemFont(ofSize: 10)
+						tmpInterfaceView.rotate(deg: 1)
+						tmpInterfaceView.addSubview(txtField)
+					}
 					newComponentView?.intarface2Top = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 3)
 				}
@@ -130,11 +137,18 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				}
 				
 				if (interface as? Interface)?.position == "buttom2" {
+					if tmpComponent.type == "Timer" {
+						newComponentView?.setTimerButtom = true
+						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+						txtField.text = "T"
+						txtField.adjustsFontSizeToFitWidth = true
+						txtField.textAlignment = .center
+						txtField.font = UIFont.boldSystemFont(ofSize: 10)
+						tmpInterfaceView.rotate(deg: 1)
+						tmpInterfaceView.addSubview(txtField)
+					}
 					newComponentView?.intarface2Buttom = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 1)
-					if newComponentView?.type == "Timer"  {
-						newComponentView?.setTimerButtomAction()
-					}
 				}
 				
 				if (interface as? Interface)?.position == "buttom3" {
@@ -147,10 +161,17 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				}
 				
 				if (interface as? Interface)?.position == "right2" {
-					newComponentView?.intarface2Right = tmpInterfaceView
-					if newComponentView?.type == "Timer"  {
-						newComponentView?.setTimerRightAction()
+					if tmpComponent.type == "Timer" {
+						newComponentView?.setTimerRight = true
+						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+						txtField.text = "T"
+						txtField.adjustsFontSizeToFitWidth = true
+						txtField.textAlignment = .center
+						txtField.font = UIFont.boldSystemFont(ofSize: 10)
+						tmpInterfaceView.rotate(deg: 1)
+						tmpInterfaceView.addSubview(txtField)
 					}
+					newComponentView?.intarface2Right = tmpInterfaceView
 				}
 				
 				if (interface as? Interface)?.position == "right3" {
@@ -163,11 +184,18 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				}
 				
 				if (interface as? Interface)?.position == "left2" {
+					if tmpComponent.type == "Timer" {
+						newComponentView?.setTimerLeft = true
+						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+						txtField.text = "T"
+						txtField.adjustsFontSizeToFitWidth = true
+						txtField.textAlignment = .center
+						txtField.font = UIFont.boldSystemFont(ofSize: 10)
+						tmpInterfaceView.rotate(deg: 1)
+						tmpInterfaceView.addSubview(txtField)
+					}
 					newComponentView?.intarface2Left = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 2)
-					if newComponentView?.type == "Timer"  {
-						newComponentView?.setTimerLeftAction()
-					}
 				}
 				
 				if (interface as? Interface)?.position == "left3" {
@@ -211,21 +239,26 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 						tmpInterfaceView.addSubview(tech)
 						break
 					case "timing":
-						tmpInterfaceView.rotate(deg: 1)
-						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
-						txtField.text = "T"
-						txtField.adjustsFontSizeToFitWidth = true
-						txtField.textAlignment = .center
-						txtField.font = UIFont.boldSystemFont(ofSize: 10)
-						tmpInterfaceView.addSubview(txtField)
+						if tmpComponent.type != "Timer" {
+							let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+							txtField.text = "T"
+							txtField.adjustsFontSizeToFitWidth = true
+							txtField.textAlignment = .center
+							txtField.font = UIFont.boldSystemFont(ofSize: 10)
+							tmpInterfaceView.rotate(deg: 1)
+							tmpInterfaceView.addSubview(txtField)
+						}
 						break
 					default:
 						break
 					}
+					newComponentView?.addSubview(tmpInterfaceView)
 				}
 				
+				/*if tmpComponent.type == "Timer" {
+					newComponentView?.addSubview(tmpInterfaceView)
+				}*/
 				
-				newComponentView?.addSubview(tmpInterfaceView)
 			}
 			
 			modell.add(componentView: newComponentView!)
@@ -476,7 +509,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		super.viewDidLoad()
 		
 		initGestureRecognizers()
-		loadCompoenentViewsFromDatabaseAndUpdateUI()
+		reload()
 		
 		bounds = UIScreen.main.bounds
 		imageView.image = UIImage(named:"background.jpg")
@@ -861,18 +894,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			}
 		}
 		
-		let component_coredata = dataBaseManager.Select(component: component)
 		
-		if component.type == "Timer" || component.type == "Clock" {
-			component_coredata?.setTimerTop = component.setTimerTop
-			dataBaseManager.saveContext()
-			component_coredata?.setTimerButtom = component.setTimerButtom
-			dataBaseManager.saveContext()
-			component_coredata?.setTimerRight = component.setTimerRight
-			dataBaseManager.saveContext()
-			component_coredata?.setTimerLeft = component.setTimerLeft
-			dataBaseManager.saveContext()
-		}
+		let component_coredata = dataBaseManager.Select(component: component)
 		
 		if component.intarface1Top == nil || component.intarface1Top?.type == "---" {
 			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top1")

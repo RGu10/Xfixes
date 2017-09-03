@@ -31,10 +31,7 @@ extension Component {
 	@NSManaged public var components: NSSet?
 	@NSManaged public var interfaces: NSSet?
 	@NSManaged public var neighborsTags : [Int64]
-	@NSManaged public var setTimerTop: Bool
-	@NSManaged public var setTimerButtom: Bool
-	@NSManaged public var setTimerRight: Bool
-	@NSManaged public var setTimerLeft: Bool
+
 	@NSManaged public var neighborRight1: Component?
 	@NSManaged public var neighborRight2: Component?
 	@NSManaged public var neighborRight3: Component?
@@ -47,6 +44,7 @@ extension Component {
 	@NSManaged public var neighborButtom1: Component?
 	@NSManaged public var neighborButtom2: Component?
 	@NSManaged public var neighborButtom3: Component?
+	
 	@NSManaged public var neighborInterfaceNameTop1: String?
 	@NSManaged public var neighborInterfaceNameTop3: String?
 	@NSManaged public var neighborInterfaceNameTop2: String?
