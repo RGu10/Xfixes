@@ -1397,8 +1397,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 		if !setTimerTop {
 			intarface2Top = XFInterfaceView(frame: CGRect(x: 21, y: -8, width: 30, height: 30), interfaceType: "timing") // to extend
 			intarface2Top?.backgroundColor = UIColor.clear
-			intarface2Top?.position = "top1"
-			//intarface2Top?.rotate(deg: 3)
+			intarface2Top?.position = "top2"
 			intarface2Top?.type = "timing"
 			let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
 			txtField.text = "T"
@@ -1408,11 +1407,12 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			intarface2Top?.addSubview(txtField)
 			self.addSubview(intarface2Top!)
 			setTimerTop = true
+			interface(component: self)
 		} else {
 			intarface2Top?.removeFromSuperview()
 			intarface2Top?.type = "---"
-			interface(component: self)
 			setTimerTop = false
+			interface(component: self)
 		}
 	}
 	
@@ -1431,11 +1431,12 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			intarface2Right?.addSubview(txtField)
 			self.addSubview(intarface2Right!)
 			setTimerRight = true
+			interface(component: self)
 		} else {
 			intarface2Right?.removeFromSuperview()
 			intarface2Right?.type = "---"
-			interface(component: self)
 			setTimerRight = false
+			interface(component: self)
 		}
 	}
 	
@@ -1454,11 +1455,12 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			intarface2Left?.addSubview(txtField)
 			self.addSubview(intarface2Left!)
 			setTimerLeft = true
+			interface(component: self)
 		} else {
 			intarface2Left?.removeFromSuperview()
 			intarface2Left?.type = "---"
-			interface(component: self)
 			setTimerLeft = false
+			interface(component: self)
 		}
 	}
 	
@@ -1477,11 +1479,12 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			intarface2Buttom?.addSubview(txtField)
 			self.addSubview(intarface2Buttom!)
 			setTimerButtom = true
+			interface(component: self)
 		} else {
 			intarface2Buttom?.removeFromSuperview()
 			intarface2Buttom?.type = "---"
-			interface(component: self)
 			setTimerButtom = false
+			interface(component: self)
 		}
 	}
 	

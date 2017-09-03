@@ -57,7 +57,10 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 	func loadCompoenentViewsFromDatabaseAndUpdateUI(){
 		
 		for tmpComponent in dataBaseManager.componentList {
-			newComponentView = XFComponentView(frame: CGRect(x: CGFloat(tmpComponent.minX),y: CGFloat(tmpComponent.minY), width: CGFloat(tmpComponent.width),height: CGFloat(tmpComponent.height)),
+			newComponentView = XFComponentView(frame: CGRect(x: CGFloat(tmpComponent.minX),
+			                                                 y: CGFloat(tmpComponent.minY),
+			                                                 width: CGFloat(tmpComponent.width),
+			                                                 height: CGFloat(tmpComponent.height)),
 			                                   type: tmpComponent.type!, bDraggable: true,bOrigin: false)
 			newComponentView?.tag = Int(tmpComponent.tag)
 			newComponentView?.newTitleField.text = tmpComponent.title
@@ -79,6 +82,10 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			newComponentView?.neighborInterfaceNameLeft2 = tmpComponent.neighborInterfaceNameLeft2
 			newComponentView?.neighborInterfaceNameLeft3 = tmpComponent.neighborInterfaceNameLeft3
 			newComponentView?.neighborsTags = tmpComponent.neighborsTags
+			newComponentView?.setTimerTop = tmpComponent.setTimerTop
+			newComponentView?.setTimerButtom = tmpComponent.setTimerButtom
+			newComponentView?.setTimerRight = tmpComponent.setTimerRight
+			newComponentView?.setTimerLeft = tmpComponent.setTimerLeft
 			
 			let txtField: UITextField = UITextField(frame: CGRect(x: 5, y: 25, width: 60, height: 10));
 			txtField.adjustsFontSizeToFitWidth = true
@@ -87,8 +94,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			if newComponentView?.type == "Timer" {
 				txtField.text = "Timer"
 				newComponentView?.addSubview(txtField)
-			}
-			if newComponentView?.type == "Clock" {
+			} else if newComponentView?.type == "Clock" {
 				txtField.text = "Clock"
 				newComponentView?.addSubview(txtField)
 			}
@@ -111,9 +117,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				if (interface as? Interface)?.position == "top2" {
 					newComponentView?.intarface2Top = tmpInterfaceView
 					tmpInterfaceView.rotate(deg: 3)
-					if newComponentView?.type == "Timer" {
-						newComponentView?.setTimerTopAction()
-					}
 				}
 				
 				if (interface as? Interface)?.position == "top3" {
@@ -172,49 +175,55 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					tmpInterfaceView.rotate(deg: 2)
 				}
 				
-				switch ((interface as? Interface)?.type!)! {
-				case "activeIn":
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
-					tech.backgroundColor = UIColor.clear
-					tech.rotate(deg: 2)
-					tmpInterfaceView.addSubview(tech)
-					break
-				case "activeOut":
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
-					tech.backgroundColor = UIColor.clear
-					tech.rotate(deg: 4)
-					tmpInterfaceView.addSubview(tech)
-					break
-				case "activeInOut":
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: ((interface as? Interface)?.type)!)
-					tech.backgroundColor = UIColor.clear
-					tech.rotate(deg: 4)
-					tmpInterfaceView.addSubview(tech)
-					break
-				case "analogIn":
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
-					tech.backgroundColor = UIColor.clear
-					tech.rotate(deg: 2)
-					tmpInterfaceView.addSubview(tech)
-					break
-				case "analogOut":
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: ((interface as? Interface)?.type)!)
-					tech.backgroundColor = UIColor.clear
-					tech.rotate(deg: 4)
-					tmpInterfaceView.addSubview(tech)
-					break
-				case "timing":
-					tmpInterfaceView.rotate(deg: 1)
-					let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
-					txtField.text = "T"
-					txtField.adjustsFontSizeToFitWidth = true
-					txtField.textAlignment = .center
-					txtField.font = UIFont.boldSystemFont(ofSize: 10)
-					tmpInterfaceView.addSubview(txtField)
-					break
-				default:
-					break
+				let tmp = (interface as? Interface)
+				let tmp_type = tmp?.type
+				
+				if tmp?.type != nil {
+					switch tmp_type! {
+					case "activeIn":
+						let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						tech.backgroundColor = UIColor.clear
+						tech.rotate(deg: 2)
+						tmpInterfaceView.addSubview(tech)
+						break
+					case "activeOut":
+						let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						tech.backgroundColor = UIColor.clear
+						tech.rotate(deg: 4)
+						tmpInterfaceView.addSubview(tech)
+						break
+					case "activeInOut":
+						let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: ((interface as? Interface)?.type)!)
+						tech.backgroundColor = UIColor.clear
+						tech.rotate(deg: 4)
+						tmpInterfaceView.addSubview(tech)
+						break
+					case "analogIn":
+						let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						tech.backgroundColor = UIColor.clear
+						tech.rotate(deg: 2)
+						tmpInterfaceView.addSubview(tech)
+						break
+					case "analogOut":
+						let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						tech.backgroundColor = UIColor.clear
+						tech.rotate(deg: 4)
+						tmpInterfaceView.addSubview(tech)
+						break
+					case "timing":
+						tmpInterfaceView.rotate(deg: 1)
+						let txtField: UITextField = UITextField(frame: CGRect(x: 0, y: 3, width: 30, height: 10));
+						txtField.text = "T"
+						txtField.adjustsFontSizeToFitWidth = true
+						txtField.textAlignment = .center
+						txtField.font = UIFont.boldSystemFont(ofSize: 10)
+						tmpInterfaceView.addSubview(txtField)
+						break
+					default:
+						break
+					}
 				}
+				
 				
 				newComponentView?.addSubview(tmpInterfaceView)
 			}
@@ -288,7 +297,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborTop3 = secondComponent
 					secondComponent.neighborButtom3 = firstComponent
 				}
-				
 				
 				if  firstComponent.neighborInterfaceNameButtom1 == "neighborTop1" && secondComponent.neighborInterfaceNameTop1 == "neighborButtom1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
@@ -855,6 +863,17 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		
 		let component_coredata = dataBaseManager.Select(component: component)
 		
+		if component.type == "Timer" || component.type == "Clock" {
+			component_coredata?.setTimerTop = component.setTimerTop
+			dataBaseManager.saveContext()
+			component_coredata?.setTimerButtom = component.setTimerButtom
+			dataBaseManager.saveContext()
+			component_coredata?.setTimerRight = component.setTimerRight
+			dataBaseManager.saveContext()
+			component_coredata?.setTimerLeft = component.setTimerLeft
+			dataBaseManager.saveContext()
+		}
+		
 		if component.intarface1Top == nil || component.intarface1Top?.type == "---" {
 			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "top1")
 		}
@@ -889,43 +908,43 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		}
 		
 		if component.intarface2Buttom == nil || component.intarface2Buttom?.type == "---"  {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
 		} else {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
-		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Buttom!))
-		   dataBaseManager.saveContext()
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom2")
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Buttom!))
+			dataBaseManager.saveContext()
 		}
 		
 		if component.intarface3Buttom == nil || component.intarface3Buttom?.type == "---" {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
 		} else {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
-		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Buttom!))
-		   dataBaseManager.saveContext()
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "buttom3")
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Buttom!))
+			dataBaseManager.saveContext()
 		}
 		
 		if component.intarface1Right == nil || component.intarface1Right?.type == "---" {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
 		} else {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
-		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Right!))
-		   dataBaseManager.saveContext()
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right1")
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface1Right!))
+			dataBaseManager.saveContext()
 		}
 		
 		if component.intarface2Right == nil || component.intarface2Right?.type == "---" {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
 		} else {
-		   dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
-		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Right!))
-		   dataBaseManager.saveContext()
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right2")
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface2Right!))
+			dataBaseManager.saveContext()
 		}
 		
 		if component.intarface3Right == nil || component.intarface3Right?.type == "---"  {
 			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right3")
 		} else {
-		  dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right3")
-		  component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Right!))
-		  dataBaseManager.saveContext()
+			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "right3")
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Right!))
+			dataBaseManager.saveContext()
 		}
 		
 		if component.intarface1Left == nil || component.intarface1Left?.type == "---" {
@@ -948,8 +967,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left3")
 		} else {
 			dataBaseManager.DeleteInterfaceFromComponent(component: component, _position: "left3")
-		   component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Left!))
-		   dataBaseManager.saveContext()
+			component_coredata?.addToInterfaces(saveInterface(interface: component.intarface3Left!))
+			dataBaseManager.saveContext()
 		}
 		
 	}

@@ -333,6 +333,7 @@ class XFEditPanel : UIView  {
 			setTimerTopButton.backgroundColor = UIColor.blue
 			setTimerTopButton.tintColor = UIColor.white
 			setTimerTopButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+			setTimerTopButton.isHighlighted = true
 			setTimerTopButton.setTitle("Top", for: .normal)
 			setTimerTopButton.addTarget(component!, action: #selector(component?.setTimerTopAction), for: .touchUpInside)
 			addSubview(setTimerTopButton)

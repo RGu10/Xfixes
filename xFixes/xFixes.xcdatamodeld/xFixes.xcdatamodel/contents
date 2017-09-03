@@ -18,6 +18,10 @@
         <attribute name="neighborInterfaceNameTop2" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neighborInterfaceNameTop3" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neighborsTags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="setTimerButtom" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setTimerLeft" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setTimerRight" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setTimerTop" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="tag" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,7 +56,7 @@
         <relationship name="component" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" inverseName="interfaces" inverseEntity="Component" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Component" positionX="-4977" positionY="-531" width="234" height="568"/>
+        <element name="Component" positionX="-4977" positionY="-531" width="234" height="628"/>
         <element name="IdList" positionX="-5555" positionY="5" width="128" height="58"/>
         <element name="Interface" positionX="-5636" positionY="-736" width="128" height="178"/>
     </elements>
