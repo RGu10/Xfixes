@@ -169,6 +169,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 		self.backgroundColor = UIColor.clear
 		fillColor = UIColor.white
 		titleField.text = ""
+		titleField.isUserInteractionEnabled = false
 		newTitleField.text = ""
 		editPanel.component = self
 		

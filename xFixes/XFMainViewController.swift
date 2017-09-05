@@ -582,7 +582,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		view.addSubview(v5)
 		modell.add(componentView: v5)
 		
-		let v6 = XFComponentView(frame: CGRect(x: 800.0, y: 100, width: 70.0, height: 90.0),
+		/*let v6 = XFComponentView(frame: CGRect(x: 800.0, y: 100, width: 70.0, height: 90.0),
 		                         type: "Clock",
 		                         bDraggable: true,
 		                         bOrigin: true)
@@ -595,7 +595,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		txtField2.font = UIFont.boldSystemFont(ofSize: 10)
 		v6.addSubview(txtField2)
 		view.addSubview(v6)
-		modell.add(componentView: v6)
+		modell.add(componentView: v6)*/
 		
 	}
 	
@@ -1017,7 +1017,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		}
 		visibleRect = imageView.convert(scrollView.bounds, from: scrollView)
 		if ( (component.frame.minY - visibleRect.minY) < 400 && ( visibleRect.maxY - component.frame.minY > 400) ){
-			if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+			if ((visibleRect.maxX - component.frame.maxX) < 240 ){
 				component.editPanel.frame = CGRect(x: component.frame.minX - 250,
 				                                   y: component.frame.minY,
 				                                   width: 210, height: h)
@@ -1334,7 +1334,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					let secondComponentView_intarface2Left_convert   = secondComponentView.intarface2Left?.convert((secondComponentView.intarface2Left?.bounds)!, to: self.view)
 					let secondComponentView_intarface3Left_convert   = secondComponentView.intarface3Left?.convert((secondComponentView.intarface3Left?.bounds)!, to: self.view)
 					
-					if secondComponentView_intarface1Right_convert != nil && firstComponentView_intarface1Left_convert != nil {
+					if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
 						if (secondComponentView_intarface1Right_convert?.intersects(firstComponentView_intarface1Left_convert!))! {
 							if firstComponentView.neighborLeft1 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1342,10 +1342,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft1 = secondComponentView
 								secondComponentView.neighborRight1 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft1 = "neighborRight1 "
+								secondComponentView.neighborInterfaceNameRight1  = "neighborLeft1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft1 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft1 = "neighborRight1"
+								secondComponentCoredata?.neighborInterfaceNameRight1  = "neighborLeft1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1354,7 +1358,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface1Right_convert != nil && firstComponentView_intarface2Left_convert != nil {
+					if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
 						if (secondComponentView_intarface1Right_convert?.intersects(firstComponentView_intarface2Left_convert!))! {
 							if firstComponentView.neighborLeft2 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1362,10 +1366,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft2 = secondComponentView
 								secondComponentView.neighborRight1 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft2 = "neighborRight1"
+								secondComponentView.neighborInterfaceNameRight1  = "neighborLeft2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft2 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft2 = "neighborRight1"
+								secondComponentCoredata?.neighborInterfaceNameRight1  = "neighborLeft2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1374,7 +1382,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface1Right_convert != nil && firstComponentView_intarface3Left_convert != nil {
+					if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface1Right_convert != nil {
 						if (secondComponentView_intarface1Right_convert?.intersects(firstComponentView_intarface3Left_convert!))! {
 							if firstComponentView.neighborLeft3 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1382,10 +1390,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft3 = secondComponentView
 								secondComponentView.neighborRight1 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft3 = "neighborRight1"
+								secondComponentView.neighborInterfaceNameRight1  = "neighborLeft3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft3 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft3 = "neighborRight1"
+								secondComponentCoredata?.neighborInterfaceNameRight1  = "neighborLeft3"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1395,7 +1407,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 						}
 					}
 					
-					if secondComponentView_intarface2Right_convert != nil && firstComponentView_intarface1Left_convert != nil {
+					if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
 						if (secondComponentView_intarface2Right_convert?.intersects(firstComponentView_intarface1Left_convert!))! {
 							if firstComponentView.neighborLeft1 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1403,10 +1415,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft1 = secondComponentView
 								secondComponentView.neighborRight2 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft1 = "neighborRight2"
+								secondComponentView.neighborInterfaceNameRight2 = "neighborLeft1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft1 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft1 = "neighborRight2"
+								secondComponentCoredata?.neighborInterfaceNameRight2 = "neighborLeft1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1415,7 +1431,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface2Right_convert != nil && firstComponentView_intarface2Left_convert != nil {
+					if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
 						if (secondComponentView_intarface2Right_convert?.intersects(firstComponentView_intarface2Left_convert!))! {
 							if firstComponentView.neighborLeft2 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1423,10 +1439,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft2 = secondComponentView
 								secondComponentView.neighborRight2 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft2 = "neighborRight2"
+								secondComponentView.neighborInterfaceNameRight2  = "neighborLeft2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft2 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight2 = "neighborLeft2"
+								secondComponentCoredata?.neighborInterfaceNameLeft2  = "neighborRight2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1435,7 +1455,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface2Right_convert != nil && firstComponentView_intarface3Left_convert != nil {
+					if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface2Right_convert != nil {
 						if (secondComponentView_intarface2Right_convert?.intersects(firstComponentView_intarface3Left_convert!))! {
 							if firstComponentView.neighborLeft3 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1443,10 +1463,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft3 = secondComponentView
 								secondComponentView.neighborRight2 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft3 = "neighborRight2"
+								secondComponentView.neighborInterfaceNameRight2  = "neighborLeft3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft3 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft3 = "neighborRight2"
+								secondComponentCoredata?.neighborInterfaceNameRight2  = "neighborLeft3"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1456,7 +1480,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 						}
 					}
 					
-					if secondComponentView_intarface3Right_convert != nil && firstComponentView_intarface1Left_convert != nil {
+					if firstComponentView_intarface1Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
 						if (secondComponentView_intarface3Right_convert?.intersects(firstComponentView_intarface1Left_convert!))! {
 							if firstComponentView.neighborLeft1 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1464,10 +1488,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft1 = secondComponentView
 								secondComponentView.neighborRight3 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft1 = "neighborRight3"
+								secondComponentView.neighborInterfaceNameRight3  = "neighborLeft1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft1 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight3 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft1 = "neighborRight3"
+								secondComponentCoredata?.neighborInterfaceNameRight3  = "neighborLeft1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1476,7 +1504,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface3Right_convert != nil && firstComponentView_intarface2Left_convert != nil {
+					if firstComponentView_intarface2Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
 						if (secondComponentView_intarface3Right_convert?.intersects(firstComponentView_intarface2Left_convert!))! {
 							if firstComponentView.neighborLeft2 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1484,10 +1512,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft2 = secondComponentView
 								secondComponentView.neighborRight3 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft2 = "neighborRight3"
+								secondComponentView.neighborInterfaceNameRight3  = "neighborLeft2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft2 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight3 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft2 = "neighborRight3"
+								secondComponentCoredata?.neighborInterfaceNameRight3  = "neighborLeft2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1496,7 +1528,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 							}
 						}
 					}
-					if secondComponentView_intarface3Right_convert != nil && firstComponentView_intarface3Left_convert != nil {
+					if firstComponentView_intarface3Left_convert != nil && secondComponentView_intarface3Right_convert != nil {
 						if (secondComponentView_intarface3Right_convert?.intersects(firstComponentView_intarface3Left_convert!))! {
 							if firstComponentView.neighborLeft3 == nil {
 								firstComponentView.frame = CGRect(x: secondComponentView.frame.minX + 132,
@@ -1504,10 +1536,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborLeft3 = secondComponentView
 								secondComponentView.neighborRight3 = firstComponentView
+								firstComponentView.neighborInterfaceNameLeft3 = "neighborRight3"
+								secondComponentView.neighborInterfaceNameRight3  = "neighborLeft3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborLeft3 = secondComponentCoredata
 								secondComponentCoredata?.neighborRight3 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameLeft3 = "neighborRight3"
+								secondComponentCoredata?.neighborInterfaceNameRight3  = "neighborLeft3"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1525,10 +1561,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight1 = secondComponentView
 								secondComponentView.neighborLeft1 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight1 = "neighborLeft1"
+								secondComponentView.neighborInterfaceNameLeft1  = "neighborRight1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight1 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight1 = "neighborLeft1"
+								secondComponentCoredata?.neighborInterfaceNameLeft1  = "neighborRight1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1545,10 +1585,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight1 = secondComponentView
 								secondComponentView.neighborLeft2 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight1 = "neighborLeft2"
+								secondComponentView.neighborInterfaceNameLeft2  = "neighborRight1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight1 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight1 = "neighborLeft2"
+								secondComponentCoredata?.neighborInterfaceNameLeft2  = "neighborRight1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1565,10 +1609,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight1 = secondComponentView
 								secondComponentView.neighborLeft3 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight1 = "neighborLeft3"
+								secondComponentView.neighborInterfaceNameLeft3  = "neighborRight1"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight1 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft3 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight1 = "neighborLeft3"
+								secondComponentCoredata?.neighborInterfaceNameLeft3  = "neighborRight1"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1586,10 +1634,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight2 = secondComponentView
 								secondComponentView.neighborLeft1 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight2 = "neighborLeft1"
+								secondComponentView.neighborInterfaceNameLeft1  = "neighborRight2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight2 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight2 = "neighborLeft1"
+								secondComponentCoredata?.neighborInterfaceNameLeft1  = "neighborRight2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1606,10 +1658,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight2 = secondComponentView
 								secondComponentView.neighborLeft2 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight2 = "neighborLeft2"
+								secondComponentView.neighborInterfaceNameLeft2  = "neighborRight2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight2 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight2 = "neighborLeft2"
+								secondComponentCoredata?.neighborInterfaceNameLeft2  = "neighborRight2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1626,10 +1682,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight2 = secondComponentView
 								secondComponentView.neighborLeft3 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight2 = "neighborLeft3"
+								secondComponentView.neighborInterfaceNameLeft3  = "neighborRight2"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight2 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft3 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight2 = "neighborLeft3"
+								secondComponentCoredata?.neighborInterfaceNameLeft3  = "neighborRight2"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1647,10 +1707,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight3 = secondComponentView
 								secondComponentView.neighborLeft1 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight3 = "neighborLeft1"
+								secondComponentView.neighborInterfaceNameLeft1  = "neighborRight3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight3 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft1 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight3 = "neighborLeft1"
+								secondComponentCoredata?.neighborInterfaceNameLeft1  = "neighborRight3"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1667,10 +1731,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight3 = secondComponentView
 								secondComponentView.neighborLeft2 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight3 = "neighborLeft2"
+								secondComponentView.neighborInterfaceNameLeft2  = "neighborRight3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight3 = secondComponentCoredata
 								secondComponentCoredata?.neighborLeft2 = firstComponentCoredata
+								firstComponentCoredata?.neighborInterfaceNameRight3 = "neighborLeft2"
+								secondComponentCoredata?.neighborInterfaceNameLeft2  = "neighborRight3"
 								firstComponentView.neighborsTags.append(Int64(secondComponentView.tag))
 								secondComponentView.neighborsTags.append(Int64(firstComponentView.tag))
 								firstComponentCoredata?.neighborsTags.append((secondComponentCoredata?.tag)!)
@@ -1687,6 +1755,8 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 								                                  width: 70, height: 100)
 								firstComponentView.neighborRight3 = secondComponentView
 								secondComponentView.neighborLeft3 = firstComponentView
+								firstComponentView.neighborInterfaceNameRight3 = "neighborLeft3"
+								secondComponentView.neighborInterfaceNameLeft3  = "neighborRight3"
 								let firstComponentCoredata = dataBaseManager.Select(component: firstComponentView)
 								let secondComponentCoredata = dataBaseManager.Select(component: secondComponentView)
 								firstComponentCoredata?.neighborRight3 = secondComponentCoredata
