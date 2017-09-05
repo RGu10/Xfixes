@@ -14,6 +14,8 @@ class XFDataBaseManager {
 	let managedContext: NSManagedObjectContext?
 	var componentList: [Component] = []
 	let fetchRequest: NSFetchRequest<Component>?
+	var projectList: [Project] = []
+	let fetchRequestProject: NSFetchRequest<Project>?
 	var idListCoreData: [NSManagedObject] = []
 	let fetchRequestIdList: NSFetchRequest<NSManagedObject>?
 	
@@ -24,10 +26,12 @@ class XFDataBaseManager {
 			managedContext = appDelegate.managedObjectContext
 		}
 	    fetchRequest = NSFetchRequest<Component>(entityName: "Component")
+		fetchRequestProject = NSFetchRequest<Project>(entityName: "Project")
 		fetchRequestIdList = NSFetchRequest<NSManagedObject>(entityName: "IdList")
 		
 		do {
 			componentList = (try managedContext?.fetch(fetchRequest!))!
+			projectList = (try managedContext?.fetch(fetchRequestProject!))!
 			idListCoreData = (try managedContext?.fetch(fetchRequestIdList!))!
 		} catch let error as NSError {
 			print("Could not fetch. \(error), \(error.userInfo)")

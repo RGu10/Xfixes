@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		933DDCCE1F53423600454E30 /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DDCCA1F53423600454E30 /* Interface.swift */; };
 		933DDCD01F53423600454E30 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DDCCC1F53423600454E30 /* Component.swift */; };
+		9351C2671F5CA79200E77EF1 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9351C2651F5CA79200E77EF1 /* Project.swift */; };
 		9377CB701F4F1ED000213DB8 /* XFProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */; };
 		93849C2E1F0432C300DD2B00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C2D1F0432C300DD2B00 /* AppDelegate.swift */; };
 		93849C331F0432C300DD2B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93849C311F0432C300DD2B00 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		933DDCCA1F53423600454E30 /* Interface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
 		933DDCCC1F53423600454E30 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		9351C2651F5CA79200E77EF1 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XFProjectView.swift; sourceTree = "<group>"; };
 		93849C2A1F0432C300DD2B00 /* xFixes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xFixes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93849C2D1F0432C300DD2B00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		93B4B2061F488AD000E1C00F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9351C2651F5CA79200E77EF1 /* Project.swift */,
 				933DDCCA1F53423600454E30 /* Interface.swift */,
 				933DDCCC1F53423600454E30 /* Component.swift */,
 				939DB2781F4F263C008E7523 /* XFDataBase.swift */,
@@ -334,6 +337,7 @@
 				93849C361F0432C300DD2B00 /* xFixes.xcdatamodeld in Sources */,
 				939DB2791F4F263C008E7523 /* XFDataBase.swift in Sources */,
 				9377CB701F4F1ED000213DB8 /* XFProjectView.swift in Sources */,
+				9351C2671F5CA79200E77EF1 /* Project.swift in Sources */,
 				93C12EE71F26859A00305E61 /* XFProjectViewController.swift in Sources */,
 				93C12EE51F2546EB00305E61 /* XFLoginViewController.swift in Sources */,
 				93849C641F04336100DD2B00 /* XFEditPanel.swift in Sources */,

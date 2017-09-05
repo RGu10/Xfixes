@@ -14,9 +14,9 @@ protocol ProjectViewDelegate: class {
 }
 
 class XFProjectView : UIView  {
-	var delegate: ProjectViewDelegate?
-	var projectName: String? { didSet { setNeedsDisplay() } }
+	
 	var titleField: UITextField!
+	var delegate: ProjectViewDelegate?
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -39,7 +39,6 @@ class XFProjectView : UIView  {
 		titleField.font = UIFont.boldSystemFont(ofSize: 18)
 		titleField.textColor = UIColor.darkText
 		titleField.backgroundColor = UIColor(hue: 210/360, saturation: 0/100, brightness: 90/100, alpha: 1.0)
-		titleField.tintColor = UIColor.clear
 		addSubview(titleField)
 	}
 	
@@ -61,6 +60,7 @@ class XFProjectView : UIView  {
 	}
 	
 	@objc func didTap(tapGR: UITapGestureRecognizer) {
+		titleField.tintColor = UIColor.clear
 		show(project: self)
 	}
 	

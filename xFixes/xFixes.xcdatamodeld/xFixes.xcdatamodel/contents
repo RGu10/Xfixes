@@ -51,9 +51,16 @@
         <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="component" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Component" inverseName="interfaces" inverseEntity="Component" syncable="YES"/>
     </entity>
+    <entity name="Project" representedClassName=".Project" syncable="YES">
+        <attribute name="minX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tag" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="titleField" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Component" positionX="-5202" positionY="-531" width="450" height="568"/>
-        <element name="IdList" positionX="-5555" positionY="5" width="128" height="58"/>
+        <element name="Component" positionX="-5490" positionY="-946" width="450" height="568"/>
+        <element name="IdList" positionX="-5868" positionY="-238" width="128" height="58"/>
         <element name="Interface" positionX="-5985" positionY="-736" width="369" height="178"/>
+        <element name="Project" positionX="-5868" positionY="-450" width="128" height="103"/>
     </elements>
 </model>

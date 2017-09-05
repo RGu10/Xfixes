@@ -38,9 +38,8 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 	
 	var path: UIBezierPath!
 	var path2: UIBezierPath!
-	var drawSecondPath = false
 	let lineWidth: CGFloat = 2
-	var lineColor = UIColor.black  { didSet { setNeedsDisplay() } }
+	var lineColor = UIColor.black
 	var width = 70.0 { didSet { setNeedsDisplay() } }
 	var height = 100.0 { didSet { setNeedsDisplay() } }
 	
@@ -389,14 +388,14 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.type = "---"
 				intarface2Top?.position = "top2"
 			case "passive":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2)
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2)
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
 				self.addSubview(intarface2Top!)
 				break
 			case "activeIn":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
@@ -407,7 +406,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				self.addSubview(intarface2Top!)
 				break
 			case "activeOut":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
@@ -418,7 +417,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				self.addSubview(intarface2Top!)
 				break
 			case "activeInOut":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
@@ -429,7 +428,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				self.addSubview(intarface2Top!)
 				break
 			case "analogIn":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
@@ -440,7 +439,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				self.addSubview(intarface2Top!)
 				break
 			case "analogOut":
-				intarface2Top = XFInterfaceView(frame: CGRect(x: 35, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
+				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
@@ -1200,14 +1199,14 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.type = "---"
 					intarface2Buttom?.position = "buttom2"
 				case "passive":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 33, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
 					self.addSubview(intarface2Buttom!)
 					break
 				case "activeIn":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
@@ -1218,7 +1217,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					self.addSubview(intarface2Buttom!)
 					break
 				case "activeOut":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
@@ -1228,7 +1227,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					self.addSubview(intarface2Buttom!)
 					break
 				case "activeInOut":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
@@ -1238,7 +1237,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					self.addSubview(intarface2Buttom!)
 					break
 				case "analogIn":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
@@ -1249,7 +1248,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					self.addSubview(intarface2Buttom!)
 					break
 				case "analogOut":
-					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 35, y: 96, width: 30, height: 30), interfaceType: interface2)
+					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
