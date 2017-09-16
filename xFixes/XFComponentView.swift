@@ -351,7 +351,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Top?.addSubview(tech)
 				self.addSubview(intarface1Top!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
 				let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface1)
@@ -417,7 +417,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.addSubview(tech)
 				self.addSubview(intarface2Top!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface2Top = XFInterfaceView(frame: CGRect(x: 36, y: -26, width: 30, height: 30), interfaceType: interface2) // to extend
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
@@ -524,7 +524,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.addSubview(tech)
 				self.addSubview(intarface3Top!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface3Top = XFInterfaceView(frame: CGRect(x: 72, y: -26, width: 30, height: 30), interfaceType: interface3) // to extend
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
@@ -615,7 +615,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Right?.addSubview(tech)
 				self.addSubview(intarface1Right!)
 				break
-			case "activeInOut":
+			case "InOut":
 				if self.type == "Bus" {
 					intarface1Right = XFInterfaceView(frame: CGRect(x: 66, y: 0, width: 30, height: 30), interfaceType: interface1)
 				} else {
@@ -702,7 +702,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Right?.addSubview(tech)
 				self.addSubview(intarface2Right!)
 				break
-			case "activeInOut":
+			case "InOut":
 				if self.type == "Bus" {
 					intarface2Right = XFInterfaceView(frame: CGRect(x: 66, y: 37, width: 30, height: 30), interfaceType: interface2)
 				} else {
@@ -827,7 +827,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Right?.addSubview(tech)
 				self.addSubview(intarface3Right!)
 				break
-			case "activeInOut":
+			case "InOut":
 				if self.type == "Bus" {
 					intarface3Right = XFInterfaceView(frame: CGRect(x: 66, y: 72, width: 30, height: 30), interfaceType: interface3)
 				} else {
@@ -915,7 +915,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.addSubview(tech)
 				self.addSubview(intarface1Left!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface1Left = XFInterfaceView(frame: CGRect(x: -26, y: -2, width: 30, height: 30), interfaceType: interface1)
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
@@ -984,7 +984,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.addSubview(tech)
 				self.addSubview(intarface2Left!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface2Left = XFInterfaceView(frame: CGRect(x: -26, y: 35, width: 30, height: 30), interfaceType: interface2)
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
@@ -1078,7 +1078,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.addSubview(tech)
 				self.addSubview(intarface3Left!)
 				break
-			case "activeInOut":
+			case "InOut":
 				intarface3Left = XFInterfaceView(frame: CGRect(x: -26, y: 70, width: 30, height: 30), interfaceType: interface3)
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
@@ -1158,7 +1158,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.addSubview(tech)
 					self.addSubview(intarface1Buttom!)
 					break
-				case "activeInOut":
+				case "InOut":
 					intarface1Buttom = XFInterfaceView(frame: CGRect(x: -2, y: 96, width: 30, height: 30), interfaceType: interface1)
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
@@ -1227,7 +1227,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.addSubview(tech)
 					self.addSubview(intarface2Buttom!)
 					break
-				case "activeInOut":
+				case "InOut":
 					intarface2Buttom = XFInterfaceView(frame: CGRect(x: 34, y: 96, width: 30, height: 30), interfaceType: interface2)
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
@@ -1321,7 +1321,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.addSubview(tech)
 					self.addSubview(intarface3Buttom!)
 					break
-				case "activeInOut":
+				case "InOut":
 					intarface3Buttom = XFInterfaceView(frame: CGRect(x: 70, y: 96, width: 30, height: 30), interfaceType: interface3)
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)

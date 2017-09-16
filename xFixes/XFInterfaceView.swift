@@ -15,7 +15,7 @@ class InterfaceTechnologieView: UIView
 			self.path = pathForInterfaceActive()
 		case "activeOut":
 			self.path = pathForInterfaceActive()
-		case "activeInOut":
+		case "InOut":
 			self.path = pathForInterfaceInOut()
 		case "analogIn":
 			self.path = pathForInterfaceAnalog()
@@ -129,7 +129,7 @@ class XFInterfaceView: UIView
 			//let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interfaceType)
 			//tech.rotate(deg: 2)
 			//self.addSubview(tech)
-		case "activeInOut":
+		case "InOut":
 			self.path = pathForInterface()
 			//let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interfaceType)
 			//tech.rotate(deg: 2)

@@ -14,13 +14,13 @@ protocol InterfacePickerDelegate: class {
 class InterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	
 	var type = ""
-	var picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 210, height: 35.0))
+	var picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 230, height: 40.0))
 	var delegate: InterfacePickerDelegate?
 	
 	let pickerData = [
-		["---","passive","activeIn","activeOut","activeInOut","analogIn","analogOut","timing"],
-		["---","passive","activeIn","activeOut","activeInOut","analogIn","analogOut","timing"],
-		["---","passive","activeIn","activeOut","activeInOut","analogIn","analogOut","timing"]
+		["---","passive","activeIn","activeOut","InOut","analogIn","analogOut","timing"],
+		["---","passive","activeIn","activeOut","InOut","analogIn","analogOut","timing"],
+		["---","passive","activeIn","activeOut","InOut","analogIn","analogOut","timing"]
 	]
 	
 	override init(frame: CGRect) {
@@ -47,7 +47,7 @@ class InterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 		let pickerLabel = UILabel()
 		pickerLabel.textColor = UIColor.black
 		pickerLabel.text = pickerData[0][row]
-		pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 10)
+		pickerLabel.font = UIFont(name: "Arial-BoldMT", size: 14)
 		pickerLabel.textAlignment = NSTextAlignment.center
 		return pickerLabel
 	}
@@ -117,14 +117,15 @@ class XFEditPanel : UIView  {
 	
 	func setupUI(type: String) {
 		
-		layer.shadowColor = UIColor.gray.cgColor
-		layer.shadowOpacity = 1
-		layer.shadowOffset = CGSize.zero
-		layer.shadowRadius = 3
-		backgroundColor = UIColor(hue: 0.1694, saturation: 0.02, brightness: 0.89, alpha: 1.0)
+		//layer.shadowColor = UIColor.black.cgColor
+		//layer.shadowOpacity = 5
+		//layer.shadowOffset = CGSize.zero
+		//layer.shadowRadius = 3
+		layer.borderColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0).cgColor
+		layer.borderWidth = 3
+		backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 		layer.shouldRasterize = true
 		
-		var colorLabel = UILabel()
 		let setWhiteColorButton = UIButton()
 		let setGrayColorButton = UIButton()
 		let setOrangeColorButton = UIButton()
@@ -134,13 +135,6 @@ class XFEditPanel : UIView  {
 		let setYellowColorButton = UIButton()
 		let setCyanColorButton = UIButton()
 		let deleteButton = UIButton()
-		
-		colorLabel.text = "Farbe"
-		colorLabel.adjustsFontSizeToFitWidth = true
-		colorLabel.textAlignment = .center
-		colorLabel.font = UIFont.boldSystemFont(ofSize: 14)
-		colorLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-		addSubview(colorLabel)
 
 		setWhiteColorButton.backgroundColor = UIColor.white
 		setWhiteColorButton.addTarget(component!, action: #selector(component?.setWhiteColorButtonAction), for: .touchUpInside)
@@ -183,144 +177,88 @@ class XFEditPanel : UIView  {
 		
 		switch type {
 		case "Rect":
-			let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 30))
-			titleLabel.text = "Name"
-			titleLabel.adjustsFontSizeToFitWidth = true
-			titleLabel.textAlignment = .center
-			titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			titleLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(titleLabel)
-			
-			titleField.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
+			titleField.frame = CGRect(x: 0, y: 0, width: 230, height: 30)
 			titleField.backgroundColor = UIColor.white
 			titleField.adjustsFontSizeToFitWidth = true
 			titleField.textAlignment = .center
 			titleField.isUserInteractionEnabled = true;
+			titleField.placeholder = "Name"
 			component?.newTitleField = titleField
 			titleField.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
 			addSubview(titleField)
 			
-			let intarfaceTopLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 210, height: 30))
-			intarfaceTopLabel.text = "Interface Top"
+			let intarfaceTopLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 230, height: 30))
+			intarfaceTopLabel.text = "Schnittstellen"
 			intarfaceTopLabel.adjustsFontSizeToFitWidth = true
 			intarfaceTopLabel.textAlignment = .center
 			intarfaceTopLabel.font = UIFont.boldSystemFont(ofSize: 14)
 			intarfaceTopLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 			addSubview(intarfaceTopLabel)
 			
-			let pickerInterfaceTop = InterfacePicker(frame: CGRect(x: 0, y: 90, width: 210, height: 35.0))
+			let pickerInterfaceTop = InterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 60.0))
 			pickerInterfaceTop.type = "InterfaceTop"
 			pickerInterfaceTop.delegate = component!
 			addSubview(pickerInterfaceTop)
 			
-			let intarfaceRightLabel = UILabel(frame: CGRect(x: 0, y: 120, width: 210, height: 30))
-			intarfaceRightLabel.text = "Interface Right"
-			intarfaceRightLabel.adjustsFontSizeToFitWidth = true
-			intarfaceRightLabel.textAlignment = .center
-			intarfaceRightLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			intarfaceRightLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(intarfaceRightLabel)
-			
-			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 150, width: 210, height: 35.0))
+			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 100, width: 230, height: 60.0))
 			pickerInterfaceRight.type = "InterfaceRight"
 			pickerInterfaceRight.delegate = component!
 			addSubview(pickerInterfaceRight)
 			
-			let intarfaceLeftLabel = UILabel(frame: CGRect(x: 0, y: 180, width: 210, height: 30))
-			intarfaceLeftLabel.text = "Interface Left"
-			intarfaceLeftLabel.adjustsFontSizeToFitWidth = true
-			intarfaceLeftLabel.textAlignment = .center
-			intarfaceLeftLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			intarfaceLeftLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(intarfaceLeftLabel)
-			
-			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 210, width: 210, height: 35.0))
+			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 140, width: 230, height: 60.0))
 			pickerInterfaceLeft.type = "InterfaceLeft"
 			pickerInterfaceLeft.delegate = component!
 			addSubview(pickerInterfaceLeft)
 			
-			let intarfaceButtomLabel = UILabel(frame: CGRect(x: 0, y: 240, width: 210, height: 30))
-			intarfaceButtomLabel.text = "Interface Buttom"
-			intarfaceButtomLabel.adjustsFontSizeToFitWidth = true
-			intarfaceButtomLabel.textAlignment = .center
-			intarfaceButtomLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			intarfaceButtomLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(intarfaceButtomLabel)
-			
-			let pickerInterfaceButtom = InterfacePicker(frame: CGRect(x: 0, y: 270, width: 210, height: 35.0))
+			let pickerInterfaceButtom = InterfacePicker(frame: CGRect(x: 0, y: 180, width: 230, height: 60.0))
 			pickerInterfaceButtom.type = "InterfaceButtom"
 			pickerInterfaceButtom.delegate = component!
 			addSubview(pickerInterfaceButtom)
 			
-			colorLabel.frame = CGRect(x: 0, y: 300, width: 210, height: 30)
-			setWhiteColorButton.frame = CGRect(x: 5, y: 340, width: 20, height: 20)
-			setGrayColorButton.frame = CGRect(x: 30, y: 340, width: 20, height: 20)
-			setOrangeColorButton.frame = CGRect(x: 55, y: 340, width: 20, height: 20)
-			setGreenColorButton.frame = CGRect(x: 80, y: 340, width: 20, height: 20)
-			setBlueColorButton.frame =  CGRect(x: 105, y: 340, width: 20, height: 20)
-			setRedColorButton.frame = CGRect(x: 130, y: 340, width: 20, height: 20)
-			setYellowColorButton.frame = CGRect(x: 155, y: 340, width: 20, height: 20)
-			setCyanColorButton.frame = CGRect(x: 180, y: 340, width: 20, height: 20)
-			deleteButton.frame = CGRect(x: 0, y: 370, width: 210, height: 30)
+			setWhiteColorButton.frame = CGRect(x: 10, y: 225, width: 40, height: 40)
+			setGrayColorButton.frame = CGRect(x: 60, y: 225, width: 40, height: 40)
+			setOrangeColorButton.frame = CGRect(x: 110, y: 225, width: 40, height: 40)
+			setGreenColorButton.frame = CGRect(x: 160, y: 225, width: 40, height: 40)
+			deleteButton.frame = CGRect(x: 0, y: 270, width: 230, height: 30)
 
 		case "Bus":
-			let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 30))
-			titleLabel.text = "Name"
-			titleLabel.adjustsFontSizeToFitWidth = true
-			titleLabel.textAlignment = .center
-			titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			titleLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(titleLabel)
-			
-			titleField.frame = CGRect(x: 0, y: 30, width: 210, height: 30)
+			titleField.frame = CGRect(x: 0, y: 0, width: 230, height: 30)
 			titleField.backgroundColor = UIColor.white
 			titleField.adjustsFontSizeToFitWidth = true
 			titleField.textAlignment = .center
 			titleField.isUserInteractionEnabled = true;
+			titleField.placeholder = "Name"
 			component?.newTitleField = titleField
 			titleField.addTarget(component!, action: #selector(component?.setTitleAction), for: .editingDidEnd)
 			addSubview(titleField)
 			
-			let intarfaceRightLabel = UILabel(frame: CGRect(x: 0, y: 60, width: 210, height: 30))
-			intarfaceRightLabel.text = "Interface Right"
-			intarfaceRightLabel.adjustsFontSizeToFitWidth = true
-			intarfaceRightLabel.textAlignment = .center
-			intarfaceRightLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			intarfaceRightLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(intarfaceRightLabel)
+			let intarfaceTopLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 230, height: 30))
+			intarfaceTopLabel.text = "Schnittstellen"
+			intarfaceTopLabel.adjustsFontSizeToFitWidth = true
+			intarfaceTopLabel.textAlignment = .center
+			intarfaceTopLabel.font = UIFont.boldSystemFont(ofSize: 14)
+			intarfaceTopLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
+			addSubview(intarfaceTopLabel)
 			
-			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 90, width: 210, height: 35.0))
+			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 40.0))
 			pickerInterfaceRight.type = "InterfaceRight"
 			pickerInterfaceRight.delegate = component!
 			addSubview(pickerInterfaceRight)
-			
-			let intarfaceLeftLabel = UILabel(frame: CGRect(x: 0, y: 125, width: 210, height: 30))
-			intarfaceLeftLabel.text = "Interface Left"
-			intarfaceLeftLabel.adjustsFontSizeToFitWidth = true
-			intarfaceLeftLabel.textAlignment = .center
-			intarfaceLeftLabel.font = UIFont.boldSystemFont(ofSize: 14)
-			intarfaceLeftLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
-			addSubview(intarfaceLeftLabel)
-			
-			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 155, width: 210, height: 35.0))
+
+			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 100, width: 210, height: 40.0))
 			pickerInterfaceLeft.type = "InterfaceLeft"
 			pickerInterfaceLeft.delegate = component!
 			addSubview(pickerInterfaceLeft)
 			
-		    colorLabel = UILabel(frame: CGRect(x: 0, y: 190, width: 210, height: 30))
-			setWhiteColorButton.frame = CGRect(x: 5, y: 220, width: 20, height: 20)
-			setGrayColorButton.frame = CGRect(x: 30, y: 220, width: 20, height: 20)
-			setOrangeColorButton.frame = CGRect(x: 55, y: 220, width: 20, height: 20)
-			setGreenColorButton.frame = CGRect(x: 80, y: 220, width: 20, height: 20)
-			setBlueColorButton.frame =  CGRect(x: 105, y: 220, width: 20, height: 20)
-			setRedColorButton.frame = CGRect(x: 130, y: 220, width: 20, height: 20)
-			setYellowColorButton.frame = CGRect(x: 155, y: 220, width: 20, height: 20)
-			setCyanColorButton.frame = CGRect(x: 180, y: 220, width: 20, height: 20)
-			deleteButton.frame = CGRect(x: 0, y: 245, width: 210, height: 30)
+			setWhiteColorButton.frame = CGRect(x: 10, y: 145, width: 40, height: 40)
+			setGrayColorButton.frame = CGRect(x: 60, y: 145, width: 40, height: 40)
+			setOrangeColorButton.frame = CGRect(x: 110, y: 145, width: 40, height: 40)
+			setGreenColorButton.frame = CGRect(x: 160, y: 145, width: 40, height: 40)
+			deleteButton.frame = CGRect(x: 0, y: 185, width: 230, height: 30)
 
 		case "Timer":
 			
-			let TimerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 30))
+			let TimerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 230, height: 30))
 			TimerLabel.text = "Timer"
 			TimerLabel.adjustsFontSizeToFitWidth = true
 			TimerLabel.textAlignment = .center
@@ -329,7 +267,7 @@ class XFEditPanel : UIView  {
 			addSubview(TimerLabel)
 			
 			let setTimerTopButton = UIButton()
-			setTimerTopButton.frame = CGRect(x: 5, y: 30, width: 40, height: 20)
+			setTimerTopButton.frame = CGRect(x: 10, y: 30, width: 45, height: 20)
 			setTimerTopButton.backgroundColor = UIColor.blue
 			setTimerTopButton.tintColor = UIColor.white
 			setTimerTopButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
@@ -338,17 +276,8 @@ class XFEditPanel : UIView  {
 			setTimerTopButton.addTarget(component!, action: #selector(component?.setTimerTopAction), for: .touchUpInside)
 			addSubview(setTimerTopButton)
 			
-			let setTimerRightButton = UIButton()
-			setTimerRightButton.frame = CGRect(x: 105, y: 30, width: 40, height: 20)
-			setTimerRightButton.backgroundColor = UIColor.blue
-			setTimerRightButton.tintColor = UIColor.white
-			setTimerRightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
-			setTimerRightButton.setTitle("Right", for: .normal)
-			setTimerRightButton.addTarget(component!, action: #selector(component?.setTimerRightAction), for: .touchUpInside)
-			addSubview(setTimerRightButton)
-			
 			let setTimerLeftButton = UIButton()
-			setTimerLeftButton.frame = CGRect(x: 55, y: 30, width: 40, height: 20)
+			setTimerLeftButton.frame = CGRect(x: 65, y: 30, width: 45, height: 20)
 			setTimerLeftButton.backgroundColor = UIColor.blue
 			setTimerLeftButton.tintColor = UIColor.white
 			setTimerLeftButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
@@ -356,8 +285,17 @@ class XFEditPanel : UIView  {
 			setTimerLeftButton.addTarget(component!, action: #selector(component?.setTimerLeftAction), for: .touchUpInside)
 			addSubview(setTimerLeftButton)
 			
+			let setTimerRightButton = UIButton()
+			setTimerRightButton.frame = CGRect(x: 115, y: 30, width: 45, height: 20)
+			setTimerRightButton.backgroundColor = UIColor.blue
+			setTimerRightButton.tintColor = UIColor.white
+			setTimerRightButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+			setTimerRightButton.setTitle("Right", for: .normal)
+			setTimerRightButton.addTarget(component!, action: #selector(component?.setTimerRightAction), for: .touchUpInside)
+			addSubview(setTimerRightButton)
+			
 			let setTimerButtomButton = UIButton()
-			setTimerButtomButton.frame = CGRect(x: 155, y: 30, width: 40, height: 20)
+			setTimerButtomButton.frame = CGRect(x: 165, y: 30, width: 45, height: 20)
 			setTimerButtomButton.backgroundColor = UIColor.blue
 			setTimerButtomButton.tintColor = UIColor.white
 			setTimerButtomButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
@@ -365,16 +303,11 @@ class XFEditPanel : UIView  {
 			setTimerButtomButton.addTarget(component!, action: #selector(component?.setTimerButtomAction), for: .touchUpInside)
 			addSubview(setTimerButtomButton)
 			
-			colorLabel.frame = CGRect(x: 0, y: 60, width: 210, height: 30)
-			setWhiteColorButton.frame = CGRect(x: 5, y: 90, width: 20, height: 20)
-			setGrayColorButton.frame = CGRect(x: 30, y: 90, width: 20, height: 20)
-			setOrangeColorButton.frame = CGRect(x: 55, y: 90, width: 20, height: 20)
-			setGreenColorButton.frame = CGRect(x: 80, y: 90, width: 20, height: 20)
-			setBlueColorButton.frame =  CGRect(x: 105, y: 90, width: 20, height: 20)
-			setRedColorButton.frame = CGRect(x: 130, y: 90, width: 20, height: 20)
-			setYellowColorButton.frame = CGRect(x: 155, y: 90, width: 20, height: 20)
-			setCyanColorButton.frame = CGRect(x: 180, y: 90, width: 20, height: 20)
-			deleteButton.frame = CGRect(x: 0, y: 115, width: 210, height: 30)
+			setWhiteColorButton.frame = CGRect(x: 10, y: 70, width: 40, height: 40)
+			setGrayColorButton.frame = CGRect(x: 60, y: 70, width: 40, height: 40)
+			setOrangeColorButton.frame = CGRect(x: 110, y: 70, width: 40, height: 40)
+			setGreenColorButton.frame = CGRect(x: 160, y: 70, width: 40, height: 40)
+			deleteButton.frame = CGRect(x: 0, y: 115, width: 230, height: 30)
 
 		default:
 			break

@@ -220,7 +220,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 						tech.rotate(deg: 4)
 						tmpInterfaceView.addSubview(tech)
 						break
-					case "activeInOut":
+					case "InOut":
 						let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 4)
@@ -331,6 +331,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborButtom1 = secondComponent
 					secondComponent.neighborTop1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameButtom1 == "neighborTop2" && secondComponent.neighborInterfaceNameTop2 == "neighborButtom1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -358,6 +359,7 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborButtom2 = secondComponent
 					secondComponent.neighborTop2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameButtom2 == "neighborTop3" && secondComponent.neighborInterfaceNameTop3 == "neighborButtom2" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -371,12 +373,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborButtom3 = secondComponent
 					secondComponent.neighborTop1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameButtom3 == "neighborTop2" && secondComponent.neighborInterfaceNameTop2 == "neighborButtom3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborButtom3 = secondComponent
 					secondComponent.neighborTop2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameButtom3 == "neighborTop3" && secondComponent.neighborInterfaceNameTop3 == "neighborButtom3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -390,12 +394,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborRight1 = secondComponent
 					secondComponent.neighborLeft1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight1 == "neighborLeft2" && secondComponent.neighborInterfaceNameLeft2 == "neighborRight1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborRight1 = secondComponent
 					secondComponent.neighborLeft2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight1 == "neighborLeft2" && secondComponent.neighborInterfaceNameLeft3 == "neighborRight1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -409,12 +415,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborRight2 = secondComponent
 					secondComponent.neighborLeft1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight2 == "neighborLeft2" && secondComponent.neighborInterfaceNameLeft2 == "neighborRight2" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborRight2 = secondComponent
 					secondComponent.neighborLeft2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight2 == "neighborLeft3" && secondComponent.neighborInterfaceNameLeft3 == "neighborRight2" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -428,12 +436,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborRight3 = secondComponent
 					secondComponent.neighborLeft1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight3 == "neighborLeft2" && secondComponent.neighborInterfaceNameLeft2 == "neighborRight3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborRight3 = secondComponent
 					secondComponent.neighborLeft2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameRight3 == "neighborLeft3" && secondComponent.neighborInterfaceNameLeft3 == "neighborRight3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -447,12 +457,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborLeft1 = secondComponent
 					secondComponent.neighborRight1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft1 == "neighborRight2" && secondComponent.neighborInterfaceNameRight2 == "neighborLeft1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborLeft1 = secondComponent
 					secondComponent.neighborRight2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft1 == "neighborRight3" && secondComponent.neighborInterfaceNameRight3 == "neighborLeft1" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -466,12 +478,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborLeft2 = secondComponent
 					secondComponent.neighborRight1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft2 == "neighborRight2" && secondComponent.neighborInterfaceNameRight2 == "neighborLeft2" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborLeft2 = secondComponent
 					secondComponent.neighborRight2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft2 == "neighborRight3" && secondComponent.neighborInterfaceNameRight3 == "neighborLeft2" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -485,12 +499,14 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					firstComponent.neighborLeft3 = secondComponent
 					secondComponent.neighborRight1 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft3 == "neighborRight2" && secondComponent.neighborInterfaceNameRight2 == "neighborLeft3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
 					firstComponent.neighborLeft3 = secondComponent
 					secondComponent.neighborRight2 = firstComponent
 				}
+				
 				if  firstComponent.neighborInterfaceNameLeft3 == "neighborRight3" && secondComponent.neighborInterfaceNameRight3 == "neighborLeft3" &&
 					firstComponent.neighborsTags.contains(Int64(secondComponent.tag)) && secondComponent.neighborsTags.contains(Int64(firstComponent.tag))
 				{
@@ -1009,9 +1025,9 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		for v in editPanelViewList {
 			v.removeFromSuperview()
 		}
-		var h = CGFloat(400)
+		var h = CGFloat(300)
 		if component.type == "Bus" {
-			h = 275
+			h = 220
 		} else if component.type == "Timer" || component.type == "Clock"{
 			h = 145
 		}
@@ -1020,36 +1036,36 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 			if ((visibleRect.maxX - component.frame.maxX) < 240 ){
 				component.editPanel.frame = CGRect(x: component.frame.minX - 250,
 				                                   y: component.frame.minY,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			} else {
 				component.editPanel.frame = CGRect(x: component.frame.maxX + 40,
 				                                   y: component.frame.minY,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			}
 			
 		} else if ( visibleRect.maxY - component.frame.minY < 400 && (component.frame.maxY - visibleRect.minY > 600)) {
 			
-			if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+			if ((visibleRect.maxX - component.frame.maxX) < 230 ){
 				component.editPanel.frame = CGRect(x: component.frame.minX - 250,
 				                                   y: component.frame.maxY - 400,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			} else {
 				component.editPanel.frame = CGRect(x: component.frame.maxX + 40,
 				                                   y: component.frame.maxY - 400,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			}
 			
 			
 		} else {
 			
-			if ((visibleRect.maxX - component.frame.maxX) < 210 ){
+			if ((visibleRect.maxX - component.frame.maxX) < 230 ){
 				component.editPanel.frame = CGRect(x: component.frame.minX - 250,
 				                                   y: component.frame.maxY - 250,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			} else {
 				component.editPanel.frame = CGRect(x: component.frame.maxX + 40,
 				                                   y: component.frame.maxY - 250,
-				                                   width: 210, height: h)
+				                                   width: 230, height: h)
 			}
 		}
 		
@@ -1249,58 +1265,59 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		component.removeFromSuperview()
 	}
 	
-	var tmp_move = [XFComponentView]()
-	func trace_move(component: XFComponentView!) {
-		if component.neighborTop1 != nil && !tmp_move.contains(component.neighborTop1!) && component.neighborTop1 != self {
-			tmp_move.append(component.neighborTop1!)
-			trace_move(component: component.neighborTop1!)
+	var neighbours = [XFComponentView]()
+	
+	func trace_neighbours(component: XFComponentView!) {
+		if component.neighborTop1 != nil && !neighbours.contains(component.neighborTop1!) && component.neighborTop1 != self {
+			neighbours.append(component.neighborTop1!)
+			trace_neighbours(component: component.neighborTop1!)
 		}
-		if component.neighborTop2 != nil && !tmp_move.contains(component.neighborTop2!) && component.neighborTop2 != self {
-			tmp_move.append(component.neighborTop2!)
-			trace_move(component: component.neighborTop2!)
+		if component.neighborTop2 != nil && !neighbours.contains(component.neighborTop2!) && component.neighborTop2 != self {
+			neighbours.append(component.neighborTop2!)
+			trace_neighbours(component: component.neighborTop2!)
 		}
-		if component.neighborTop3 != nil && !tmp_move.contains(component.neighborTop3!) && component.neighborTop3 != self {
-			tmp_move.append(component.neighborTop3!)
-			trace_move(component: component.neighborTop3!)
-		}
-		
-		if component.neighborRight1 != nil && !tmp_move.contains(component.neighborRight1!) && component.neighborRight1 != self {
-			tmp_move.append(component.neighborRight1!)
-			trace_move(component: component.neighborRight1!)
-		}
-		if component.neighborRight2 != nil && !tmp_move.contains(component.neighborRight2!) && component.neighborRight2 != self {
-			tmp_move.append(component.neighborRight2!)
-			trace_move(component: component.neighborRight2!)
-		}
-		if component.neighborRight3 != nil && !tmp_move.contains(component.neighborRight3!) && component.neighborRight3 != self {
-			tmp_move.append(component.neighborRight3!)
-			trace_move(component: component.neighborRight3!)
+		if component.neighborTop3 != nil && !neighbours.contains(component.neighborTop3!) && component.neighborTop3 != self {
+			neighbours.append(component.neighborTop3!)
+			trace_neighbours(component: component.neighborTop3!)
 		}
 		
-		if component.neighborButtom1 != nil && !tmp_move.contains(component.neighborButtom1!) && component.neighborButtom1 != self {
-			tmp_move.append(component.neighborButtom1!)
-			trace_move(component: component.neighborButtom1!)
+		if component.neighborRight1 != nil && !neighbours.contains(component.neighborRight1!) && component.neighborRight1 != self {
+			neighbours.append(component.neighborRight1!)
+			trace_neighbours(component: component.neighborRight1!)
 		}
-		if component.neighborButtom2 != nil && !tmp_move.contains(component.neighborButtom2!) && component.neighborButtom2 != self {
-			tmp_move.append(component.neighborButtom2!)
-			trace_move(component: component.neighborButtom2!)
+		if component.neighborRight2 != nil && !neighbours.contains(component.neighborRight2!) && component.neighborRight2 != self {
+			neighbours.append(component.neighborRight2!)
+			trace_neighbours(component: component.neighborRight2!)
 		}
-		if component.neighborButtom3 != nil && !tmp_move.contains(component.neighborButtom3!) && component.neighborButtom3 != self {
-			tmp_move.append(component.neighborButtom3!)
-			trace_move(component: component.neighborButtom3!)
+		if component.neighborRight3 != nil && !neighbours.contains(component.neighborRight3!) && component.neighborRight3 != self {
+			neighbours.append(component.neighborRight3!)
+			trace_neighbours(component: component.neighborRight3!)
 		}
 		
-		if component.neighborLeft1 != nil && !tmp_move.contains(component.neighborLeft1!) && component.neighborLeft1 != self {
-			tmp_move.append(component.neighborLeft1!)
-			trace_move(component: component.neighborLeft1!)
+		if component.neighborButtom1 != nil && !neighbours.contains(component.neighborButtom1!) && component.neighborButtom1 != self {
+			neighbours.append(component.neighborButtom1!)
+			trace_neighbours(component: component.neighborButtom1!)
 		}
-		if component.neighborLeft2 != nil && !tmp_move.contains(component.neighborLeft2!) && component.neighborLeft2 != self {
-			tmp_move.append(component.neighborLeft2!)
-			trace_move(component: component.neighborLeft2!)
+		if component.neighborButtom2 != nil && !neighbours.contains(component.neighborButtom2!) && component.neighborButtom2 != self {
+			neighbours.append(component.neighborButtom2!)
+			trace_neighbours(component: component.neighborButtom2!)
 		}
-		if component.neighborLeft3 != nil && !tmp_move.contains(component.neighborLeft3!) && component.neighborLeft3 != self {
-			tmp_move.append(component.neighborLeft3!)
-			trace_move(component: component.neighborLeft3!)
+		if component.neighborButtom3 != nil && !neighbours.contains(component.neighborButtom3!) && component.neighborButtom3 != self {
+			neighbours.append(component.neighborButtom3!)
+			trace_neighbours(component: component.neighborButtom3!)
+		}
+		
+		if component.neighborLeft1 != nil && !neighbours.contains(component.neighborLeft1!) && component.neighborLeft1 != self {
+			neighbours.append(component.neighborLeft1!)
+			trace_neighbours(component: component.neighborLeft1!)
+		}
+		if component.neighborLeft2 != nil && !neighbours.contains(component.neighborLeft2!) && component.neighborLeft2 != self {
+			neighbours.append(component.neighborLeft2!)
+			trace_neighbours(component: component.neighborLeft2!)
+		}
+		if component.neighborLeft3 != nil && !neighbours.contains(component.neighborLeft3!) && component.neighborLeft3 != self {
+			neighbours.append(component.neighborLeft3!)
+			trace_neighbours(component: component.neighborLeft3!)
 		}
 	}
 	
@@ -1320,8 +1337,9 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		let firstComponentView_intarface2Left_convert   = firstComponentView.intarface2Left?.convert((firstComponentView.intarface2Left?.bounds)!, to: self.view)
 		let firstComponentView_intarface3Left_convert   = firstComponentView.intarface3Left?.convert((firstComponentView.intarface3Left?.bounds)!, to: self.view)
 		
-		tmp_move.removeAll()
-		trace_move(component: firstComponentView)
+		neighbours.removeAll()
+		trace_neighbours(component: firstComponentView)
+		
 		
 		switch firstComponentView.type {
 		case "Bus":
@@ -1976,7 +1994,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 		default:
 			for secondComponentView in modell.GetComponentViewList() {
 				if( secondComponentView != firstComponentView && !secondComponentView.bOrigin ) {
-					
 					var w_bus = CGFloat(0)
 					var x_timer_top = CGFloat(0)
 					var y_timer_top = CGFloat(0)
@@ -2932,7 +2949,6 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 					
 				}
 				updatePosition()
-				
 			}
 		}
 	}
