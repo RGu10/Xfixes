@@ -25,11 +25,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="5cV-Gp-JgH">
                         <rightBarButtonItems>
-                            <barButtonItem title="Logout" id="DG0-AF-MR5">
-                                <connections>
-                                    <segue destination="rjl-gl-rxl" kind="presentation" id="EXE-rm-lCT"/>
-                                </connections>
-                            </barButtonItem>
                             <barButtonItem systemItem="trash" id="Zw2-ch-BH7">
                                 <connections>
                                     <action selector="RemovAllButton:" destination="BYZ-38-t0r" id="beF-Xy-kOF"/>
@@ -76,11 +71,6 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="Ygv-ka-Bb9">
                             <connections>
                                 <action selector="addProjectButton:" destination="mfN-pg-cil" id="3cn-07-iQh"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="bK7-5Q-G50">
-                            <connections>
-                                <segue destination="rjl-gl-rxl" kind="presentation" id="CaG-zH-VdB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -185,7 +175,4 @@
             <point key="canvasLocation" x="525.5859375" y="1119.53125"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="CaG-zH-VdB"/>
-    </inferredMetricsTieBreakers>
 </document>

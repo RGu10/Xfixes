@@ -10,6 +10,7 @@ import UIKit
 
 class XFLoginViewController: UIViewController {
 
+	/*
     @IBAction func loginButton(_ sender: Any) {
         if usernameLabel.text == "Ryad" && passwordLabel.text == "0000" {
             self.performSegue(withIdentifier: "LoginSegue", sender: self)
@@ -17,7 +18,7 @@ class XFLoginViewController: UIViewController {
             usernameLabel.backgroundColor = UIColor.red
             passwordLabel.backgroundColor = UIColor.red
         }
-    }
+    }*/
     
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
