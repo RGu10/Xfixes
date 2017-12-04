@@ -19,7 +19,7 @@
 		93849C461F0432C400DD2B00 /* xFixesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C451F0432C400DD2B00 /* xFixesTests.swift */; };
 		93849C511F0432C400DD2B00 /* xFixesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C501F0432C400DD2B00 /* xFixesUITests.swift */; };
 		93849C631F04336000DD2B00 /* XFComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5E1F04336000DD2B00 /* XFComponentView.swift */; };
-		93849C641F04336100DD2B00 /* XFEditPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5F1F04336000DD2B00 /* XFEditPanel.swift */; };
+		93849C641F04336100DD2B00 /* XFEditPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C5F1F04336000DD2B00 /* XFEditPanelView.swift */; };
 		93849C651F04336100DD2B00 /* XFInterfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93849C601F04336000DD2B00 /* XFInterfaceView.swift */; };
 		939DB2791F4F263C008E7523 /* XFDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DB2781F4F263C008E7523 /* XFDataBase.swift */; };
 		93C12EE51F2546EB00305E61 /* XFLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C12EE41F2546EB00305E61 /* XFLoginViewController.swift */; };
@@ -63,7 +63,7 @@
 		93849C501F0432C400DD2B00 /* xFixesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xFixesUITests.swift; sourceTree = "<group>"; };
 		93849C521F0432C400DD2B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93849C5E1F04336000DD2B00 /* XFComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFComponentView.swift; sourceTree = "<group>"; };
-		93849C5F1F04336000DD2B00 /* XFEditPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFEditPanel.swift; sourceTree = "<group>"; };
+		93849C5F1F04336000DD2B00 /* XFEditPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFEditPanelView.swift; sourceTree = "<group>"; };
 		93849C601F04336000DD2B00 /* XFInterfaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFInterfaceView.swift; sourceTree = "<group>"; };
 		939DB2781F4F263C008E7523 /* XFDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XFDataBase.swift; sourceTree = "<group>"; };
 		93C12EE41F2546EB00305E61 /* XFLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XFLoginViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				9377CB6F1F4F1ED000213DB8 /* XFProjectView.swift */,
-				93849C5F1F04336000DD2B00 /* XFEditPanel.swift */,
+				93849C5F1F04336000DD2B00 /* XFEditPanelView.swift */,
 				93849C601F04336000DD2B00 /* XFInterfaceView.swift */,
 				93849C5E1F04336000DD2B00 /* XFComponentView.swift */,
 			);
@@ -340,7 +340,7 @@
 				9351C2671F5CA79200E77EF1 /* Project.swift in Sources */,
 				93C12EE71F26859A00305E61 /* XFProjectViewController.swift in Sources */,
 				93C12EE51F2546EB00305E61 /* XFLoginViewController.swift in Sources */,
-				93849C641F04336100DD2B00 /* XFEditPanel.swift in Sources */,
+				93849C641F04336100DD2B00 /* XFEditPanelView.swift in Sources */,
 				933DDCD01F53423600454E30 /* Component.swift in Sources */,
 				93849C2E1F0432C300DD2B00 /* AppDelegate.swift in Sources */,
 			);

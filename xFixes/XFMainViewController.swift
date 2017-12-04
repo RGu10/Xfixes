@@ -16,7 +16,7 @@ class XFModell{
 class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollViewDelegate {
 	
 	var modell = XFModell()
-	var editPanelViewList = [XFEditPanel]()
+	var editPanelViewList = [XFEditPanelView]()
 	var dataBaseManager = XFDataBaseManager(appDelegate: (UIApplication.shared.delegate as? AppDelegate)!)
 	
 	let scrollView = UIScrollView()
@@ -209,31 +209,31 @@ class XFMainViewController: UIViewController, ComponentViewDelegate, UIScrollVie
 				if tmp?.type != nil {
 					switch tmp_type! {
 					case "activeIn":
-						let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 2)
 						tmpInterfaceView.addSubview(tech)
 						break
 					case "activeOut":
-						let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 4)
 						tmpInterfaceView.addSubview(tech)
 						break
 					case "InOut":
-						let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: ((interface as? Interface)?.type)!)
+						let tech = XFInterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 4)
 						tmpInterfaceView.addSubview(tech)
 						break
 					case "analogIn":
-						let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 2)
 						tmpInterfaceView.addSubview(tech)
 						break
 					case "analogOut":
-						let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: ((interface as? Interface)?.type)!)
+						let tech = XFInterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: ((interface as? Interface)?.type)!)
 						tech.backgroundColor = UIColor.clear
 						tech.rotate(deg: 4)
 						tmpInterfaceView.addSubview(tech)

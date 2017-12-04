@@ -1,6 +1,6 @@
 import UIKit
 
-class InterfaceTechnologieView: UIView
+class XFInterfaceTechnologieView: UIView
 {
 	var orient = CGFloat(0.0)
 	let lineWidth: CGFloat = 2

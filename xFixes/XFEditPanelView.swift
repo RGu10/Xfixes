@@ -11,7 +11,7 @@ protocol InterfacePickerDelegate: class {
 	func setInterface(side: String, interface1: String, interface2: String, interface3: String)
 }
 
-class InterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
+class XFInterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	
 	var type = ""
 	var picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 230, height: 40.0))
@@ -96,7 +96,7 @@ class InterfacePicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
 	}
 }
 
-class XFEditPanel : UIView  {
+class XFEditPanelView : UIView  {
 	
 	var component: XFComponentView? = nil
 	let titleField = UITextField()
@@ -195,22 +195,22 @@ class XFEditPanel : UIView  {
 			intarfaceTopLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 			addSubview(intarfaceTopLabel)
 			
-			let pickerInterfaceTop = InterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 60.0))
+			let pickerInterfaceTop = XFInterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 60.0))
 			pickerInterfaceTop.type = "InterfaceTop"
 			pickerInterfaceTop.delegate = component!
 			addSubview(pickerInterfaceTop)
 			
-			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 100, width: 230, height: 60.0))
+			let pickerInterfaceRight = XFInterfacePicker(frame: CGRect(x: 0, y: 100, width: 230, height: 60.0))
 			pickerInterfaceRight.type = "InterfaceRight"
 			pickerInterfaceRight.delegate = component!
 			addSubview(pickerInterfaceRight)
 			
-			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 140, width: 230, height: 60.0))
+			let pickerInterfaceLeft = XFInterfacePicker(frame: CGRect(x: 0, y: 140, width: 230, height: 60.0))
 			pickerInterfaceLeft.type = "InterfaceLeft"
 			pickerInterfaceLeft.delegate = component!
 			addSubview(pickerInterfaceLeft)
 			
-			let pickerInterfaceButtom = InterfacePicker(frame: CGRect(x: 0, y: 180, width: 230, height: 60.0))
+			let pickerInterfaceButtom = XFInterfacePicker(frame: CGRect(x: 0, y: 180, width: 230, height: 60.0))
 			pickerInterfaceButtom.type = "InterfaceButtom"
 			pickerInterfaceButtom.delegate = component!
 			addSubview(pickerInterfaceButtom)
@@ -240,12 +240,12 @@ class XFEditPanel : UIView  {
 			intarfaceTopLabel.backgroundColor = UIColor(hue: 0.1111, saturation: 0.01, brightness: 0.95, alpha: 1.0)
 			addSubview(intarfaceTopLabel)
 			
-			let pickerInterfaceRight = InterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 40.0))
+			let pickerInterfaceRight = XFInterfacePicker(frame: CGRect(x: 0, y: 60, width: 230, height: 40.0))
 			pickerInterfaceRight.type = "InterfaceRight"
 			pickerInterfaceRight.delegate = component!
 			addSubview(pickerInterfaceRight)
 
-			let pickerInterfaceLeft = InterfacePicker(frame: CGRect(x: 0, y: 100, width: 210, height: 40.0))
+			let pickerInterfaceLeft = XFInterfacePicker(frame: CGRect(x: 0, y: 100, width: 210, height: 40.0))
 			pickerInterfaceLeft.type = "InterfaceLeft"
 			pickerInterfaceLeft.delegate = component!
 			addSubview(pickerInterfaceLeft)
@@ -312,7 +312,6 @@ class XFEditPanel : UIView  {
 		default:
 			break
 		}
-		
 	}
     
     func initGestureRecognizers() {

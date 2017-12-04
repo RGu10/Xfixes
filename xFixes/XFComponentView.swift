@@ -34,7 +34,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 	var neighborsTags  = [Int64]()
 	var interfaces = [XFInterfaceView]()
 	var neighborInterfacesName = [String]()
-	var editPanel  = XFEditPanel()
+	var editPanel  = XFEditPanelView()
 	
 	var path: UIBezierPath!
 	var path2: UIBezierPath!
@@ -336,7 +336,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			case "activeIn":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface1Top?.addSubview(tech)
@@ -345,7 +345,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			case "activeOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface1Top?.addSubview(tech)
@@ -354,7 +354,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			case "InOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface1Top?.addSubview(tech)
@@ -363,7 +363,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			case "analogIn":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface1Top?.addSubview(tech)
@@ -372,7 +372,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 			case "analogOut":
 				intarface1Top = XFInterfaceView(frame: CGRect(x: 0, y: -26, width: 30, height: 30), interfaceType: interface1) // to extend
 				setupInterface(interface: intarface1Top!, position: "top1", deg: 3)
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface1Top?.addSubview(tech)
@@ -400,7 +400,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Top?.addSubview(tech)
@@ -411,7 +411,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface2Top?.addSubview(tech)
@@ -422,7 +422,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface2Top?.addSubview(tech)
@@ -433,7 +433,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Top?.addSubview(tech)
@@ -444,7 +444,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Top?.backgroundColor = UIColor.clear
 				intarface2Top?.rotate(deg: 3)
 				intarface2Top?.position = "top2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface2Top?.addSubview(tech)
@@ -507,7 +507,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
 				intarface3Top?.position = "top3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -0.5, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Top?.addSubview(tech)
@@ -518,7 +518,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
 				intarface3Top?.position = "top3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0.5, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface3Top?.addSubview(tech)
@@ -529,7 +529,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
 				intarface3Top?.position = "top3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 2, y: 1, width: 26, height: 26),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface3Top?.addSubview(tech)
@@ -540,7 +540,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
 				intarface3Top?.position = "top3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Top?.addSubview(tech)
@@ -551,7 +551,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Top?.backgroundColor = UIColor.clear
 				intarface3Top?.rotate(deg: 3)
 				intarface3Top?.position = "top3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 1, y: 1, width: 28, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 4)
 				intarface3Top?.addSubview(tech)
@@ -596,7 +596,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface1Right?.backgroundColor = UIColor.clear
 				intarface1Right?.position = "right1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface1Right?.addSubview(tech)
@@ -609,7 +609,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Right = XFInterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: interface1)
 				}
 				intarface1Right?.backgroundColor = UIColor.clear
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Right?.position = "right1"
 				intarface1Right?.addSubview(tech)
@@ -622,7 +622,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Right = XFInterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: interface1)
 				}
 				intarface1Right?.backgroundColor = UIColor.clear
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Right?.position = "right1"
 				intarface1Right?.addSubview(tech)
@@ -635,7 +635,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Right = XFInterfaceView(frame: CGRect(x: 96, y: 0, width: 30, height: 30), interfaceType: interface1)
 				}
 				intarface1Right?.backgroundColor = UIColor.clear
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Right?.position = "right1"
 				tech.rotate(deg: 2)
@@ -650,7 +650,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface1Right?.backgroundColor = UIColor.clear
 				intarface1Right?.position = "right1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Right?.addSubview(tech)
 				self.addSubview(intarface1Right!)
@@ -683,7 +683,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface2Right?.backgroundColor = UIColor.clear
 				intarface2Right?.position = "right2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Right?.addSubview(tech)
@@ -697,7 +697,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface2Right?.backgroundColor = UIColor.clear
 				intarface2Right?.position = "right2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Right?.addSubview(tech)
 				self.addSubview(intarface2Right!)
@@ -710,7 +710,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface2Right?.backgroundColor = UIColor.clear
 				intarface2Right?.position = "right2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Right?.addSubview(tech)
 				self.addSubview(intarface2Right!)
@@ -723,7 +723,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface2Right?.backgroundColor = UIColor.clear
 				intarface2Right?.position = "right2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Right?.addSubview(tech)
@@ -737,7 +737,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface2Right?.backgroundColor = UIColor.clear
 				intarface2Right?.position = "right2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Right?.addSubview(tech)
 				self.addSubview(intarface2Right!)
@@ -808,7 +808,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface3Right?.backgroundColor = UIColor.clear
 				intarface3Right?.position = "right3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Right?.addSubview(tech)
@@ -822,7 +822,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface3Right?.backgroundColor = UIColor.clear
 				intarface3Right?.position = "right3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Right?.addSubview(tech)
 				self.addSubview(intarface3Right!)
@@ -835,7 +835,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface3Right?.backgroundColor = UIColor.clear
 				intarface3Right?.position = "right3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 26, height: 26),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Right?.addSubview(tech)
 				self.addSubview(intarface3Right!)
@@ -848,7 +848,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface3Right?.backgroundColor = UIColor.clear
 				intarface3Right?.position = "right3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Right?.addSubview(tech)
@@ -862,7 +862,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				}
 				intarface3Right?.backgroundColor = UIColor.clear
 				intarface3Right?.position = "right3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Right?.addSubview(tech)
 				self.addSubview(intarface3Right!)
@@ -899,7 +899,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
 				intarface1Left?.position = "left1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface1Left?.addSubview(tech)
@@ -910,7 +910,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
 				intarface1Left?.position = "left1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Left?.addSubview(tech)
 				self.addSubview(intarface1Left!)
@@ -920,7 +920,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
 				intarface1Left?.position = "left1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Left?.addSubview(tech)
 				self.addSubview(intarface1Left!)
@@ -930,7 +930,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
 				intarface1Left?.position = "left1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface1Left?.addSubview(tech)
@@ -941,7 +941,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface1Left?.backgroundColor = UIColor.clear
 				intarface1Left?.rotate(deg: 2)
 				intarface1Left?.position = "left1"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
 				tech.backgroundColor = UIColor.clear
 				intarface1Left?.addSubview(tech)
 				self.addSubview(intarface1Left!)
@@ -968,7 +968,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
 				intarface2Left?.position = "left2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Left?.addSubview(tech)
@@ -979,7 +979,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
 				intarface2Left?.position = "left2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Left?.addSubview(tech)
 				self.addSubview(intarface2Left!)
@@ -989,7 +989,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
 				intarface2Left?.position = "left2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Left?.addSubview(tech)
 				self.addSubview(intarface2Left!)
@@ -999,7 +999,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
 				intarface2Left?.position = "left2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface2Left?.addSubview(tech)
@@ -1010,7 +1010,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface2Left?.backgroundColor = UIColor.clear
 				intarface2Left?.rotate(deg: 2)
 				intarface2Left?.position = "left2"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
 				tech.backgroundColor = UIColor.clear
 				intarface2Left?.addSubview(tech)
 				self.addSubview(intarface2Left!)
@@ -1062,7 +1062,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
 				intarface3Left?.position = "left3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 28),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Left?.addSubview(tech)
@@ -1073,7 +1073,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
 				intarface3Left?.position = "left3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Left?.addSubview(tech)
 				self.addSubview(intarface3Left!)
@@ -1083,7 +1083,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
 				intarface3Left?.position = "left3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Left?.addSubview(tech)
 				self.addSubview(intarface3Left!)
@@ -1093,7 +1093,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
 				intarface3Left?.position = "left3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: 0, width: 30, height: 30),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				tech.rotate(deg: 2)
 				intarface3Left?.addSubview(tech)
@@ -1104,7 +1104,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 				intarface3Left?.backgroundColor = UIColor.clear
 				intarface3Left?.rotate(deg: 2)
 				intarface3Left?.position = "left3"
-				let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
+				let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
 				tech.backgroundColor = UIColor.clear
 				intarface3Left?.addSubview(tech)
 				self.addSubview(intarface3Left!)
@@ -1142,7 +1142,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
 					intarface1Buttom?.position = "buttom1"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface1)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface1)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface1Buttom?.addSubview(tech)
@@ -1153,7 +1153,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
 					intarface1Buttom?.position = "buttom1"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
 					tech.backgroundColor = UIColor.clear
 					intarface1Buttom?.addSubview(tech)
 					self.addSubview(intarface1Buttom!)
@@ -1163,7 +1163,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
 					intarface1Buttom?.position = "buttom1"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface1)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface1)
 					tech.backgroundColor = UIColor.clear
 					intarface1Buttom?.addSubview(tech)
 					self.addSubview(intarface1Buttom!)
@@ -1173,7 +1173,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
 					intarface1Buttom?.position = "buttom1"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface1)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface1)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface1Buttom?.addSubview(tech)
@@ -1184,7 +1184,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface1Buttom?.backgroundColor = UIColor.clear
 					intarface1Buttom?.rotate(deg: 1)
 					intarface1Buttom?.position = "buttom1"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface1)
 					tech.backgroundColor = UIColor.clear
 					intarface1Buttom?.addSubview(tech)
 					self.addSubview(intarface1Buttom!)
@@ -1211,7 +1211,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface2)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface2)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface2Buttom?.addSubview(tech)
@@ -1222,7 +1222,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
 					tech.backgroundColor = UIColor.clear
 					intarface2Buttom?.addSubview(tech)
 					self.addSubview(intarface2Buttom!)
@@ -1232,7 +1232,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface2)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface2)
 					tech.backgroundColor = UIColor.clear
 					intarface2Buttom?.addSubview(tech)
 					self.addSubview(intarface2Buttom!)
@@ -1242,7 +1242,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface2)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface2)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface2Buttom?.addSubview(tech)
@@ -1253,7 +1253,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface2Buttom?.backgroundColor = UIColor.clear
 					intarface2Buttom?.rotate(deg: 1)
 					intarface2Buttom?.position = "buttom2"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface2)
 					tech.backgroundColor = UIColor.clear
 					intarface2Buttom?.addSubview(tech)
 					self.addSubview(intarface2Buttom!)
@@ -1305,7 +1305,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)
 					intarface3Buttom?.position = "buttom3"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface3)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -1, width: 30, height: 28),interfaceType: interface3)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface3Buttom?.addSubview(tech)
@@ -1316,7 +1316,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)
 					intarface3Buttom?.position = "buttom3"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
 					tech.backgroundColor = UIColor.clear
 					intarface3Buttom?.addSubview(tech)
 					self.addSubview(intarface3Buttom!)
@@ -1326,7 +1326,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)
 					intarface3Buttom?.position = "buttom3"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface3)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 27, height: 27),interfaceType: interface3)
 					tech.backgroundColor = UIColor.clear
 					intarface3Buttom?.addSubview(tech)
 					self.addSubview(intarface3Buttom!)
@@ -1336,7 +1336,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)
 					intarface3Buttom?.position = "buttom3"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface3)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: -15, y: -2, width: 30, height: 30),interfaceType: interface3)
 					tech.backgroundColor = UIColor.clear
 					tech.rotate(deg: 2)
 					intarface3Buttom?.addSubview(tech)
@@ -1347,7 +1347,7 @@ class XFComponentView : UIView, InterfacePickerDelegate {
 					intarface3Buttom?.backgroundColor = UIColor.clear
 					intarface3Buttom?.rotate(deg: 1)
 					intarface3Buttom?.position = "buttom3"
-					let tech = InterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
+					let tech = XFInterfaceTechnologieView(frame: CGRect(x: 0, y: 0, width: 30, height: 30),interfaceType: interface3)
 					tech.backgroundColor = UIColor.clear
 					intarface3Buttom?.addSubview(tech)
 					self.addSubview(intarface3Buttom!)

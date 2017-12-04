@@ -31,7 +31,6 @@ class XFProjectView : UIView  {
 	func setup() {
 		path = rectPath()
 		initGestureRecognizers()
-		
 		titleField = UITextField(frame: CGRect(x: 2, y: 10, width: 170, height: 50))
 		titleField.text = "Project Name"
 		titleField.adjustsFontSizeToFitWidth = true
